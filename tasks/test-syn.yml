@@ -1,0 +1,9 @@
+---
+
+- name: (freeipa-sssd-tools) test ipa-sss-syn {{ item }}
+  shell: "{{ freeipa_sssd_tools_dir }}/ipa-sss-syn {{ item }}"
+  args:
+    executable: /bin/bash
+  environment: "{{ freeipa_sssd_tools_syn_environment }}"
+  changed_when: False
+  become: yes

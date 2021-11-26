@@ -1,0 +1,32 @@
+---
+# -*- coding: utf-8 -*-
+
+before_script:
+  - env
+  - hostname
+  - ip r
+  - du --max-depth=1
+  - ansible --version
+  - ansible-lint --version
+
+stages:
+  - ansible-lint
+  - ansible-syntax-check
+
+ansible-lint:
+  stage: ansible-lint
+  script:
+    - make lint
+  only:
+    - develop
+  tags:
+    - ansible
+
+ansible-syntax-check:
+  stage: ansible-syntax-check
+  script:
+    - make syntax
+  only:
+    - develop
+  tags:
+    - ansible

@@ -1,0 +1,6 @@
+---
+
+freeipa_sssd_tools_packages:
+  - git
+  - ldb-tools
+  - sssd-tools

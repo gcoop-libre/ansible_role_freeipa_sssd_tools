@@ -1,0 +1,8 @@
+---
+
+- name: (freeipa-sssd-tools) ensure required packages are installed
+  package:
+    name: "{{ freeipa_sssd_tools_packages }}"
+    state: present
+  become: yes
+  when: freeipa_sssd_tools_packages | length > 0

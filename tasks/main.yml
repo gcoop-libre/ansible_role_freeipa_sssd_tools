@@ -1,0 +1,29 @@
+---
+
+- name: (freeipa_sssd_tools) include OS variables
+  include_vars: "{{ ansible_os_family }}.yml"
+
+- name: (freeipa_sssd_tools) include packages tasks
+  include_tasks: packages.yml
+  when: freeipa_sssd_tools_packages_install | bool
+
+- name: (freeipa_sssd_tools) include git tasks
+  include_tasks: git.yml
+  when: freeipa_sssd_tools_git_clone | bool
+
+- name: (freeipa_sssd_tools) include config tasks
+  include_tasks: config.yml
+  when: freeipa_sssd_tools_config | bool
+
+- name: (freeipa_sssd_tools) include cron tasks
+  include_tasks: cron.yml
+  when:
+    - freeipa_sssd_tools_cron_configure | bool
+    - freeipa_sssd_tools_cron_entries | length > 0
+
+- name: (freeipa_sssd_tools) include test-syn tasks
+  include_tasks: test-syn.yml
+  when:
+    - freeipa_sssd_tools_test | bool
+    - freeipa_sssd_tools_test_users | length > 0
+  loop: "{{ freeipa_sssd_tools_test_users }}"

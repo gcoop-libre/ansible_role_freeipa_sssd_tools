@@ -1,0 +1,27 @@
+---
+
+- name: (freeipa-sssd-tools) add PATH on top of crontab
+  cron:
+    name: PATH
+    env: yes
+    value: "{{ freeipa_sssd_tools_cron_path }}"
+  become: yes
+
+- name: (freeipa-sssd-tools) cron jobs
+  cron:
+    name: "{{ item.name }}"
+    minute: "{{ item.minute }}"
+    hour: "{{ item.hour }}"
+    job: "{{ item.job }}"
+    cron_file: "{{ item.cron_file }}"
+  become: yes
+  when: item.enabled
+  with_items:
+    - "{{ freeipa_sssd_tools_cron_entries }}"
+
+- name: (freeipa-sssd-tools) restart service cron
+  service:
+    name: cron
+    state: restarted
+  become: yes
+  when: freeipa_sssd_tools_cron_restart | bool

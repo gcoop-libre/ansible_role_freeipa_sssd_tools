@@ -1,0 +1,76 @@
+---
+
+# GENERAL
+freeipa_sssd_tools_dir: /opt/freeipa-sssd-tools
+freeipa_sssd_tools_no_log: False
+freeipa_sssd_tools_username: root
+freeipa_sssd_tools_config: True
+freeipa_sssd_tools_config_dir: /root
+freeipa_sssd_tools_config_file: "{{ freeipa_sssd_tools_config_dir }}/.ipa-config"
+freeipa_sssd_tools_config_owner: root
+freeipa_sssd_tools_config_group: root
+freeipa_sssd_tools_config_mode: '0600'
+
+# PACKAGES
+freeipa_sssd_tools_packages_install: True
+
+# HTTP PROXY (disabled by default)
+freeipa_sssd_tools_http_proxy_host: []
+freeipa_sssd_tools_http_proxy_pass: []
+freeipa_sssd_tools_http_proxy_port: 3128
+freeipa_sssd_tools_http_proxy_use: False
+freeipa_sssd_tools_http_proxy_user: []
+
+# GIT API TOKEN (disabled by default)
+freeipa_sssd_tools_git_api_token: 53cr3t
+freeipa_sssd_tools_git_api_use: False
+freeipa_sssd_tools_git_api_user: gitlab+deploy-token-1
+freeipa_sssd_tools_git_force: True
+freeipa_sssd_tools_git_update: True
+
+# GIT CLONE
+freeipa_sssd_tools_git_clone: True
+freeipa_sssd_tools_git_prefix: https://
+freeipa_sssd_tools_git_repo: gitlab.com/gcoop-libre/freeipa-sssd-tools.git
+freeipa_sssd_tools_git_version: master
+freeipa_sssd_tools_git_environment:
+  GIT_SSL_NO_VERIFY: true
+
+# CRONTAB (disabled by default)
+freeipa_sssd_tools_cron_configure: False
+freeipa_sssd_tools_cron_path: '/usr/local/bin:/usr/bin'
+freeipa_sssd_tools_cron_restart: False
+freeipa_sssd_tools_cron_entries:
+  - name: ipa-sss-syn
+    minute: "0"
+    hour: "*"
+    job: "{{ freeipa_sssd_tools_dir }}/ipa-sss-syn admin"
+    user: "{{ freeipa_sssd_tools_username }}"
+    cron_file: ipa-sss-syn
+    enabled: False
+
+# EXTERNAL LDAP/AD CONFIG (set credentials, host and dn and search_base)
+freeipa_sssd_tools_config_ldap_bind_dn: 'OU=users,DC=addomain,DC=com'
+freeipa_sssd_tools_config_ldap_domain: addomain.com
+freeipa_sssd_tools_config_ldap_host: 10.0.0.1:389
+freeipa_sssd_tools_config_ldap_ldif_wrap: 'no'
+freeipa_sssd_tools_config_ldap_net_timeout: 5
+freeipa_sssd_tools_config_ldap_pass: 53cr37
+freeipa_sssd_tools_config_ldap_scope: sub
+freeipa_sssd_tools_config_ldap_search_base: 'OU=users,DC=addomain,DC=com'
+
+# LDB CONFIG (set ldap_user and ip_domain)
+freeipa_sssd_tools_config_ldap_user: admin@addomain
+freeipa_sssd_tools_config_ipa_domain: "ipa.{{ freeipa_sssd_tools_ldap_domain }}"
+freeipa_sssd_tools_config_ldb_filter: '(objectCategory=user)'
+freeipa_sssd_tools_config_log_file: /var/log/ipa-sss-syn.log
+freeipa_sssd_tools_config_max_pwd_age: 30
+
+# TEST
+freeipa_sssd_tools_test: False
+freeipa_sssd_tools_syn_environment:
+  IPA_SSS_SYN_SHOW: '1'
+  IPA_SSS_SYN_PIVOT: '1'
+  IPA_SSS_SYN_DEBUG: '0'
+freeipa_sssd_tools_test_users:
+  - admin

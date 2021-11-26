@@ -1,0 +1,15 @@
+---
+
+- name: (freeipa-sssd-tools) define freeipa_sssd_tools_config_ldb_host
+  set_fact:
+    freeipa_sssd_tools_config_ldb_host: "/var/lib/sss/db/cache_{{ freeipa_sssd_tools_config_ipa_domain }}.ldb"
+  when: freeipa_sssd_tools_config_ipa_domain | length > 0
+
+- name: (freeipa-sssd-tools) set .ipa-config
+  template:
+    src: templates/ipa-config.j2
+    dest:  "{{ freeipa_sssd_tools_config_file }}"
+    owner: "{{ freeipa_sssd_tools_config_owner }}"
+    group: "{{ freeipa_sssd_tools_config_group }}"
+    mode:  "{{ freeipa_sssd_tools_config_mode }}"
+  become: yes

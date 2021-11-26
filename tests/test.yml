@@ -1,0 +1,8 @@
+---
+
+- name: Install and Configure FreeIPA SSSD Tools
+  hosts: [all]
+  become: yes
+
+  roles:
+    - gcoop-libre.freeipa_sssd_tools
