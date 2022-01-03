@@ -1,0 +1,12 @@
+[Unit]
+Description=uWSGI server instance for freeIPA synconization API
+After=network.target
+
+[Service]
+User={{ freeipa_sssd_tools_api_usr }}
+Group={{ freeipa_sssd_tools_api_grp }}
+WorkingDirectory={{ freeipa_sssd_tools_api_dir }}
+ExecStart={{ freeipa_sssd_tools_api_uwsgi_cmd }}
+
+[Install]
+WantedBy=multi-user.target
