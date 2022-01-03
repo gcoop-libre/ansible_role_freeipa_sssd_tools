@@ -1,0 +1,4 @@
+- src: git@git.bancocredicoop.coop:/filiales/ansible_role_sudoers
+  scm: git
+  version: v2.0.28
+  name: gcoop-libre.sudoers
