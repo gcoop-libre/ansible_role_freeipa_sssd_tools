@@ -46,6 +46,9 @@ freeipa_sssd_tools_api_req_file_loc: "{{ freeipa_sssd_tools_api_dir }}/requireme
 freeipa_sssd_tools_api_db_input: "{{ freeipa_sssd_tools_api_dir}}/db/tosync.db"
 freeipa_sssd_tools_api_db_processed: "{{ freeipa_sssd_tools_api_dir }}/db/process.db"
 freeipa_sssd_tools_api_que_syn_log_file: /var/log/ipa-que-syn.log
+# API - ipa-api-config
+freeipa_sssd_tools_api_conf_dir: "{{ freeipa_sssd_tools_api_dir }}/config/"
+freeipa_sssd_tools_api_log_file: /var/log/ipa-api.log
 # PACKAGES
 freeipa_sssd_tools_packages_install: True
 
