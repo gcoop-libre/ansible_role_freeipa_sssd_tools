@@ -11,6 +11,8 @@ freeipa_sssd_tools_config_owner: root
 freeipa_sssd_tools_config_group: root
 freeipa_sssd_tools_config_mode: '0600'
 
+# API
+freeipa_sssd_tools_api_dir: "{{ freeipa_sssd_tools_dir }}/ipa-api-syn/"
 # PACKAGES
 freeipa_sssd_tools_packages_install: True
 
