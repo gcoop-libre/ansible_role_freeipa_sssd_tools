@@ -6,3 +6,10 @@
     state: present
   become: yes
   when: freeipa_sssd_tools_packages | length > 0
+
+- name: (freeipa-sssd-tools) ensure API required packages are installed
+  package:
+    name: "{{ freeipa_sssd_tools_api_packages }}"
+    state: present
+  become: yes
+  when: freeipa_sssd_tools_api_packages | length > 0
