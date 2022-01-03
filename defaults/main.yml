@@ -51,6 +51,16 @@ freeipa_sssd_tools_api_conf_dir: "{{ freeipa_sssd_tools_api_dir }}/config/"
 freeipa_sssd_tools_api_log_file: /var/log/ipa-api.log
 # API - uwsgi config
 freeipa_sssd_tools_api_uwsgi_port: ":8080"
+# API - sudoers
+freeipa_sssd_tools_api_sudoers_sudoers: 
+    defaults: []
+    cmnd_aliases:
+      - name: IPAQUESYN
+        members: {{ freeipa_sssd_tools_dir }}/ipa-sss-syn
+    privileges:
+      - name: apiquesyn
+        entry: "ALL=(ALL) NOPASSWD:IPAQUESYN"
+
 # PACKAGES
 freeipa_sssd_tools_packages_install: True
 
