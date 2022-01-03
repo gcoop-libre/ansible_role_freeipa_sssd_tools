@@ -49,6 +49,8 @@ freeipa_sssd_tools_api_que_syn_log_file: /var/log/ipa-que-syn.log
 # API - ipa-api-config
 freeipa_sssd_tools_api_conf_dir: "{{ freeipa_sssd_tools_api_dir }}/config/"
 freeipa_sssd_tools_api_log_file: /var/log/ipa-api.log
+# API - uwsgi config
+freeipa_sssd_tools_api_uwsgi_port: ":8080"
 # PACKAGES
 freeipa_sssd_tools_packages_install: True
 
