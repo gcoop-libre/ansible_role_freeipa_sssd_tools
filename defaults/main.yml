@@ -42,6 +42,10 @@ freeipa_sssd_tools_api_sysd_file_mode: '0600'
 freeipa_sssd_tools_api_uwsgi_cmd: "/bin/uwsgi --ini {{ freeipa_sssd_tools_api_dir }}/uwsgi.ini"
 # API - Requirements
 freeipa_sssd_tools_api_req_file_loc: "{{ freeipa_sssd_tools_api_dir }}/requirements.txt"
+# API que-syn-config
+freeipa_sssd_tools_api_db_input: "{{ freeipa_sssd_tools_api_dir}}/db/tosync.db"
+freeipa_sssd_tools_api_db_processed: "{{ freeipa_sssd_tools_api_dir }}/db/process.db"
+freeipa_sssd_tools_api_que_syn_log_file: /var/log/ipa-que-syn.log
 # PACKAGES
 freeipa_sssd_tools_packages_install: True
 
