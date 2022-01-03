@@ -4,3 +4,13 @@ freeipa_sssd_tools_packages:
   - git
   - ldb-tools
   - sssd-tools
+
+freeipa_sssd_tools_api_packages:
+  - epel-release
+  - python-pip
+  - python-devel
+  - gcc 
+  - gcc-c++ 
+  - kernel-devel 
+  - make
+  - python-devel
