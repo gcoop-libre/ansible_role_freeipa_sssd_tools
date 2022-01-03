@@ -13,6 +13,11 @@ freeipa_sssd_tools_config_mode: '0600'
 
 # API
 freeipa_sssd_tools_api_dir: "{{ freeipa_sssd_tools_dir }}/ipa-api-syn/"
+# API - Users
+freeipa_sssd_tools_api_grp: apiquesyn
+freeipa_sssd_tools_api_usr: apiquesyn
+freeipa_sssd_tools_api_usr_shell: /sbin/nologin
+freeipa_sssd_tools_api_usr_home_create: no
 # PACKAGES
 freeipa_sssd_tools_packages_install: True
 
