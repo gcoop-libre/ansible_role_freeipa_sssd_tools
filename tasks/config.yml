@@ -23,3 +23,11 @@
     mode:  "{{ freeipa_sssd_tools_api_config_mode }}"
     become: yes
 
+- name: (freeipa-sssd-tools) set .ipa-api-daemon-config
+  template:
+    src: templates/ipa-api-que-syn-config.j2
+    dest:  "{{ freeipa_sssd_tools_api_que_syn_config_file }}"
+    owner: "{{ freeipa_sssd_tools_api_que_syn_config_owner }}"
+    group: "{{ freeipa_sssd_tools_api_que_syn_config_group }}"
+    mode:  "{{ freeipa_sssd_tools_api_que_syn_config_mode }}"
+    become: yes
