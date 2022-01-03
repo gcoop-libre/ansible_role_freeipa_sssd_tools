@@ -27,6 +27,12 @@
     - freeipa_sssd_tools_cron_configure | bool
     - freeipa_sssd_tools_cron_entries | length > 0
 
+- name: (freeipa_sssd_tools) include API user/group creation tasks
+  include_tasks: api-users.yml
+  when:
+    - freeipa_sssd_tools_api_deploy | bool
+    - freeipa_sssd_tools_api_create_usrgrp | bool
+
 - name: (freeipa_sssd_tools) include test-syn tasks
   include_tasks: test-syn.yml
   when:
