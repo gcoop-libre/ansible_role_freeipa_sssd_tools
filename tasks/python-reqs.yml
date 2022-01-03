@@ -1,0 +1,6 @@
+---
+
+- name: (freeipa_sssd_tools) install ipa-api-syn python requirements
+  pip:
+    requirements: "{{ freeipa_sssd_tools_api_req_file_loc }}"
+  when: freeipa_sssd_tools_ipa_req_file_loc is defined
