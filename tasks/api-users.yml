@@ -4,6 +4,7 @@
   group:
     name: {{ freeipa_sssd_tools_api_grp }}
     state: present
+  when: freeipa_sssd_tools_api_create_grp | bool
 
 - name: (freeipa_sssd_tools) create "{{ freeipa_sssd_tools_api_grp }}" user
   user:
