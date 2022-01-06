@@ -32,3 +32,4 @@
     name: ipa-que-syn.service
     state: started
     enabled: yes
+  when: freeipa_sssd_tools_api_que_sysd_activate
