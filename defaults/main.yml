@@ -11,7 +11,9 @@ freeipa_sssd_tools_config_owner: root
 freeipa_sssd_tools_config_group: root
 freeipa_sssd_tools_config_mode: '0600'
 
-# API
+# API - Enable API deployment
+freeipa_sssd_tools_api_deploy: true
+# API - Main directory
 freeipa_sssd_tools_api_dir: "{{ freeipa_sssd_tools_dir }}/ipa-api-syn/"
 # API - Users
 freeipa_sssd_tools_api_grp: apiquesyn
