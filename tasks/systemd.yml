@@ -25,7 +25,8 @@
     name: ipa-api-syn.service
     state: started
     enabled: yes
-  
+  when: freeipa_sssd_tools_api_sysd_activate
+
 - name: (freeipa_sssd_tools) activate api-que-syn systemd unit
   systemd:
     name: ipa-que-syn.service
