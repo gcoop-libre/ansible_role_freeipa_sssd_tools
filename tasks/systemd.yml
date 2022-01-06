@@ -7,7 +7,8 @@
     owner: "{{ freeipa_sssd_tools_api_sysd_file_owner }}"
     group: "{{ freeipa_sssd_tools_api_sysd_file_group }}"
     mode:  "{{ freeipa_sssd_tools_api_sysd_file_mode }}"
-    become: yes
+  become: yes
+  when: freeipa_sssd_tools_api_sysd
 - name: (freeipa_sssd_tools) deploy api-que-syn systemd unit
   template:
     src: templates/ipa-que-syn_sysd_unit.j2
