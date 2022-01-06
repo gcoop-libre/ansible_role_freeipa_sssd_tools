@@ -34,6 +34,12 @@ freeipa_sssd_tools_api_que_syn_config_file: "{{ freeipa_sssd_tools_api_dir }}/co
 freeipa_sssd_tools_api_que_syn_config_owner: {{ freeipa_sssd_tools_api_usr }}
 freeipa_sssd_tools_api_que_syn_config_group: {{ freeipa_sssd_tools_api_grp }}
 freeipa_sssd_tools_api_que_syn_config_mode: '0600'
+# API - Enable Systemd Units deployment
+freeipa_sssd_tools_api_systemd: true
+freeipa_sssd_tools_api_sysd: true
+freeipa_sssd_tools_api_que_sysd: true
+freeipa_sssd_tools_api_sysd_activate: true
+freeipa_sssd_tools_api_que_sysd_activate: true
 # API - api-que-syn Systemd
 freeipa_sssd_tools_api_que_sysd_file_owner: root
 freeipa_sssd_tools_api_que_sysd_file_group: root
