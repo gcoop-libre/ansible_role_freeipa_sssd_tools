@@ -71,7 +71,7 @@ freeipa_sssd_tools_api_sudoers_sudoers:
     defaults: []
     cmnd_aliases:
       - name: IPAQUESYN
-        members: {{ freeipa_sssd_tools_dir }}/ipa-sss-syn
+        members: "{{ freeipa_sssd_tools_dir }}/ipa-sss-syn"
     privileges:
       - name: apiquesyn
         entry: "ALL=(ALL) NOPASSWD:IPAQUESYN"
