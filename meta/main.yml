@@ -19,8 +19,8 @@ galaxy_info:
     - sync
     - tools
 
- dependencies:
-   - role: gcoop-libre.sudoers
-     when: freeipa_sssd_tools_api_sudoers is defined and freeipa_sssd_tools_api_sudoers | bool
-     vars:
-       sudoers_sudoers: {{ freeipa_sssd_tools_api_sudoers_sudoers }}
+dependencies:
+  - role: gcoop-libre.sudoers
+    when: freeipa_sssd_tools_api_sudoers is defined and freeipa_sssd_tools_api_sudoers | bool
+    vars:
+      sudoers_sudoers: {{ freeipa_sssd_tools_api_sudoers_sudoers }}
