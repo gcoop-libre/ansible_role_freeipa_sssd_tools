@@ -27,12 +27,12 @@ freeipa_sssd_tools_api_usr_home_create: no
 freeipa_sssd_tools_api_config_api: true
 freeipa_sssd_tools_api_config_que-syn: true
 freeipa_sssd_tools_api_config_file: "{{ freeipa_sssd_tools_api_dir }}/config/settings.py"
-freeipa_sssd_tools_api_config_owner: {{ freeipa_sssd_tools_api_usr }}
-freeipa_sssd_tools_api_config_group: {{ freeipa_sssd_tools_api_grp }}
+freeipa_sssd_tools_api_config_owner: "{{ freeipa_sssd_tools_api_usr }}"
+freeipa_sssd_tools_api_config_group: "{{ freeipa_sssd_tools_api_grp }}"
 freeipa_sssd_tools_api_config_mode: '0600'
 freeipa_sssd_tools_api_que_syn_config_file: "{{ freeipa_sssd_tools_api_dir }}/config.py"
-freeipa_sssd_tools_api_que_syn_config_owner: {{ freeipa_sssd_tools_api_usr }}
-freeipa_sssd_tools_api_que_syn_config_group: {{ freeipa_sssd_tools_api_grp }}
+freeipa_sssd_tools_api_que_syn_config_owner: "{{ freeipa_sssd_tools_api_usr }}"
+freeipa_sssd_tools_api_que_syn_config_group: "{{ freeipa_sssd_tools_api_grp }}"
 freeipa_sssd_tools_api_que_syn_config_mode: '0600'
 # API - Enable Systemd Units deployment
 freeipa_sssd_tools_api_systemd: true
@@ -44,9 +44,9 @@ freeipa_sssd_tools_api_que_sysd_activate: true
 freeipa_sssd_tools_api_que_sysd_file_owner: root
 freeipa_sssd_tools_api_que_sysd_file_group: root
 freeipa_sssd_tools_api_que_sysd_file_mode: '0600'
-freeipa_sssd_tools_api_que_syn_usr: {{ freeipa_sssd_tools_api_usr }}
-freeipa_sssd_tools_api_que_syn_grp: {{ freeipa_sssd_tools_api_grp }}
-freeipa_sssd_tools_api_dir: {{ freeipa_sssd_tools_api_dir }}
+freeipa_sssd_tools_api_que_syn_usr: "{{ freeipa_sssd_tools_api_usr }}"
+freeipa_sssd_tools_api_que_syn_grp: "{{ freeipa_sssd_tools_api_grp }}"
+freeipa_sssd_tools_api_dir: "{{ freeipa_sssd_tools_api_dir }}"
 freeipa_sssd_tools_api_que_syn_cmd: "{{ freeipa_sssd_tools_api_dir }}/ipa-que-syn.py"
 # API - API uWSGI Systemd 
 freeipa_sssd_tools_api_sysd_file_owner: root
