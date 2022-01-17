@@ -2,16 +2,16 @@
 
 - name: (freeipa_sssd_tools) create "{{ freeipa_sssd_tools_api_grp }}" group
   group:
-    name: {{ freeipa_sssd_tools_api_grp }}
+    name: "{{ freeipa_sssd_tools_api_grp }}"
     state: present
   when: freeipa_sssd_tools_api_create_grp | bool
 
 - name: (freeipa_sssd_tools) create "{{ freeipa_sssd_tools_api_grp }}" user
   user:
-    name: {{ freeipa_sssd_tools_api_usr }}
-    groups: {{ freeipa_sssd_tools_api_grp }}
-    shell: {{ freeipa_sssd_tools_api_usr_shell }}
+    name: "{{ freeipa_sssd_tools_api_usr }}"
+    groups: "{{ freeipa_sssd_tools_api_grp }}"
+    shell: "{{ freeipa_sssd_tools_api_usr_shell }}"
     append: yes
     state: present
-    create_home: {{ freeipa_sssd_tools_api_home_create }}
+    create_home: "{{ freeipa_sssd_tools_api_home_create }}"
   when: freeipa_sssd_tools_api_create_usr | bool
