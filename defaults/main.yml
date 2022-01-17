@@ -22,7 +22,7 @@ freeipa_sssd_tools_api_create_usr: true
 freeipa_sssd_tools_api_grp: apiquesyn
 freeipa_sssd_tools_api_usr: apiquesyn
 freeipa_sssd_tools_api_usr_shell: /sbin/nologin
-freeipa_sssd_tools_api_usr_home_create: no
+freeipa_sssd_tools_api_home_create: no
 # API - Config
 freeipa_sssd_tools_api_config_api: true
 freeipa_sssd_tools_api_config_que-syn: true
