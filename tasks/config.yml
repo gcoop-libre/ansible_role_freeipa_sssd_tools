@@ -22,7 +22,7 @@
     group: "{{ freeipa_sssd_tools_api_config_group }}"
     mode:  "{{ freeipa_sssd_tools_api_config_mode }}"
   become: yes
-  when: freeipa_sssd_tools_config_api_config_api | bool
+  when: freeipa_sssd_tools_api_config_api | bool
 
 - name: (freeipa-sssd-tools) set ipa-api-que-syn-config
   template:
