@@ -32,4 +32,4 @@
     group: "{{ freeipa_sssd_tools_api_que_syn_config_group }}"
     mode:  "{{ freeipa_sssd_tools_api_que_syn_config_mode }}"
   become: yes
-  when: freeipa_sssd_tools_config_api_config_que_syn | bool
+  when: freeipa_sssd_tools_api_config_que_syn | bool
