@@ -3,8 +3,8 @@ Description= freeIPA API queue consumer
 After=network.target
 
 [Service]
-User={{ freeipa_sssd_tools_api_quesyn_usr }}
-Group={{ freeipa_sssd_tools_api_quesyn_grp }}
+User={{ freeipa_sssd_tools_api_que_syn_usr }}
+Group={{ freeipa_sssd_tools_api_que_syn_grp }}
 WorkingDirectory={{ freeipa_sssd_tools_api_dir }}
 ExecStart={{ freeipa_sssd_tools_api_que_syn_cmd }}
 
