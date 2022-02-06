@@ -6,4 +6,6 @@
     executable: /bin/bash
   environment: "{{ freeipa_sssd_tools_syn_environment }}"
   changed_when: False
+  ignore_errors: True
+  register: ipa_sss_syn_result
   become: yes
