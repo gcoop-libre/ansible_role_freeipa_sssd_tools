@@ -83,7 +83,8 @@ freeipa_sssd_tools_api_uwsgi_url: "http://{{ freeipa_sssd_tools_api_uwsgi_ip }}:
 freeipa_sssd_tools_api_uwsgi_test_syn: "{{ freeipa_sssd_tools_api_uwsgi_url }}/syn"
 freeipa_sssd_tools_api_uwsgi_config: True
 # API - sudoers
-freeipa_sssd_tools_api_sudoers_sudoers: 
+freeipa_sssd_tools_api_sudoers: false
+freeipa_sssd_tools_api_sudoers_sudoers:
     defaults: []
     cmnd_aliases:
       - name: IPAQUESYN
