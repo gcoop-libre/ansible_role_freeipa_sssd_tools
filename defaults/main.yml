@@ -18,6 +18,7 @@ freeipa_sssd_tools_log_mode: '0640'
 freeipa_sssd_tools_api_deploy: true
 # API - Main directory
 freeipa_sssd_tools_api_dir: "{{ freeipa_sssd_tools_dir }}/ipa-api-syn"
+freeipa_sssd_tools_ipa_req_file_loc: true
 # API - Users
 freeipa_sssd_tools_api_create_usrgrp: false
 freeipa_sssd_tools_api_create_grp: true
