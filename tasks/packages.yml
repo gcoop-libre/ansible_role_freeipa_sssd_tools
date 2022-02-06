@@ -14,6 +14,13 @@
     value: '1'
   become: yes
 
+- name: (freeipa-sssd-tools) install python-pip
+  yum:
+    name: python-pip
+    state: present
+    update_cache: true
+  become: yes
+
 - name: (freeipa-sssd-tools) ensure required packages are installed
   package:
     name: "{{ freeipa_sssd_tools_packages }}"
