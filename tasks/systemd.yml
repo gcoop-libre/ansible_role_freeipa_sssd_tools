@@ -1,6 +1,6 @@
 ---
 
-- name: (freeipa_sssd_tools) deploy API's systemd unit 
+- name: (freeipa_sssd_tools) deploy API's systemd unit
   template:
     src: templates/ipa-api-syn_sysd_unit.j2
     dest:  "{{ freeipa_sssd_tools_sysd_dir }}/ipa-api-syn.service"
