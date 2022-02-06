@@ -9,7 +9,7 @@ freeipa_sssd_tools_config_dir: /root
 freeipa_sssd_tools_config_file: "{{ freeipa_sssd_tools_config_dir }}/.ipa-config"
 freeipa_sssd_tools_config_owner: root
 freeipa_sssd_tools_config_group: root
-freeipa_sssd_tools_config_mode: '0600'
+freeipa_sssd_tools_config_mode: '0640'
 
 # API - Enable API deployment
 freeipa_sssd_tools_api_deploy: true
