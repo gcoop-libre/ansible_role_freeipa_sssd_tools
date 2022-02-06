@@ -22,7 +22,7 @@
 
 - name: (freeipa_sssd_tools) include python requirements tasks
   include_tasks: python-reqs.yml
-  when: 
+  when:
     - freeipa_sssd_tools_api_deploy | bool
     - freeipa_sssd_tools_api_python_req | bool
 
