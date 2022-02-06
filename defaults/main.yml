@@ -48,10 +48,10 @@ freeipa_sssd_tools_sysd_dir: /etc/systemd/system
 freeipa_sssd_tools_api_que_sysd_file_owner: root
 freeipa_sssd_tools_api_que_sysd_file_group: root
 freeipa_sssd_tools_api_que_sysd_file_mode: '0600'
-freeipa_sssd_tools_api_que_syn_usr: "{{ freeipa_sssd_tools_api_usr }}"
-freeipa_sssd_tools_api_que_syn_grp: "{{ freeipa_sssd_tools_api_grp }}"
 freeipa_sssd_tools_api_que_syn_cmd: "{{ freeipa_sssd_tools_api_dir }}/ipa-que-syn.py"
 # API - API uWSGI Systemd 
+freeipa_sssd_tools_api_que_syn_user: "{{ freeipa_sssd_tools_api_usr }}"
+freeipa_sssd_tools_api_que_syn_group: "{{ freeipa_sssd_tools_api_grp }}"
 freeipa_sssd_tools_api_sysd_file_owner: root
 freeipa_sssd_tools_api_sysd_file_group: root
 freeipa_sssd_tools_api_sysd_file_mode: '0600'
