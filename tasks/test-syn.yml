@@ -24,3 +24,7 @@
   register: ipa_api_syn_result
   become: no
 
+- name: (freeipa_sssd_tools) verify ipa-api-syn retval sAMAccountName {{ item }}
+  fail:
+    msg: unknown error
+  when: ipa_api_syn_result.json.retval != 'OK'
