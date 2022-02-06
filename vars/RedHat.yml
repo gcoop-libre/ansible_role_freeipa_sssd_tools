@@ -6,8 +6,6 @@ freeipa_sssd_tools_packages:
   - sssd-tools
 
 freeipa_sssd_tools_api_packages:
-  - epel-release
-  - python-pip
   - python-devel
   - gcc 
   - gcc-c++ 
