@@ -52,6 +52,15 @@
   become: yes
   when: freeipa_sssd_tools_api_uwsgi_config | bool
 
+- name: (freeipa-sssd-tools) ensure ipa-api-que-syn permissions
+  file:
+    path:  "{{ freeipa_sssd_tools_api_que_syn_bin }}"
+    owner: "{{ freeipa_sssd_tools_api_que_syn_user }}"
+    group: "{{ freeipa_sssd_tools_api_que_syn_group }}"
+    mode:  "{{ freeipa_sssd_tools_api_que_syn_mode }}"
+  become: yes
+  when: freeipa_sssd_tools_api_config_que_syn | bool
+
 - name: (freeipa-sssd-tools) set ipa-api-que-syn-config
   template:
     src: templates/ipa-api-que-syn-config.j2
