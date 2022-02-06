@@ -22,8 +22,8 @@ freeipa_sssd_tools_api_dir: "{{ freeipa_sssd_tools_dir }}/ipa-api-syn"
 freeipa_sssd_tools_api_create_usrgrp: false
 freeipa_sssd_tools_api_create_grp: true
 freeipa_sssd_tools_api_create_usr: true
-freeipa_sssd_tools_api_grp: apiquesyn
-freeipa_sssd_tools_api_usr: apiquesyn
+freeipa_sssd_tools_api_grp: root
+freeipa_sssd_tools_api_usr: root
 freeipa_sssd_tools_api_usr_shell: /sbin/nologin
 freeipa_sssd_tools_api_home_create: no
 # API - Config
