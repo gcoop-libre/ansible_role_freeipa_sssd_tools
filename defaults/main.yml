@@ -19,7 +19,7 @@ freeipa_sssd_tools_api_deploy: true
 # API - Main directory
 freeipa_sssd_tools_api_dir: "{{ freeipa_sssd_tools_dir }}/ipa-api-syn"
 # API - Users
-freeipa_sssd_tools_api_create_usrgrp: true
+freeipa_sssd_tools_api_create_usrgrp: false
 freeipa_sssd_tools_api_create_grp: true
 freeipa_sssd_tools_api_create_usr: true
 freeipa_sssd_tools_api_grp: apiquesyn
