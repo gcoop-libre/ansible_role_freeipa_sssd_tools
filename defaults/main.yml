@@ -147,7 +147,7 @@ freeipa_sssd_tools_config_log_file: /var/log/ipa-sss-syn.log
 freeipa_sssd_tools_config_max_pwd_age: 30
 
 # TEST
-freeipa_sssd_tools_test: False
+freeipa_sssd_tools_test: True
 freeipa_sssd_tools_syn_environment:
   IPA_SSS_SYN_SHOW: '1'
   IPA_SSS_SYN_PIVOT: '1'
