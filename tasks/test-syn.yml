@@ -15,3 +15,12 @@
     msg: error ipa_sss_syn_result.rc
   when: ipa_sss_syn_result.rc in freeipa_sssd_tools_test_errors_critical
 
+- name: (freeipa_sssd_tools) test ipa-api-syn sAMAccountName {{ item }}
+  uri:
+    url: "{{ freeipa_sssd_tools_api_uwsgi_test_syn }}/{{ item }}"
+    method: GET
+    status_code: 200
+    return_content: yes
+  register: ipa_api_syn_result
+  become: no
+
