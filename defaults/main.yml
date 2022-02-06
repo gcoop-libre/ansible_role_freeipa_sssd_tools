@@ -100,6 +100,9 @@ freeipa_sssd_tools_http_proxy_pass: []
 freeipa_sssd_tools_http_proxy_port: 3128
 freeipa_sssd_tools_http_proxy_use: False
 freeipa_sssd_tools_http_proxy_user: []
+freeipa_sssd_tools_http_proxies_env: []
+#  http_proxy: '{{ freeipa_sssd_tools_http_proxy_url }}'
+#  https_proxy: '{{ freeipa_sssd_tools_http_proxy_url }}'
 
 # GIT API TOKEN (disabled by default)
 freeipa_sssd_tools_git_api_token: 53cr3t
