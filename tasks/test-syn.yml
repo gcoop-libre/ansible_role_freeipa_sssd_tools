@@ -9,3 +9,9 @@
   ignore_errors: True
   register: ipa_sss_syn_result
   become: yes
+
+- name: (freeipa_sssd_tools) verify ipa-sss-syn {{ item }} critical error
+  fail:
+    msg: error ipa_sss_syn_result.rc
+  when: ipa_sss_syn_result.rc in freeipa_sssd_tools_test_errors_critical
+
