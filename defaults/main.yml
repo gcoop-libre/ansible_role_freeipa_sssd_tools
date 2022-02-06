@@ -140,6 +140,7 @@ freeipa_sssd_tools_config_ldap_scope: sub
 freeipa_sssd_tools_config_ldap_search_base: 'OU=users,DC=addomain,DC=com'
 
 # LDB CONFIG (set ldap_user and ip_domain)
+freeipa_sssd_tools_ldap_domain: addomain.com
 freeipa_sssd_tools_config_ldap_user: admin@addomain
 freeipa_sssd_tools_config_ipa_domain: "ipa.{{ freeipa_sssd_tools_ldap_domain }}"
 freeipa_sssd_tools_config_ldb_filter: '(objectCategory=user)'
