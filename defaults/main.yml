@@ -154,3 +154,12 @@ freeipa_sssd_tools_syn_environment:
   IPA_SSS_SYN_DEBUG: '0'
 freeipa_sssd_tools_test_users:
   - admin
+freeipa_sssd_tools_test_errors_critical:
+  - 20
+  - 30
+freeipa_sssd_tools_test_errors_warning:
+  - 1
+  - 21
+  - 22
+  - 23
+  - 24
