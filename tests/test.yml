@@ -5,4 +5,4 @@
   become: yes
 
   roles:
-    - gcoop-libre.freeipa_sssd_tools
+    - role: gcoop-libre.freeipa_sssd_tools
