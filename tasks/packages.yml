@@ -1,5 +1,11 @@
 ---
 
+- name: (freeipa-sssd-tools) install epel repository
+  yum:
+    name: epel-release
+    state: present
+  become: yes
+
 - name: (freeipa-sssd-tools) ensure required packages are installed
   package:
     name: "{{ freeipa_sssd_tools_packages }}"
