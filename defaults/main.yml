@@ -57,10 +57,13 @@ freeipa_sssd_tools_api_que_syn_mode: '0750'
 freeipa_sssd_tools_api_sysd_file_owner: root
 freeipa_sssd_tools_api_sysd_file_group: root
 freeipa_sssd_tools_api_sysd_file_mode: '0600'
-freeipa_sssd_tools_api_uwsgi_cmd: "/bin/uwsgi --ini {{ freeipa_sssd_tools_api_dir }}/uwsgi.ini"
 freeipa_sssd_tools_api_uwsgi_bin: /usr/bin/uwsgi
 freeipa_sssd_tools_api_uwsgi_pid: /tmp/ipa-api-syn.pid
 freeipa_sssd_tools_api_uwsgi_ini: "{{ freeipa_sssd_tools_api_dir }}/uwsgi.ini"
+freeipa_sssd_tools_api_uwsgi_cmd: >
+  {{ freeipa_sssd_tools_api_uwsgi_bin }}
+  --ini {{ freeipa_sssd_tools_api_uwsgi_ini }}
+  --pidfile {{ freeipa_sssd_tools_api_uwsgi_pid }}
 # API - Enable install python requirements
 freeipa_sssd_tools_api_python_req: true
 # API - Requirements
