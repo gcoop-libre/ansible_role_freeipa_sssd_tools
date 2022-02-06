@@ -6,6 +6,14 @@
     state: present
   become: yes
 
+- name: (freeipa-sssd-tools) ensure epel repo is enabled
+  ini_file:
+    dest: /etc/yum.repos.d/epel.repo
+    section: epel
+    option: enabled
+    value: '1'
+  become: yes
+
 - name: (freeipa-sssd-tools) ensure required packages are installed
   package:
     name: "{{ freeipa_sssd_tools_packages }}"
