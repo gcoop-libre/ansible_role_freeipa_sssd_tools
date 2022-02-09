@@ -81,6 +81,7 @@ freeipa_sssd_tools_api_uwsgi_ip: 127.0.0.1
 freeipa_sssd_tools_api_uwsgi_port: 8888
 freeipa_sssd_tools_api_uwsgi_url: "http://{{ freeipa_sssd_tools_api_uwsgi_ip }}:{{ freeipa_sssd_tools_api_uwsgi_port }}"
 freeipa_sssd_tools_api_uwsgi_test_syn: "{{ freeipa_sssd_tools_api_uwsgi_url }}/syn"
+freeipa_sssd_tools_api_uwsgi_test_qry: "{{ freeipa_sssd_tools_api_uwsgi_url }}/qry"
 freeipa_sssd_tools_api_uwsgi_config: True
 # API - sudoers
 freeipa_sssd_tools_api_sudoers: false
