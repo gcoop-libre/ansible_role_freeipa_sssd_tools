@@ -28,3 +28,12 @@
   fail:
     msg: unknown error
   when: ipa_api_syn_result.json.retval != 'OK'
+  
+- name: (freeipa_sssd_tools) test ipa-api-qry sAMAccountName {{ item }}
+  uri:
+    url: "{{ freeipa_sssd_tools_api_uwsgi_test_qry }}/{{ item }}"
+    method: GET
+    status_code: 200
+    return_content: yes
+  register: ipa_api_qry_result
+  become: no
