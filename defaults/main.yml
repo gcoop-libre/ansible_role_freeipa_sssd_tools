@@ -85,7 +85,8 @@ freeipa_sssd_tools_api_uwsgi_test_qry: "{{ freeipa_sssd_tools_api_uwsgi_url }}/q
 freeipa_sssd_tools_api_uwsgi_config: True
 # API - sudoers
 freeipa_sssd_tools_api_sudoers: false
-freeipa_sssd_tools_api_sudoers_sudoers:
+freeipa_sssd_tools_api_sudoers_sudoers_d:
+  apiquesyn:
     defaults: []
     cmnd_aliases:
       - name: IPAQUESYN
