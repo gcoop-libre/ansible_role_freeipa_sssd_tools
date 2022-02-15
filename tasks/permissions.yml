@@ -16,6 +16,10 @@
   command: chmod 0660 {{ freeipa_sssd_tools_api_db_input }}
   when: freeipa_sssd_tools_set_permissions_db | bool
   
+- name: (freeipa_sssd_tools) Ensure processed database has correct permissions
+  command: chmod 0660 {{ freeipa_sssd_tools_api_db_processed }}
+  when: freeipa_sssd_tools_set_permissions_db | bool
+
 - name: (freeipa_sssd_tools) Ensure all files and directories has correct ownership
   command: chown -R {{ freeipa_sssd_tools_username }}:{{ freeipa_sssd_tools_group }} {{ freeipa_sssd_tools_dir }}
   when: freeipa_sssd_tools_set_permissions_ownership | bool
