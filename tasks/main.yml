@@ -32,6 +32,10 @@
     - freeipa_sssd_tools_api_deploy | bool
     - freeipa_sssd_tools_api_create_usrgrp | bool
 
+- name: (freeipa_sssd_tools) include permissions tasks
+  include_tasks: permissions.yml
+  when: freeipa_sssd_tools_set_permissions | bool
+
 - name: (freeipa_sssd_tools) include config tasks
   include_tasks: config.yml
   when: freeipa_sssd_tools_config | bool
