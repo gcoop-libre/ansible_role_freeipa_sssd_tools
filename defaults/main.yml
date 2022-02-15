@@ -55,6 +55,7 @@ freeipa_sssd_tools_api_sysd: true
 freeipa_sssd_tools_api_que_sysd: true
 freeipa_sssd_tools_api_sysd_activate: true
 freeipa_sssd_tools_api_que_sysd_activate: true
+freeipa_sssd_tools_api_sysd_daemon_reload: true
 freeipa_sssd_tools_sysd_dir: /etc/systemd/system
 # API - api-que-syn Systemd
 freeipa_sssd_tools_api_que_sysd_file_owner: root
