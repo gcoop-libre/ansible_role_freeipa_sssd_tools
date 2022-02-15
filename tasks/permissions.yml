@@ -30,7 +30,7 @@
     path: '{{ item }}'
     mode: '0660'
   when: freeipa_sssd_tools_set_permissions_db | bool
-  loop:
+  with_itmes:
     - '{{ freeipa_sssd_tools_api_db_input }}'
     - '{{ freeipa_sssd_tools_api_db_processed }}'
     
