@@ -21,6 +21,7 @@ freeipa_sssd_tools_set_permissions_dir: true
 freeipa_sssd_tools_set_permissions_file_min: true
 freeipa_sssd_tools_set_permissions_py: true
 freeipa_sssd_tools_set_permissions_ownership: true
+freeipa_sssd_tools_set_permissions_db: true
 
 # API - Enable API deployment
 freeipa_sssd_tools_api_deploy: true
