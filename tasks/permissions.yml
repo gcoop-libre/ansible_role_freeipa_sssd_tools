@@ -19,7 +19,10 @@
   when: freeipa_sssd_tools_set_permissions_script | bool
   
 - name: (freeipa_sssd_tools) Ensure database directory and files have correct permissions
-  command: chmod -R 0660 {{ freeipa_sssd_tools_api_dir }}/db
+  file:
+    path: '{{ freeipa_sssd_tools_api_dir }}/db'
+    state: directory
+    mode: '0770'
   when: freeipa_sssd_tools_set_permissions_db | bool
 
 - name: (freeipa_sssd_tools) Ensure all files and directories has correct ownership
