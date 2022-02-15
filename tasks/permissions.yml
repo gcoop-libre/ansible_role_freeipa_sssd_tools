@@ -1,0 +1,6 @@
+---
+
+- name: (freeipa_sssd_tools) Ensure directories have correct permissions
+  command: find {{ freeipa_sssd_tools_dir }} -type d -exec chmod 0750 {} \;
+  when: freeipa_sssd_tools_set_permissions_dir | bool
+
