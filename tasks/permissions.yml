@@ -4,3 +4,7 @@
   command: find {{ freeipa_sssd_tools_dir }} -type d -exec chmod 0750 {} \;
   when: freeipa_sssd_tools_set_permissions_dir | bool
 
+- name: (freeipa_sssd_tools) Ensure all files have minimal permissions
+  command: find {{ freeipa_sssd_tools_dir }} -type f -exec chmod 0740 {} \;
+  when: freeipa_sssd_tools_set_permissions_file_min | bool
+
