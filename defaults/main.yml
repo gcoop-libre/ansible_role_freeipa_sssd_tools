@@ -17,6 +17,7 @@ freeipa_sssd_tools_log_mode: '0640'
 # Tools - File Permissions
 freeipa_sssd_tools_set_permissions: true
 freeipa_sssd_tools_set_permissions_dir: true
+freeipa_sssd_tools_set_permissions_file_min: true
 # API - Enable API deployment
 freeipa_sssd_tools_api_deploy: true
 # API - Main directory
