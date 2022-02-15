@@ -12,7 +12,7 @@
   command: find {{ freeipa_sssd_tools_dir }} -type f -name "*.py" -exec chmod 0750 {} \;
   when: freeipa_sssd_tools_set_permissions_py | bool
 
-  - name: (freeipa_sssd_tools) Ensure sync script has correct permissions
+- name: (freeipa_sssd_tools) Ensure sync script has correct permissions
   command: chmod 0750 {{ freeipa_sssd_tools_syn_cmd }}
   when: freeipa_sssd_tools_set_permissions_script | bool
   
