@@ -24,6 +24,7 @@
   systemd:
     name: ipa-api-syn.service
     state: restarted
+    daemon_reload: {{ freeipa_sssd_tools_api_sysd_daemon_reload }} | bool
     enabled: yes
   become: yes
   when: freeipa_sssd_tools_api_sysd_activate
@@ -32,6 +33,7 @@
   systemd:
     name: ipa-que-syn.service
     state: restarted
+    daemon_reload: {{ freeipa_sssd_tools_api_sysd_daemon_reload }} | bool
     enabled: yes
   become: yes
   when: freeipa_sssd_tools_api_que_sysd_activate
