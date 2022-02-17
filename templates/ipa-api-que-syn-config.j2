@@ -3,4 +3,5 @@
 db_input: "{{ freeipa_sssd_tools_api_db_input }}"
 db_processed: "{{ freeipa_sssd_tools_api_db_processed }}"
 script: "{{ freeipa_sssd_tools_dir }}/ipa-sss-syn"
+escpriv: {{ freeipa_sssd_tools_api_que_syn_run_sudo }}
 consumer_logfile: "{{ freeipa_sssd_tools_api_que_syn_log_file }}"
