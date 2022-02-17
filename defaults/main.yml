@@ -45,6 +45,7 @@ freeipa_sssd_tools_api_config_file: "{{ freeipa_sssd_tools_api_dir }}/config/set
 freeipa_sssd_tools_api_config_owner: "{{ freeipa_sssd_tools_api_usr }}"
 freeipa_sssd_tools_api_config_group: "{{ freeipa_sssd_tools_api_grp }}"
 freeipa_sssd_tools_api_config_mode: '0600'
+freeipa_sssd_tools_api_que_syn_run_sudo: True
 freeipa_sssd_tools_api_que_syn_config_file: "{{ freeipa_sssd_tools_api_dir }}/config.yml"
 freeipa_sssd_tools_api_que_syn_config_owner: "{{ freeipa_sssd_tools_api_usr }}"
 freeipa_sssd_tools_api_que_syn_config_group: "{{ freeipa_sssd_tools_api_grp }}"
