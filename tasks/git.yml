@@ -1,26 +1,5 @@
 ---
 
-- name: (freeipa-sssd-tools) set anonymous proxy url
-  set_fact:
-    freeipa_sssd_tools_http_proxy_url: "{{ freeipa_sssd_tools_http_proxy_host }}:{{ freeipa_sssd_tools_http_proxy_port }}"
-  when:
-    - freeipa_sssd_tools_http_proxy_use  | bool
-    - freeipa_sssd_tools_http_proxy_host is defined
-    - freeipa_sssd_tools_http_proxy_port is defined
-
-- name: (freeipa-sssd-tools) set proxy url with credentials
-  set_fact:
-    freeipa_sssd_tools_http_proxy_url: "{{ freeipa_sssd_tools_http_proxy_user }}:{{ freeipa_sssd_tools_http_proxy_pass }}@{{ freeipa_sssd_tools_http_proxy_url }}"
-  no_log: "{{ freeipa_sssd_tools_no_log }}"
-  when:
-    - freeipa_sssd_tools_http_proxy_use  | bool
-    - freeipa_sssd_tools_http_proxy_host is defined
-    - freeipa_sssd_tools_http_proxy_port is defined
-    - freeipa_sssd_tools_http_proxy_user is defined
-    - freeipa_sssd_tools_http_proxy_user | length > 0
-    - freeipa_sssd_tools_http_proxy_pass is defined
-    - freeipa_sssd_tools_http_proxy_pass | length > 0
-
 - name: (freeipa-sssd-tools) define url without api token
   set_fact:
     freeipa_sssd_tools_git_repo: "{{ freeipa_sssd_tools_git_prefix }}{{ freeipa_sssd_tools_git_repo }}"
@@ -39,15 +18,6 @@
     - freeipa_sssd_tools_git_api_token is defined
     - freeipa_sssd_tools_git_prefix    is defined
     - freeipa_sssd_tools_git_api_user  | length > 0
-
-- name: (freeipa-sssd-tools) define http proxy in git environment
-  set_fact:
-    freeipa_sssd_tools_git_environment:
-      GIT_SSL_NO_VERIFY: true
-      http_proxy:  "{{ freeipa_sssd_tools_http_proxy_url }}"
-      https_proxy: "{{ freeipa_sssd_tools_http_proxy_url }}"
-  no_log: "{{ freeipa_sssd_tools_no_log }}"
-  when: freeipa_sssd_tools_http_proxy_use | bool
 
 - name: (freeipa-sssd-tools) clone freeipa-sssd-tools repository
   git:
