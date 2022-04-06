@@ -3,6 +3,10 @@
 - name: (freeipa_sssd_tools) include OS variables
   include_vars: "{{ ansible_os_family }}.yml"
 
+- name: (freeipa_sssd_tools) include proxy tasks
+  include_tasks: proxy.yml
+  when: freeipa_sssd_tools_http_proxy_use | bool
+
 - name: (freeipa_sssd_tools) include packages tasks
   include_tasks: packages.yml
   when: freeipa_sssd_tools_packages_install | bool
