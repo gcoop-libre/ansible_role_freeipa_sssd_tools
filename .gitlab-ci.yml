@@ -6,8 +6,10 @@ before_script:
   - hostname
   - ip r
   - du --max-depth=1
+  - uname -a
   - ansible --version
   - ansible-lint --version
+  - awx-cli --version
 
 stages:
   - ansible-lint
@@ -17,8 +19,6 @@ ansible-lint:
   stage: ansible-lint
   script:
     - make lint
-  only:
-    - develop
   tags:
     - ansible
 
@@ -26,7 +26,5 @@ ansible-syntax-check:
   stage: ansible-syntax-check
   script:
     - make syntax
-  only:
-    - develop
   tags:
     - ansible
