@@ -1,0 +1,7 @@
+[uwsgi]
+http = {{ freeipa_sssd_tools_api_uwsgi_ip }}:{{ freeipa_sssd_tools_api_uwsgi_port }}
+wsgi-file = uwsgi.py
+single-interpreter = true
+enable-threads = true
+master = true
+callable = app

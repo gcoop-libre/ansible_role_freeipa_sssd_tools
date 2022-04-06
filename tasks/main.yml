@@ -11,6 +11,31 @@
   include_tasks: git.yml
   when: freeipa_sssd_tools_git_clone | bool
 
+- name: (freeipa_sssd_tools) ensure tools directory exists
+  file:
+    path:  "{{ freeipa_sssd_tools_dir }}"
+    owner: "{{ freeipa_sssd_tools_config_owner }}"
+    group: "{{ freeipa_sssd_tools_config_group }}"
+    mode:  "{{ freeipa_sssd_tools_config_mode  }}"
+    state: directory
+  become: yes
+
+- name: (freeipa_sssd_tools) include python requirements tasks
+  include_tasks: python-reqs.yml
+  when:
+    - freeipa_sssd_tools_api_deploy | bool
+    - freeipa_sssd_tools_api_python_req | bool
+
+- name: (freeipa_sssd_tools) include API user/group creation tasks
+  include_tasks: api-users.yml
+  when:
+    - freeipa_sssd_tools_api_deploy | bool
+    - freeipa_sssd_tools_api_create_usrgrp | bool
+
+- name: (freeipa_sssd_tools) include permissions tasks
+  include_tasks: permissions.yml
+  when: freeipa_sssd_tools_set_permissions | bool
+
 - name: (freeipa_sssd_tools) include config tasks
   include_tasks: config.yml
   when: freeipa_sssd_tools_config | bool
@@ -20,6 +45,12 @@
   when:
     - freeipa_sssd_tools_cron_configure | bool
     - freeipa_sssd_tools_cron_entries | length > 0
+
+- name: (freeipa_sssd_tools) include systemd tasks
+  include_tasks: systemd.yml
+  when:
+    - freeipa_sssd_tools_api_deploy | bool
+    - freeipa_sssd_tools_api_systemd | bool
 
 - name: (freeipa_sssd_tools) include test-syn tasks
   include_tasks: test-syn.yml

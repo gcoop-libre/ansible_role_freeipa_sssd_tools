@@ -1,8 +1,36 @@
 ---
 
+- name: (freeipa-sssd-tools) install epel repository
+  yum:
+    name: epel-release
+    state: present
+  become: yes
+
+- name: (freeipa-sssd-tools) ensure epel repo is enabled
+  ini_file:
+    dest: /etc/yum.repos.d/epel.repo
+    section: epel
+    option: enabled
+    value: '1'
+  become: yes
+
+- name: (freeipa-sssd-tools) install python-pip
+  yum:
+    name: python-pip
+    state: present
+    update_cache: true
+  become: yes
+
 - name: (freeipa-sssd-tools) ensure required packages are installed
   package:
     name: "{{ freeipa_sssd_tools_packages }}"
     state: present
   become: yes
   when: freeipa_sssd_tools_packages | length > 0
+
+- name: (freeipa-sssd-tools) ensure API required packages are installed
+  package:
+    name: "{{ freeipa_sssd_tools_api_packages }}"
+    state: present
+  become: yes
+  when: freeipa_sssd_tools_api_packages | length > 0

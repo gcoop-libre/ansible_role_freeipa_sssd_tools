@@ -1,0 +1,39 @@
+---
+
+- name: (freeipa_sssd_tools) deploy API's systemd unit
+  template:
+    src: templates/ipa-api-syn_sysd_unit.j2
+    dest:  "{{ freeipa_sssd_tools_sysd_dir }}/ipa-api-syn.service"
+    owner: "{{ freeipa_sssd_tools_api_sysd_file_owner }}"
+    group: "{{ freeipa_sssd_tools_api_sysd_file_group }}"
+    mode:  "{{ freeipa_sssd_tools_api_sysd_file_mode }}"
+  become: yes
+  when: freeipa_sssd_tools_api_sysd
+
+- name: (freeipa_sssd_tools) deploy api-que-syn systemd unit
+  template:
+    src: templates/ipa-que-syn_sysd_unit.j2
+    dest:  "{{ freeipa_sssd_tools_sysd_dir }}/ipa-que-syn.service"
+    owner: "{{ freeipa_sssd_tools_api_que_sysd_file_owner }}"
+    group: "{{ freeipa_sssd_tools_api_que_sysd_file_group }}"
+    mode:  "{{ freeipa_sssd_tools_api_que_sysd_file_mode }}"
+  become: yes
+  when: freeipa_sssd_tools_api_que_sysd
+
+- name: (freeipa_sssd_tools) activate API's systemd unit
+  systemd:
+    name: ipa-api-syn.service
+    state: restarted
+    daemon_reload: "{{ freeipa_sssd_tools_api_sysd_daemon_reload }}"
+    enabled: yes
+  become: yes
+  when: freeipa_sssd_tools_api_sysd_activate
+
+- name: (freeipa_sssd_tools) activate api-que-syn systemd unit
+  systemd:
+    name: ipa-que-syn.service
+    state: restarted
+    daemon_reload: "{{ freeipa_sssd_tools_api_sysd_daemon_reload }}"
+    enabled: yes
+  become: yes
+  when: freeipa_sssd_tools_api_que_sysd_activate

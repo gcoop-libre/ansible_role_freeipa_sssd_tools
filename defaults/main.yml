@@ -4,13 +4,98 @@
 freeipa_sssd_tools_dir: /opt/freeipa-sssd-tools
 freeipa_sssd_tools_no_log: False
 freeipa_sssd_tools_username: root
+freeipa_sssd_tools_group: root
 freeipa_sssd_tools_config: True
 freeipa_sssd_tools_config_dir: /root
 freeipa_sssd_tools_config_file: "{{ freeipa_sssd_tools_config_dir }}/.ipa-config"
 freeipa_sssd_tools_config_owner: root
 freeipa_sssd_tools_config_group: root
-freeipa_sssd_tools_config_mode: '0600'
+freeipa_sssd_tools_config_mode: '0640'
+freeipa_sssd_tools_log_owner: root
+freeipa_sssd_tools_log_group: root
+freeipa_sssd_tools_log_mode: '0640'
+freeipa_sssd_tools_syn_cmd: "{{ freeipa_sssd_tools_dir }}/ipa-sss-syn"
 
+# Tools - File Permissions
+freeipa_sssd_tools_set_permissions: true
+freeipa_sssd_tools_set_permissions_dir: true
+freeipa_sssd_tools_set_permissions_file_min: true
+freeipa_sssd_tools_set_permissions_py: true
+freeipa_sssd_tools_set_permissions_ownership: true
+freeipa_sssd_tools_set_permissions_db: true
+freeipa_sssd_tools_set_permissions_script: true
+
+# API - Enable API deployment
+freeipa_sssd_tools_api_deploy: true
+# API - Main directory
+freeipa_sssd_tools_api_dir: "{{ freeipa_sssd_tools_dir }}/ipa-api-syn"
+freeipa_sssd_tools_ipa_req_file_loc: true
+# API - Users
+freeipa_sssd_tools_api_create_usrgrp: false
+freeipa_sssd_tools_api_create_grp: true
+freeipa_sssd_tools_api_create_usr: true
+freeipa_sssd_tools_api_grp: root
+freeipa_sssd_tools_api_usr: root
+freeipa_sssd_tools_api_usr_shell: /sbin/nologin
+freeipa_sssd_tools_api_home_create: no
+# API - Config
+freeipa_sssd_tools_api_config_api: true
+freeipa_sssd_tools_api_config_que_syn: true
+freeipa_sssd_tools_api_config_file: "{{ freeipa_sssd_tools_api_dir }}/config/settings.py"
+freeipa_sssd_tools_api_config_owner: "{{ freeipa_sssd_tools_api_usr }}"
+freeipa_sssd_tools_api_config_group: "{{ freeipa_sssd_tools_api_grp }}"
+freeipa_sssd_tools_api_config_mode: '0600'
+freeipa_sssd_tools_api_que_syn_run_sudo: True
+freeipa_sssd_tools_api_que_syn_config_file: "{{ freeipa_sssd_tools_api_dir }}/config.yml"
+freeipa_sssd_tools_api_que_syn_config_owner: "{{ freeipa_sssd_tools_api_usr }}"
+freeipa_sssd_tools_api_que_syn_config_group: "{{ freeipa_sssd_tools_api_grp }}"
+freeipa_sssd_tools_api_que_syn_config_mode: '0600'
+# API - Enable Systemd Units deployment
+freeipa_sssd_tools_api_systemd: true
+freeipa_sssd_tools_api_sysd: true
+freeipa_sssd_tools_api_que_sysd: true
+freeipa_sssd_tools_api_sysd_activate: true
+freeipa_sssd_tools_api_que_sysd_activate: true
+freeipa_sssd_tools_api_sysd_daemon_reload: true
+freeipa_sssd_tools_sysd_dir: /etc/systemd/system
+# API - api-que-syn Systemd
+freeipa_sssd_tools_api_que_sysd_file_owner: root
+freeipa_sssd_tools_api_que_sysd_file_group: root
+freeipa_sssd_tools_api_que_sysd_file_mode: '0600'
+freeipa_sssd_tools_api_que_syn_user: "{{ freeipa_sssd_tools_api_usr }}"
+freeipa_sssd_tools_api_que_syn_group: "{{ freeipa_sssd_tools_api_grp }}"
+freeipa_sssd_tools_api_que_syn_bin: "{{ freeipa_sssd_tools_api_dir }}/ipa-que-syn.py"
+freeipa_sssd_tools_api_que_syn_cmd: "{{ freeipa_sssd_tools_api_que_syn_bin }} {{ freeipa_sssd_tools_api_que_syn_config_file }}"
+freeipa_sssd_tools_api_que_syn_mode: '0750'
+# API - API uWSGI Systemd
+freeipa_sssd_tools_api_sysd_file_owner: root
+freeipa_sssd_tools_api_sysd_file_group: root
+freeipa_sssd_tools_api_sysd_file_mode: '0600'
+freeipa_sssd_tools_api_uwsgi_bin: /usr/bin/uwsgi
+freeipa_sssd_tools_api_uwsgi_pid: /tmp/ipa-api-syn.pid
+freeipa_sssd_tools_api_uwsgi_ini: "{{ freeipa_sssd_tools_api_dir }}/uwsgi.ini"
+freeipa_sssd_tools_api_uwsgi_cmd: >
+  {{ freeipa_sssd_tools_api_uwsgi_bin }}
+  --ini {{ freeipa_sssd_tools_api_uwsgi_ini }}
+  --pidfile {{ freeipa_sssd_tools_api_uwsgi_pid }}
+# API - Enable install python requirements
+freeipa_sssd_tools_api_python_req: true
+# API - Requirements
+freeipa_sssd_tools_api_req_file_loc: "{{ freeipa_sssd_tools_api_dir }}/requirements.txt"
+# API que-syn-config
+freeipa_sssd_tools_api_db_input: "{{ freeipa_sssd_tools_api_dir }}/db/tosync.db"
+freeipa_sssd_tools_api_db_processed: "{{ freeipa_sssd_tools_api_dir }}/db/process.db"
+freeipa_sssd_tools_api_que_syn_log_file: /var/log/ipa-que-syn.log
+# API - ipa-api-config
+freeipa_sssd_tools_api_conf_dir: "{{ freeipa_sssd_tools_api_dir }}/config"
+freeipa_sssd_tools_api_log_file: /var/log/ipa-api.log
+# API - uwsgi config
+freeipa_sssd_tools_api_uwsgi_ip: 127.0.0.1
+freeipa_sssd_tools_api_uwsgi_port: 8888
+freeipa_sssd_tools_api_uwsgi_url: "http://{{ freeipa_sssd_tools_api_uwsgi_ip }}:{{ freeipa_sssd_tools_api_uwsgi_port }}"
+freeipa_sssd_tools_api_uwsgi_test_syn: "{{ freeipa_sssd_tools_api_uwsgi_url }}/syn"
+freeipa_sssd_tools_api_uwsgi_test_qry: "{{ freeipa_sssd_tools_api_uwsgi_url }}/qry"
+freeipa_sssd_tools_api_uwsgi_config: True
 # PACKAGES
 freeipa_sssd_tools_packages_install: True
 
@@ -20,6 +105,9 @@ freeipa_sssd_tools_http_proxy_pass: []
 freeipa_sssd_tools_http_proxy_port: 3128
 freeipa_sssd_tools_http_proxy_use: False
 freeipa_sssd_tools_http_proxy_user: []
+freeipa_sssd_tools_http_proxies_env: []
+#  http_proxy: '{{ freeipa_sssd_tools_http_proxy_url }}'
+#  https_proxy: '{{ freeipa_sssd_tools_http_proxy_url }}'
 
 # GIT API TOKEN (disabled by default)
 freeipa_sssd_tools_git_api_token: 53cr3t
@@ -60,17 +148,28 @@ freeipa_sssd_tools_config_ldap_scope: sub
 freeipa_sssd_tools_config_ldap_search_base: 'OU=users,DC=addomain,DC=com'
 
 # LDB CONFIG (set ldap_user and ip_domain)
+freeipa_sssd_tools_ldap_domain: addomain.com
 freeipa_sssd_tools_config_ldap_user: admin@addomain
 freeipa_sssd_tools_config_ipa_domain: "ipa.{{ freeipa_sssd_tools_ldap_domain }}"
 freeipa_sssd_tools_config_ldb_filter: '(objectCategory=user)'
 freeipa_sssd_tools_config_log_file: /var/log/ipa-sss-syn.log
+freeipa_sssd_tools_config_log_error: /var/log/ipa-sss-syn.err
 freeipa_sssd_tools_config_max_pwd_age: 30
 
 # TEST
-freeipa_sssd_tools_test: False
+freeipa_sssd_tools_test: True
 freeipa_sssd_tools_syn_environment:
   IPA_SSS_SYN_SHOW: '1'
   IPA_SSS_SYN_PIVOT: '1'
   IPA_SSS_SYN_DEBUG: '0'
 freeipa_sssd_tools_test_users:
   - admin
+freeipa_sssd_tools_test_errors_critical:
+  - 20
+  - 30
+freeipa_sssd_tools_test_errors_warning:
+  - 1
+  - 21
+  - 22
+  - 23
+  - 24
