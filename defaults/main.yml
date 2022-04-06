@@ -2,7 +2,7 @@
 
 # GENERAL
 freeipa_sssd_tools_dir: /opt/freeipa-sssd-tools
-freeipa_sssd_tools_no_log: False
+freeipa_sssd_tools_no_log: True
 freeipa_sssd_tools_username: root
 freeipa_sssd_tools_group: root
 freeipa_sssd_tools_config: True
