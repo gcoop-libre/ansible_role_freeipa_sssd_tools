@@ -30,9 +30,9 @@
     - freeipa_sssd_tools_http_proxy_url is defined
     - freeipa_sssd_tools_http_proxy_url | length > 0
 
-- name: (freeipa-sssd-tools) define http proxy in git environment
+- name: (freeipa-sssd-tools) define http proxy environment
   set_fact:
-    freeipa_sssd_tools_git_environment:
+    freeipa_sssd_tools_http_proxy_env:
       GIT_SSL_NO_VERIFY: true
       http_proxy:  "{{ freeipa_sssd_tools_http_proxy_url }}"
       https_proxy: "{{ freeipa_sssd_tools_http_proxy_url }}"

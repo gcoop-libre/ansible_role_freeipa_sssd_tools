@@ -28,7 +28,7 @@
     update: "{{ freeipa_sssd_tools_git_update }}"
     version: "{{ freeipa_sssd_tools_git_version | default('master') }}"
   no_log: "{{ freeipa_sssd_tools_no_log }}"
-  environment: "{{ freeipa_sssd_tools_git_environment }}"
+  environment: "{{ freeipa_sssd_tools_http_proxy_env }}"
   when:
     - freeipa_sssd_tools_git_repo is defined
     - freeipa_sssd_tools_git_repo |  length > 0

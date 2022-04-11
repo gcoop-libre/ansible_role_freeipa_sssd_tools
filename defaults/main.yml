@@ -107,7 +107,7 @@ freeipa_sssd_tools_http_proxy_use: False
 freeipa_sssd_tools_http_proxy_user: []
 freeipa_sssd_tools_http_proxy_yum: False
 freeipa_sssd_tools_http_proxy_ipv4: False
-freeipa_sssd_tools_http_proxies_env: []
+freeipa_sssd_tools_http_proxy_env: []
 #  http_proxy: '{{ freeipa_sssd_tools_http_proxy_url }}'
 #  https_proxy: '{{ freeipa_sssd_tools_http_proxy_url }}'
 
