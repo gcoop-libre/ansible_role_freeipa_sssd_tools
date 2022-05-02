@@ -1,0 +1,39 @@
+---
+
+- name: (freeipa-sssd-tools) fail on invalid proxy host
+  fail:
+    msg: remove http:// from freeipa_sssd_tools_http_proxy_host variable
+  when: '"http" in freeipa_sssd_tools_http_proxy_host'
+
+- name: (freeipa-sssd-tools) set anonymous proxy url
+  set_fact:
+    freeipa_sssd_tools_http_proxy_url: "{{ freeipa_sssd_tools_http_proxy_host }}:{{ freeipa_sssd_tools_http_proxy_port }}"
+  when:
+    - freeipa_sssd_tools_http_proxy_host is defined
+    - freeipa_sssd_tools_http_proxy_port is defined
+
+- name: (freeipa-sssd-tools) set proxy url with credentials
+  set_fact:
+    freeipa_sssd_tools_http_proxy_url: "{{ freeipa_sssd_tools_http_proxy_user }}:{{ freeipa_sssd_tools_http_proxy_pass }}@{{ freeipa_sssd_tools_http_proxy_url }}"
+  no_log: "{{ freeipa_sssd_tools_no_log }}"
+  when:
+    - freeipa_sssd_tools_http_proxy_host is defined
+    - freeipa_sssd_tools_http_proxy_port is defined
+    - freeipa_sssd_tools_http_proxy_user is defined
+    - freeipa_sssd_tools_http_proxy_user | length > 0
+
+- name: (freeipa-sssd-tools) set proxy url protocol
+  set_fact:
+    freeipa_sssd_tools_http_proxy_url: "http://{{ freeipa_sssd_tools_http_proxy_url }}"
+  no_log: "{{ freeipa_sssd_tools_no_log }}"
+  when:
+    - freeipa_sssd_tools_http_proxy_url is defined
+    - freeipa_sssd_tools_http_proxy_url | length > 0
+
+- name: (freeipa-sssd-tools) define http proxy environment
+  set_fact:
+    freeipa_sssd_tools_http_proxy_env:
+      GIT_SSL_NO_VERIFY: true
+      http_proxy:  "{{ freeipa_sssd_tools_http_proxy_url }}"
+      https_proxy: "{{ freeipa_sssd_tools_http_proxy_url }}"
+  no_log: "{{ freeipa_sssd_tools_no_log }}"
