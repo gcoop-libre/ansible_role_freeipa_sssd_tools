@@ -4,3 +4,4 @@ verbosity: 2
 skip_list:
   - 204
   - 305
+  - 302

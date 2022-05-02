@@ -1,0 +1,39 @@
+---
+
+- name: (freeipa_sssd_tools) Ensure directories have correct permissions
+  command: find {{ freeipa_sssd_tools_dir }} -type d -exec chmod 0750 {} \;
+  when: freeipa_sssd_tools_set_permissions_dir | bool
+
+- name: (freeipa_sssd_tools) Ensure all files have minimal permissions
+  command: find {{ freeipa_sssd_tools_dir }} -type f -exec chmod 0640 {} \;
+  when: freeipa_sssd_tools_set_permissions_file_min | bool
+
+- name: (freeipa_sssd_tools) Ensure all python files have exec rights
+  command: find {{ freeipa_sssd_tools_dir }} -type f -name "*.py" -exec chmod 0750 {} \;
+  when: freeipa_sssd_tools_set_permissions_py | bool
+
+- name: (freeipa_sssd_tools) Ensure sync script has correct permissions
+  file:
+    path: '{{ freeipa_sssd_tools_syn_cmd }}'
+    mode: '0750'
+  when: freeipa_sssd_tools_set_permissions_script | bool
+
+- name: (freeipa_sssd_tools) Ensure database directory and files have correct permissions
+  file:
+    path: '{{ freeipa_sssd_tools_api_dir }}/db'
+    state: directory
+    mode: '0770'
+  when: freeipa_sssd_tools_set_permissions_db | bool
+
+- name: (freeipa_sssd_tools) Ensure database files have correct permissions
+  file:
+    path: '{{ item }}'
+    mode: '0660'
+  when: freeipa_sssd_tools_set_permissions_db | bool
+  with_items:
+    - '{{ freeipa_sssd_tools_api_db_input }}'
+    - '{{ freeipa_sssd_tools_api_db_processed }}'
+
+- name: (freeipa_sssd_tools) Ensure all files and directories has correct ownership
+  command: chown -R {{ freeipa_sssd_tools_username }}:{{ freeipa_sssd_tools_group }} {{ freeipa_sssd_tools_dir }}
+  when: freeipa_sssd_tools_set_permissions_ownership | bool

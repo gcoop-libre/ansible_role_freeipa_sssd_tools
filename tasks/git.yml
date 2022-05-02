@@ -54,6 +54,7 @@
     repo: "{{ freeipa_sssd_tools_git_repo }}"
     dest: "{{ freeipa_sssd_tools_dir }}"
     force: "{{ freeipa_sssd_tools_git_force }}"
+    umask: "0022"
     update: "{{ freeipa_sssd_tools_git_update }}"
     version: "{{ freeipa_sssd_tools_git_version | default('master') }}"
   no_log: "{{ freeipa_sssd_tools_no_log }}"
