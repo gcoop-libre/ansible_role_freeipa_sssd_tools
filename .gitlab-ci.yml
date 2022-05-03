@@ -14,6 +14,7 @@ before_script:
 stages:
   - ansible-lint
   - ansible-syntax-check
+  - ansible-awx
 
 ansible-lint:
   stage: ansible-lint
@@ -28,3 +29,13 @@ ansible-syntax-check:
     - make syntax
   tags:
     - ansible
+
+ansible-awx:
+  stage: ansible-awx
+  script:
+    - make awx_version
+    - make awx_user
+    - make awx_job_launch
+  when: manual
+  tags:
+    - awx

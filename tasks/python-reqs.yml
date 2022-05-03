@@ -5,5 +5,5 @@
     requirements: "{{ freeipa_sssd_tools_api_req_file_loc }}"
     state: forcereinstall
     umask: "0022"
-  environment: "{{ freeipa_sssd_tools_http_proxies_env }}"
+  environment: "{{ freeipa_sssd_tools_http_proxy_env }}"
   when: freeipa_sssd_tools_ipa_req_file_loc is defined
