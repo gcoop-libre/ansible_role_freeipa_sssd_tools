@@ -35,6 +35,15 @@
     - git_repo_dir is defined
     - git_repo_dir.stat.exists | bool
 
+- name: (freeipa-sssd-tools) backup current directory {{ freeipa_sssd_tools_dir }}
+  shell: "mv -v {{ freeipa_sssd_tools_dir }} {{ freeipa_sssd_tools_dir_backup }}"
+  become: true
+  when:
+    - git_repo_dir is defined
+    - git_repo_config is defined
+    - git_repo_dir.stat.exists | bool
+    - git_repo_config.failed | bool
+
 - name: (freeipa-sssd-tools) clone freeipa-sssd-tools repository
   git:
     repo: "{{ freeipa_sssd_tools_git_repo }}"
