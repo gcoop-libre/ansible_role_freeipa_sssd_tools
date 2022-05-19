@@ -26,6 +26,15 @@
   ignore_errors: true
   register: git_repo_dir
 
+- name: (freeipa-sssd-tools) verify {{ freeipa_sssd_tools_dir }} is git repository
+  shell: "grep -w 'url = {{ freeipa_sssd_tools_git_repo }}' {{ freeipa_sssd_tools_git_config }}"
+  changed_when: false
+  ignore_errors: true
+  register: git_repo_config
+  when:
+    - git_repo_dir is defined
+    - git_repo_dir.stat.exists | bool
+
 - name: (freeipa-sssd-tools) clone freeipa-sssd-tools repository
   git:
     repo: "{{ freeipa_sssd_tools_git_repo }}"
