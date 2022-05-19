@@ -19,6 +19,13 @@
     - freeipa_sssd_tools_git_prefix    is defined
     - freeipa_sssd_tools_git_api_user  | length > 0
 
+- name: (freeipa-sssd-tools) verify {{ freeipa_sssd_tools_dir }} directory exists
+  stat:
+    path: "{{ freeipa_sssd_tools_dir }}"
+  changed_when: false
+  ignore_errors: true
+  register: git_repo_dir
+
 - name: (freeipa-sssd-tools) clone freeipa-sssd-tools repository
   git:
     repo: "{{ freeipa_sssd_tools_git_repo }}"
