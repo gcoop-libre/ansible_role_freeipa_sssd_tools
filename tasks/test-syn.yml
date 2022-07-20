@@ -31,7 +31,7 @@
     msg: unknown error
   when:
     - ipa_api_syn_result is defined
-    - ipa_api_syn_result.json.retval != 'OK'
+    - ipa_api_syn_result.json.retval | default('') != 'OK'
 
 - name: (freeipa_sssd_tools) test ipa-api-qry sAMAccountName {{ item }}
   uri:
@@ -47,4 +47,4 @@
     msg: unknown error
   when:
     - ipa_api_qry_result is defined
-    - ipa_api_qry_result.json.retval != 'OK'
+    - ipa_api_qry_result.json.retval | default('') != 'OK'
