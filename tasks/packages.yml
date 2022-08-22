@@ -15,6 +15,7 @@
     path: /etc/yum.conf
     regexp: '^proxy.*$'
     state: present
+  no_log: "{{ freeipa_sssd_tools_no_log }}"
   become: yes
   when:
     - freeipa_sssd_tools_http_proxy_use | bool
