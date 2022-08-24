@@ -7,8 +7,8 @@ freeipa_sssd_tools_packages:
 
 freeipa_sssd_tools_api_packages:
   - python-devel
-  - gcc 
-  - gcc-c++ 
-  - kernel-devel 
+  - gcc
+  - gcc-c++
+  - kernel-devel
   - make
   - python-devel
