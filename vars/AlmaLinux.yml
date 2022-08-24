@@ -1,0 +1,18 @@
+---
+
+freeipa_sssd_tools_etc_yum_dnf_files:
+  - /etc/yum.conf
+  - /etc/dnf/dnf.conf
+
+freeipa_sssd_tools_packages:
+  - git
+  - ldb-tools
+  - sssd-tools
+
+freeipa_sssd_tools_api_packages:
+  - python-devel
+  - gcc
+  - gcc-c++
+  - kernel-devel
+  - make
+  - python-devel
