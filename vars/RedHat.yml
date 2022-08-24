@@ -1,5 +1,8 @@
 ---
 
+freeipa_sssd_tools_etc_yum_dnf_files:
+  - /etc/yum.conf
+
 freeipa_sssd_tools_packages:
   - git
   - ldb-tools
