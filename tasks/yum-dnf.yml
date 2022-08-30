@@ -1,0 +1,22 @@
+---
+
+- name: (freeipa-sssd-tools) force IPv4 in {{ item }}
+  lineinfile:
+    path: '{{ item }}'
+    line: ip_resolve=4
+    state: present
+  become: yes
+  when:
+    - freeipa_sssd_tools_http_proxy_ipv4 | bool
+
+- name: (freeipa-sssd-tools) enable proxy in {{ item }}
+  lineinfile:
+    line: proxy={{ freeipa_sssd_tools_http_proxy_url }}
+    path: '{{ item }}'
+    regexp: '^proxy.*$'
+    state: present
+  no_log: '{{ freeipa_sssd_tools_no_log }}'
+  become: yes
+  when:
+    - freeipa_sssd_tools_http_proxy_use | bool
+    - freeipa_sssd_tools_http_proxy_url | length > 0

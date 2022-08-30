@@ -13,7 +13,9 @@
 - name: (freeipa_sssd_tools) verify ipa-sss-syn {{ item }} critical error
   fail:
     msg: error ipa_sss_syn_result.rc
-  when: ipa_sss_syn_result.rc in freeipa_sssd_tools_test_errors_critical
+  when:
+    - ipa_sss_syn_result is defined
+    - ipa_sss_syn_result.rc | default('') in freeipa_sssd_tools_test_errors_critical
 
 - name: (freeipa_sssd_tools) test ipa-api-syn sAMAccountName {{ item }}
   uri:
@@ -24,10 +26,19 @@
   register: ipa_api_syn_result
   become: no
 
+- name: (freeipa_sssd_tools) pause between test and verify ipa-api-syn
+  pause:
+    seconds: '{{ freeipa_sssd_tools_test_pause }}'
+  when:
+    - freeipa_sssd_tools_test_pause is defined
+    - freeipa_sssd_tools_test_pause | int > 0
+
 - name: (freeipa_sssd_tools) verify ipa-api-syn retval sAMAccountName {{ item }}
   fail:
     msg: unknown error
-  when: ipa_api_syn_result.json.retval != 'OK'
+  when:
+    - ipa_api_syn_result is defined
+    - ipa_api_syn_result.json.retval | default('') != 'OK'
 
 - name: (freeipa_sssd_tools) test ipa-api-qry sAMAccountName {{ item }}
   uri:
@@ -41,4 +52,6 @@
 - name: (freeipa_sssd_tools) verify ipa-api-qry retval sAMAccountName {{ item }}
   fail:
     msg: unknown error
-  when: ipa_api_qry_result.json.retval != 'OK'
+  when:
+    - ipa_api_qry_result is defined
+    - ipa_api_qry_result.json.retval | default('') != 'OK'
