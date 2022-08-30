@@ -27,7 +27,9 @@
   register: git_repo_dir
 
 - name: (freeipa-sssd-tools) verify {{ freeipa_sssd_tools_dir }} is git repository
-  shell: "grep -w 'url = {{ freeipa_sssd_tools_git_repo }}' {{ freeipa_sssd_tools_git_config }}"
+  shell: git rev-parse --is-inside-work-tree
+  args:
+    chdir: "{{ freeipa_sssd_tools_dir }}"
   changed_when: false
   ignore_errors: true
   register: git_repo_config

@@ -18,9 +18,9 @@
 - name: (freeipa_sssd_tools) ensure tools directory exists
   file:
     path:  "{{ freeipa_sssd_tools_dir }}"
-    owner: "{{ freeipa_sssd_tools_config_owner }}"
-    group: "{{ freeipa_sssd_tools_config_group }}"
-    mode:  "{{ freeipa_sssd_tools_config_mode  }}"
+    owner: "{{ freeipa_sssd_tools_dir_owner }}"
+    group: "{{ freeipa_sssd_tools_dir_group }}"
+    mode:  "{{ freeipa_sssd_tools_dir_mode  }}"
     state: directory
   become: yes
 

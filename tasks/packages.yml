@@ -1,24 +1,12 @@
 ---
 
-- name: (freeipa-sssd-tools) force IPv4 in /etc/yum.conf
-  lineinfile:
-    path: /etc/yum.conf
-    line: ip_resolve=4
-    state: present
-  become: yes
+- name: (freeipa-sssd-tools) include yum-dnf tasks
+  include_tasks: yum-dnf.yml
   when:
-    - freeipa_sssd_tools_http_proxy_ipv4 | bool
-
-- name: (freeipa-sssd-tools) enable proxy in /etc/yum.conf
-  lineinfile:
-    line: proxy={{ freeipa_sssd_tools_http_proxy_url }}
-    path: /etc/yum.conf
-    regexp: '^proxy.*$'
-    state: present
-  become: yes
-  when:
-    - freeipa_sssd_tools_http_proxy_use | bool
-    - freeipa_sssd_tools_http_proxy_url | length > 0
+    - freeipa_sssd_tools_etc_yum_dnf_files is defined
+    - freeipa_sssd_tools_etc_yum_dnf_files | length > 0
+  with_items:
+    - "{{ freeipa_sssd_tools_etc_yum_dnf_files }}"
 
 - name: (freeipa-sssd-tools) install epel repository
   yum:

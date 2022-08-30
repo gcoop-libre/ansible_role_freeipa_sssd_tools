@@ -3,6 +3,9 @@
 # GENERAL
 freeipa_sssd_tools_dir: /opt/freeipa-sssd-tools
 freeipa_sssd_tools_dir_backup: "{{ freeipa_sssd_tools_dir }}-{{ ansible_date_time.epoch }}.bak"
+freeipa_sssd_tools_dir_group: root
+freeipa_sssd_tools_dir_mode: '0750'
+freeipa_sssd_tools_dir_owner: root
 freeipa_sssd_tools_no_log: True
 freeipa_sssd_tools_username: root
 freeipa_sssd_tools_group: root
