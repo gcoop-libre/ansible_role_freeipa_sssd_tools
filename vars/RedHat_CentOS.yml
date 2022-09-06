@@ -33,7 +33,7 @@ freeipa_sssd_tools_yum_repositories:
     enabled: '{{ freeipa_sssd_tools_yum_repo_base_source_enabled }}'
     file: CentOS-Sources
     name: base-source
-  - baseurl: '{{ freeipa_sssd_tools_yum_repo_base_baseurl }}/$releasever/updates/Source/'
+  - baseurl: '{{ freeipa_sssd_tools_yum_repo_updates_source_baseurl }}/$releasever/updates/Source/'
     description: CentOS-$releasever - Updates Sources
     enabled: '{{ freeipa_sssd_tools_yum_repo_updates_source_enabled }}'
     file: CentOS-Sources
