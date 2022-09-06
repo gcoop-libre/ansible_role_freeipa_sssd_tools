@@ -201,7 +201,7 @@ freeipa_sssd_tools_yum_repo_base_source_enabled: false
 freeipa_sssd_tools_yum_repo_centosplus_enabled: false
 freeipa_sssd_tools_yum_repo_centosplus_source_baseurl: '{{ freeipa_sssd_tools_yum_repo_base_source_baseurl }}'
 freeipa_sssd_tools_yum_repo_centosplus_source_enabled: false
-freeipa_sssd_tools_yum_repo_epel_baseurl: http://download.fedoraproject.org/pub/epel
+freeipa_sssd_tools_yum_repo_epel_baseurl: http://dl.fedoraproject.org/pub/epel
 freeipa_sssd_tools_yum_repo_epel_debuginfo_enabled: false
 freeipa_sssd_tools_yum_repo_epel_enabled: true
 freeipa_sssd_tools_yum_repo_epel_source_enabled: false
