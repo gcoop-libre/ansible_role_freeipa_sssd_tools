@@ -1,0 +1,17 @@
+---
+
+- name: Configure YUM Repositories in /etc/yum.repos.d
+  yum_repository:
+    baseurl: '{{ item.baseurl | mandatory }}'
+    countme: '{{ item.countme | default(omit) }}'
+    description: '{{ item.description }}'
+    enabled: '{{ item.enabled | default("true") | int }}'
+    failovermethod: priority
+    file: '{{ item.file | default(item.name) }}'
+    gpgcheck: '{{ item.gpgcheck | default("true") }}'
+    gpgkey: '{{ item.gpgkey | default(freeipa_sssd_tools_yum_gpgkey_distro) }}'
+    mirrorlist: '{{ item.mirrorlist | default(omit) }}'
+    name: '{{ item.name }}'
+  become: yes
+  with_items:
+    - "{{ freeipa_sssd_tools_yum_repositories }}"
