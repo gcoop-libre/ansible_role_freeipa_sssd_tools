@@ -1,0 +1,68 @@
+---
+
+freeipa_sssd_tools_yum_gpgkey_distro: file:///etc/pki/rpm-gpg/RPM-GPG-KEY-{{ ansible_distribution }}-{{ ansible_distribution_major_version }}
+freeipa_sssd_tools_yum_gpgkey_epel: file:///etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-{{ ansible_distribution_major_version }}
+freeipa_sssd_tools_yum_repositories:
+  - baseurl: '{{ freeipa_sssd_tools_yum_repo_base_baseurl }}/$releasever/os/$basearch/'
+    description: CentOS-$releasever - Base
+    enabled: '{{ freeipa_sssd_tools_yum_repo_base_enabled }}'
+    file: CentOS-Base
+    name: base
+  - baseurl: '{{ freeipa_sssd_tools_yum_repo_base_baseurl }}/$releasever/updates/$basearch/'
+    description: CentOS-$releasever - Updates
+    enabled: '{{ freeipa_sssd_tools_yum_repo_updates_enabled }}'
+    file: CentOS-Base
+    name: updates
+  - baseurl: '{{ freeipa_sssd_tools_yum_repo_base_baseurl }}/$releasever/extras/$basearch/'
+    description: CentOS-$releasever - Extras
+    enabled: '{{ freeipa_sssd_tools_yum_repo_extras_enabled }}'
+    file: CentOS-Base
+    name: extras
+  - baseurl: '{{ freeipa_sssd_tools_yum_repo_base_baseurl }}/$releasever/centosplus/$basearch/'
+    description: CentOS-$releasever - Plus
+    enabled: '{{ freeipa_sssd_tools_yum_repo_centosplus_enabled }}'
+    file: CentOS-Base
+    name: centosplus
+  - baseurl: '{{ freeipa_sssd_tools_yum_repo_base_baseurl }}/$releasever/fasttrack/$basearch/'
+    description: CentOS-7 - fasttrack
+    enabled: '{{ freeipa_sssd_tools_yum_repo_fasttrack_enabled }}'
+    file: CentOS-fasttrack.repo
+    name: fasttrack
+  - baseurl: '{{ freeipa_sssd_tools_yum_repo_base_baseurl }}/$releasever/os/Source/'
+    description: CentOS-$releasever - Base Sources
+    enabled: '{{ freeipa_sssd_tools_yum_repo_base_source_enabled }}'
+    file: CentOS-Sources
+    name: base-source
+  - baseurl: '{{ freeipa_sssd_tools_yum_repo_base_baseurl }}/$releasever/updates/Source/'
+    description: CentOS-$releasever - Updates Sources
+    enabled: '{{ freeipa_sssd_tools_yum_repo_updates_source_enabled }}'
+    file: CentOS-Sources
+    name: updates-source
+  - baseurl: '{{ freeipa_sssd_tools_yum_repo_base_baseurl }}/$releasever/extras/Source/'
+    description: CentOS-$releasever - Extras Sources
+    enabled: '{{ freeipa_sssd_tools_yum_repo_extras_source_enabled }}'
+    file: CentOS-Sources
+    name: extras-source
+  - baseurl: '{{ freeipa_sssd_tools_yum_repo_base_baseurl }}/$releasever/centosplus/Source/'
+    description: CentOS-$releasever - Plus Sources
+    enabled: '{{ freeipa_sssd_tools_yum_repo_centosplus_source_enabled }}'
+    file: CentOS-Sources
+    name: centosplus-source
+  - baseurl: '{{ freeipa_sssd_tools_yum_repo_epel_baseurl }}/{{ ansible_distribution_major_version }}/$basearch'
+    description: Extra Packages for Enterprise Linux {{ ansible_distribution_major_version }} - $basearch
+    enabled: '{{ freeipa_sssd_tools_yum_repo_epel_enabled }}'
+    file: epel
+    gpgkey: '{{ freeipa_sssd_tools_yum_gpgkey_epel }}'
+    name: epel
+  - baseurl: '{{ freeipa_sssd_tools_yum_repo_epel_baseurl }}/{{ ansible_distribution_major_version }}/$basearch/debug'
+    description: Extra Packages for Enterprise Linux {{ ansible_distribution_major_version }} - $basearch - Debug
+    enabled: '{{ freeipa_sssd_tools_yum_repo_epel_debug_info_enabled }}'
+    file: epel
+    gpgkey: '{{ freeipa_sssd_tools_yum_gpgkey_epel }}'
+    name: epel-debuginfo
+  - baseurl: '{{ freeipa_sssd_tools_yum_repo_epel_baseurl }}/{{ ansible_distribution_major_version }}/SRPMS'
+    description: Extra Packages for Enterprise Linux {{ ansible_distribution_major_version }} - $basearch - Source
+    enabled: '{{ freeipa_sssd_tools_yum_repo_epel_source_enabled }}'
+    file: epel
+    gpgkey: '{{ freeipa_sssd_tools_yum_gpgkey_epel }}'
+    name: epel-source
