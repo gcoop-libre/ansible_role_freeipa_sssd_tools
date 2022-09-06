@@ -28,7 +28,7 @@ freeipa_sssd_tools_yum_repositories:
     enabled: '{{ freeipa_sssd_tools_yum_repo_fasttrack_enabled }}'
     file: CentOS-fasttrack.repo
     name: fasttrack
-  - baseurl: '{{ freeipa_sssd_tools_yum_repo_base_baseurl }}/$releasever/os/Source/'
+  - baseurl: '{{ freeipa_sssd_tools_yum_repo_base_source_baseurl }}/$releasever/os/Source/'
     description: CentOS-$releasever - Base Sources
     enabled: '{{ freeipa_sssd_tools_yum_repo_base_source_enabled }}'
     file: CentOS-Sources

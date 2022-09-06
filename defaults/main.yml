@@ -196,6 +196,7 @@ freeipa_sssd_tools_yum_repo_baseos_baseurl: https://repo.almalinux.org
 freeipa_sssd_tools_yum_repo_baseos_debuginfo_enabled: false
 freeipa_sssd_tools_yum_repo_baseos_enabled: true
 freeipa_sssd_tools_yum_repo_baseos_source_enabled: false
+freeipa_sssd_tools_yum_repo_base_source_baseurl: http://vault.centos.org/centos
 freeipa_sssd_tools_yum_repo_base_source_enabled: false
 freeipa_sssd_tools_yum_repo_centosplus_enabled: false
 freeipa_sssd_tools_yum_repo_centosplus_source_enabled: false
