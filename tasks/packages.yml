@@ -1,5 +1,11 @@
 ---
 
+- name: (freeipa-sssd-tools) include yum-repos tasks
+  include_tasks: yum-repos.yml
+  when:
+    - freeipa_sssd_tools_yum_repositories_configure | bool
+    - freeipa_sssd_tools_yum_repositories | length > 0
+
 - name: (freeipa-sssd-tools) include yum-dnf tasks
   include_tasks: yum-dnf.yml
   when:
@@ -7,20 +13,6 @@
     - freeipa_sssd_tools_etc_yum_dnf_files | length > 0
   with_items:
     - "{{ freeipa_sssd_tools_etc_yum_dnf_files }}"
-
-- name: (freeipa-sssd-tools) install epel repository
-  yum:
-    name: epel-release
-    state: present
-  become: yes
-
-- name: (freeipa-sssd-tools) ensure epel repo is enabled
-  ini_file:
-    dest: /etc/yum.repos.d/epel.repo
-    section: epel
-    option: enabled
-    value: '1'
-  become: yes
 
 - name: (freeipa-sssd-tools) install python-pip
   yum:
