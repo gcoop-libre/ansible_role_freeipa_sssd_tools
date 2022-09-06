@@ -43,7 +43,7 @@ freeipa_sssd_tools_yum_repositories:
     enabled: '{{ freeipa_sssd_tools_yum_repo_extras_source_enabled }}'
     file: CentOS-Sources
     name: extras-source
-  - baseurl: '{{ freeipa_sssd_tools_yum_repo_base_baseurl }}/$releasever/centosplus/Source/'
+  - baseurl: '{{ freeipa_sssd_tools_yum_repo_centosplus_source_baseurl }}/$releasever/centosplus/Source/'
     description: CentOS-$releasever - Plus Sources
     enabled: '{{ freeipa_sssd_tools_yum_repo_centosplus_source_enabled }}'
     file: CentOS-Sources
