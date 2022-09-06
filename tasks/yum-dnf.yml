@@ -20,3 +20,9 @@
   when:
     - freeipa_sssd_tools_http_proxy_use | bool
     - freeipa_sssd_tools_http_proxy_url | length > 0
+
+- name: (freeipa-sssd-tools) clean all YUM cache
+  command: yum clean all
+  become: yes
+  when:
+    - freeipa_sssd_tools_yum_clean_all | bool
