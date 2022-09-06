@@ -1,7 +1,10 @@
 ---
 
-- name: (freeipa_sssd_tools) include OS variables
+- name: (freeipa_sssd_tools) include OS family variables
   include_vars: "{{ ansible_os_family }}.yml"
+
+- name: (freeipa_sssd_tools) include OS distribution variables
+  include_vars: "{{ ansible_os_family }}_{{ ansible_distribution }}.yml"
 
 - name: (freeipa_sssd_tools) include proxy tasks
   include_tasks: proxy.yml

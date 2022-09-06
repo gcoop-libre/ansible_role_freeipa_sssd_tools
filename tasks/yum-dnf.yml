@@ -20,3 +20,28 @@
   when:
     - freeipa_sssd_tools_http_proxy_use | bool
     - freeipa_sssd_tools_http_proxy_url | length > 0
+
+- name: (freeipa-sssd-tools) clean all YUM cache
+  command: yum clean all
+  become: yes
+  when:
+    - freeipa_sssd_tools_yum_clean_all | bool
+
+- name: (freeipa-sssd-tools) verify plugin fastestmirror is present
+  stat:
+    path: /etc/yum/pluginconf.d/fastestmirror.conf
+  changed_when: false
+  ignore_errors: true
+  register: yum_plugin_fastestmirror
+
+- name: (freeipa-sssd-tools) configure fastestmirror
+  ini_file:
+    dest: /etc/yum/pluginconf.d/fastestmirror.conf
+    section: main
+    option: enabled
+    value: '{{ freeipa_sssd_tools_yum_fastestmirror_enabled }}'
+  become: yes
+  when:
+    - freeipa_sssd_tools_yum_fastestmirror_configure | bool
+    - yum_plugin_fastestmirror is defined
+    - yum_plugin_fastestmirror.stat.exists | bool

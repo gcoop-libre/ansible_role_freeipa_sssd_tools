@@ -1,0 +1,147 @@
+---
+
+freeipa_sssd_tools_yum_gpgkey_distro: file:///etc/pki/rpm-gpg/RPM-GPG-KEY-{{ ansible_distribution }}
+
+freeipa_sssd_tools_yum_repositories:
+  - baseurl: '{{ freeipa_sssd_tools_yum_repo_baseos_baseurl }}/almalinux/$releasever/BaseOS/$basearch/os/'
+    countme: 1
+    description: AlmaLinux $releasever - BaseOS
+    enabled: '{{ freeipa_sssd_tools_yum_repo_baseos_enabled }}'
+    file: almalinux
+    name: baseos
+  - baseurl: '{{ freeipa_sssd_tools_yum_repo_baseos_baseurl }}/almalinux/$releasever/AppStream/$basearch/os/'
+    countme: 1
+    description: AlmaLinux $releasever - AppStream
+    enabled: '{{ freeipa_sssd_tools_yum_repo_appstream_enabled }}'
+    file: almalinux
+    name: appstream
+  - baseurl: '{{ freeipa_sssd_tools_yum_repo_baseos_baseurl }}/almalinux/$releasever/extras/$basearch/os/'
+    countme: 1
+    description: AlmaLinux $releasever - Extras
+    enabled: '{{ freeipa_sssd_tools_yum_repo_extras_enabled }}'
+    file: almalinux
+    name: extras
+  - baseurl: '{{ freeipa_sssd_tools_yum_repo_baseos_baseurl }}/vault/$releasever/BaseOS/Source/'
+    description: AlmaLinux $releasever - BaseOS Source
+    enabled: '{{ freeipa_sssd_tools_yum_repo_baseos_source_enabled }}'
+    file: almalinux
+    name: baseos-source
+  - baseurl: '{{ freeipa_sssd_tools_yum_repo_baseos_baseurl }}/vault/$releasever/AppStream/Source/'
+    description: AlmaLinux $releasever - AppStream Source
+    enabled: '{{ freeipa_sssd_tools_yum_repo_appstream_source_enabled }}'
+    file: almalinux
+    name: appstream-source
+  - baseurl: '{{ freeipa_sssd_tools_yum_repo_baseos_baseurl }}/vault/$releasever/extras/Source/'
+    description: AlmaLinux $releasever - Extras Source
+    enabled: '{{ freeipa_sssd_tools_yum_repo_extras_source_enabled }}'
+    file: almalinux
+    name: extras-source
+  - baseurl: '{{ freeipa_sssd_tools_yum_repo_baseos_baseurl }}/vault/$releasever/BaseOS/debug/$basearch/'
+    description: AlmaLinux $releasever - BaseOS debuginfo
+    enabled: '{{ freeipa_sssd_tools_yum_repo_baseos_debuginfo_enabled }}'
+    file: almalinux
+    name: baseos-debuginfo
+  - baseurl: '{{ freeipa_sssd_tools_yum_repo_baseos_baseurl }}/vault/$releasever/AppStream/debug/$basearch/'
+    description: AlmaLinux $releasever - AppStream debuginfo
+    enabled: '{{ freeipa_sssd_tools_yum_repo_appstream_debuginfo_enabled }}'
+    file: almalinux
+    name: appstream-debuginfo
+  - baseurl: '{{ freeipa_sssd_tools_yum_repo_baseos_baseurl }}/vault/$releasever/extras/debug/$basearch/'
+    description: AlmaLinux $releasever - Extras debuginfo
+    enabled: '{{ freeipa_sssd_tools_yum_repo_extras_debuginfo_enabled }}'
+    file: almalinux
+    name: extras-debuginfo
+  - baseurl: '{{ freeipa_sssd_tools_yum_repo_baseos_baseurl }}/almalinux/$releasever/plus/$basearch/os/'
+    countme: 1
+    description: AlmaLinux $releasever - Plus
+    enabled: '{{ freeipa_sssd_tools_yum_repo_almalinux_plus_enabled }}'
+    file: almalinux-plus
+    name: plus
+  - baseurl: '{{ freeipa_sssd_tools_yum_repo_baseos_baseurl }}/vault/$releasever/plus/Source/'
+    description: AlmaLinux $releasever - Plus Source
+    enabled: '{{ freeipa_sssd_tools_yum_repo_almalinux_plus_source_enabled }}'
+    file: almalinux-plus
+    name: plus-source
+  - baseurl: '{{ freeipa_sssd_tools_yum_repo_baseos_baseurl }}/vault/$releasever/plus/debug/$basearch/'
+    description: AlmaLinux $releasever - Plus debuginfo
+    enabled: '{{ freeipa_sssd_tools_yum_repo_almalinux_plus_debuginfo_enabled }}'
+    file: almalinux-plus
+    name: plus-debuginfo
+  - baseurl: '{{ freeipa_sssd_tools_yum_repo_baseos_baseurl }}/almalinux/$releasever/PowerTools/$basearch/os/'
+    countme: 1
+    description: AlmaLinux $releasever - PowerTools
+    enabled: '{{ freeipa_sssd_tools_yum_repo_powertools_enabled }}'
+    file: almalinux-powertools
+    name: powertools
+  - baseurl: '{{ freeipa_sssd_tools_yum_repo_baseos_baseurl }}/vault/$releasever/PowerTools/Source/'
+    description: AlmaLinux $releasever - PowerTools Source
+    enabled: '{{ freeipa_sssd_tools_yum_repo_powertools_source_enabled }}'
+    file: almalinux-powertools
+    name: powertools-source
+  - baseurl: '{{ freeipa_sssd_tools_yum_repo_baseos_baseurl }}/vault/$releasever/PowerTools/debug/$basearch/'
+    description: AlmaLinux $releasever - PowerTools debuginfo
+    enabled: '{{ freeipa_sssd_tools_yum_repo_powertools_debuginfo_enabled }}'
+    file: almalinux-powertools
+    name: powertools-debuginfo
+  - baseurl: '{{ freeipa_sssd_tools_yum_repo_baseos_baseurl }}/almalinux/$releasever/RT/$basearch/os/'
+    description: AlmaLinux $releasever - Real Time
+    enabled: '{{ freeipa_sssd_tools_yum_repo_rt_enabled }}'
+    file: almalinux-rt
+    name: rt
+  - baseurl: '{{ freeipa_sssd_tools_yum_repo_baseos_baseurl }}/vault/$releasever/RT/Source/'
+    description: AlmaLinux $releasever - Real Time Sources
+    enabled: '{{ freeipa_sssd_tools_yum_repo_rt_source_enabled }}'
+    file: almalinux-rt
+    name: rt-source
+  - baseurl: '{{ freeipa_sssd_tools_yum_repo_baseos_baseurl }}/vault/$releasever/RT/debug/$basearch/'
+    description: AlmaLinux $releasever - Real Time Debuginfo
+    enabled: '{{ freeipa_sssd_tools_yum_repo_rt_debuginfo_enabled }}'
+    file: almalinux-rt
+    name: rt-debuginfo
+  - baseurl: '{{ freeipa_sssd_tools_yum_repo_baseos_baseurl }}/almalinux/$releasever/HighAvailability/$basearch/os/'
+    countme: 1
+    description: AlmaLinux $releasever - HighAvailability
+    enabled: '{{ freeipa_sssd_tools_yum_repo_ha_debuginfo_enabled }}'
+    file: almalinux-ha
+    name: ha
+  - baseurl: '{{ freeipa_sssd_tools_yum_repo_baseos_baseurl }}/vault/$releasever/HighAvailability/Source/'
+    description: AlmaLinux $releasever - HighAvailability Source
+    enabled: '{{ freeipa_sssd_tools_yum_repo_ha_source_enabled }}'
+    file: almalinux-ha
+    name: ha-source
+  - baseurl: '{{ freeipa_sssd_tools_yum_repo_baseos_baseurl }}/vault/$releasever/HighAvailability/debug/$basearch/'
+    description: AlmaLinux $releasever - HighAvailability debuginfo
+    enabled: '{{ freeipa_sssd_tools_yum_repo_ha_debuginfo_enabled }}'
+    file: almalinux-ha
+    name: ha-debuginfo
+  - baseurl: '{{ freeipa_sssd_tools_yum_repo_baseos_baseurl }}/almalinux/$releasever/NFV/$basearch/os/'
+    description: AlmaLinux $releasever - Real Time for NFV
+    enabled: '{{ freeipa_sssd_tools_yum_repo_nfv_enabled }}'
+    file: almalinux-nfv
+    name: nfv
+  - baseurl: '{{ freeipa_sssd_tools_yum_repo_baseos_baseurl }}/vault/$releasever/NFV/Source/'
+    description: AlmaLinux $releasever - Real Time for NFV Sources
+    enabled: '{{ freeipa_sssd_tools_yum_repo_nfv_source_enabled }}'
+    file: almalinux-nfv
+    name: nfv-source
+  - baseurl: '{{ freeipa_sssd_tools_yum_repo_baseos_baseurl }}/vault/$releasever/NFV/debug/$basearch/'
+    description: AlmaLinux $releasever - Real Time for NFV Debuginfo
+    enabled: '{{ freeipa_sssd_tools_yum_repo_nfv_debuginfo_enabled }}'
+    file: almalinux-nfv
+    name: nfv-debuginfo
+  - baseurl: '{{ freeipa_sssd_tools_yum_repo_baseos_baseurl }}/almalinux/$releasever/ResilientStorage/$basearch/os/'
+    countme: 1
+    description: AlmaLinux $releasever - ResilientStorage
+    enabled: '{{ freeipa_sssd_tools_yum_repo_resilientstorage_enabled }}'
+    file: almalinux-resilientstorage
+    name: resilientstorage
+  - baseurl: '{{ freeipa_sssd_tools_yum_repo_baseos_baseurl }}/vault/$releasever/ResilientStorage/Source/'
+    description: AlmaLinux $releasever - ResilientStorage Source
+    enabled: '{{ freeipa_sssd_tools_yum_repo_resilientstorage_source_enabled }}'
+    file: almalinux-resilientstorage
+    name: resilientstorage-source
+  - baseurl: '{{ freeipa_sssd_tools_yum_repo_baseos_baseurl }}/vault/$releasever/ResilientStorage/debug/$basearch/'
+    description: AlmaLinux $releasever - ResilientStorage debuginfo
+    enabled: '{{ freeipa_sssd_tools_yum_repo_resilientstorage_debuginfo_enabled }}'
+    file: almalinux-resilientstorage
+    name: resilientstorage-debuginfo
