@@ -1,0 +1,37 @@
+---
+
+- name: Start/Restart FreeIPA SSSD Services
+  hosts: [all]
+  gather_facts: false
+  become: yes
+
+  vars:
+    freeipa_sssd_tools_services:
+      - dirsrv@.service
+      - ipa-api-syn.service
+      - ipa-custodia.service
+      - ipa-dnskeysyncd.service
+      - ipa-ods-exporter.service
+      - ipa-otpd@.service
+      - ipa-que-syn.service
+      - ipa.service
+      - ntpd.service
+      - sssd.service
+
+  tasks:
+
+    - name: (freeipa_sssd_tools) populate service facts
+      service_facts:
+
+    - name: (freeipa_sssd_tools) stopped SSSD when IPA is stopped
+      service:
+        name: sssd
+        state: stopped
+      when:
+        - ansible_facts.services['dirsrv@.service'].state == 'unknown'
+        - ansible_facts.services['ipa@.service'].state == 'stopped'
+        - ansible_facts.services['ntpd.service'].state == 'stopped'
+        - ansible_facts.services['sssd.service'].state == 'running'
+
+    - name: (freeipa_sssd_tools) populate service facts
+      service_facts:
