@@ -13,7 +13,7 @@
     freeipa_sssd_tools_ipactl_ignore_service_failure: false
     freeipa_sssd_tools_ipactl_start: true
     freeipa_sssd_tools_ipactl_start_cmd: "{{ freeipa_sssd_tools_ipactl_bin }}"
-    dirsrv_domain: "dirsrv@{{ ipa_domain | default('ipa.example.com') | upper | replace('.', '-') }}"
+    dirsrv_domain: "dirsrv@{{ ipa_domain | default('ipa.example.com') | upper | replace('.', '-') }}.service"
     freeipa_sssd_tools_services:
       - dirsrv@
       - "{{ dirsrv_domain }}"
