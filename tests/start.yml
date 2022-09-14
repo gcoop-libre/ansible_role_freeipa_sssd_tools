@@ -6,17 +6,34 @@
   become: yes
 
   vars:
+    dirsrv_domain: "{{ ipa_domain | default('ipa.example.com') | upper | replace('.', '-') }}"
     freeipa_sssd_tools_services:
-      - dirsrv@.service
-      - ipa-api-syn.service
-      - ipa-custodia.service
-      - ipa-dnskeysyncd.service
-      - ipa-ods-exporter.service
-      - ipa-otpd@.service
-      - ipa-que-syn.service
-      - ipa.service
-      - ntpd.service
-      - sssd.service
+      - dirsrv@
+      - dirsrv@{{ dirsrv_domain }}
+      - httpd
+      - ipa
+      - ipa-api-syn
+      - ipa-custodia
+      - ipa-dnskeysyncd
+      - ipa-ods-exporter
+      - ipa-otpd@
+      - ipa-otpd@0
+      - ipa-que-syn
+      - kadmin
+      - krb5kdc
+      - named-pkcs11
+      - named-setup-rndc
+      - ntpd
+      - ntpdate
+      - sssd
+      - sssd-autofs
+      - sssd-ifp
+      - sssd-nss
+      - sssd-pac
+      - sssd-pam
+      - sssd-secrets
+      - sssd-ssh
+      - sssd-sudo
 
   tasks:
 
