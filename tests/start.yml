@@ -6,6 +6,9 @@
   become: yes
 
   vars:
+    freeipa_sssd_tools_service_facts_populate: true
+    freeipa_sssd_tools_service_sssd_stop: false
+    freeipa_sssd_tools_no_log: false
     dirsrv_domain: "{{ ipa_domain | default('ipa.example.com') | upper | replace('.', '-') }}"
     freeipa_sssd_tools_services:
       - dirsrv@
@@ -39,12 +42,15 @@
 
     - name: (freeipa_sssd_tools) populate service facts
       service_facts:
+      no_log: "{{ freeipa_sssd_tools_no_log | bool }}"
+      when: freeipa_sssd_tools_service_facts_populate | bool
 
     - name: (freeipa_sssd_tools) stopped SSSD when IPA is stopped
       service:
         name: sssd
         state: stopped
       when:
+        - freeipa_sssd_tools_service_sssd_stop | bool
         - ansible_facts.services['dirsrv@.service'].state == 'unknown'
         - ansible_facts.services['ipa.service'].state == 'stopped'
         - ansible_facts.services['ntpd.service'].state == 'stopped'
@@ -52,3 +58,5 @@
 
     - name: (freeipa_sssd_tools) populate service facts
       service_facts:
+      no_log: "{{ freeipa_sssd_tools_no_log | bool }}"
+      when: freeipa_sssd_tools_service_facts_populate | bool
