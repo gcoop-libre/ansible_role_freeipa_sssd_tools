@@ -11,6 +11,8 @@
     freeipa_sssd_tools_no_log: false
     freeipa_sssd_tools_ipactl_bin: /usr/sbin/ipactl
     freeipa_sssd_tools_ipactl_ignore_service_failure: false
+    freeipa_sssd_tools_ipactl_start: true
+    freeipa_sssd_tools_ipactl_start_cmd: "{{ freeipa_sssd_tools_ipactl_bin }}"
     dirsrv_domain: "dirsrv@{{ ipa_domain | default('ipa.example.com') | upper | replace('.', '-') }}"
     freeipa_sssd_tools_services:
       - dirsrv@
@@ -73,6 +75,7 @@
     - name: (freeipa_sssd_tools) start IPA services
       command: "{{ freeipa_sssd_tools_ipactl_start_cmd }}"
       when:
+        - freeipa_sssd_tools_ipactl_start | bool
         - freeipa_sssd_tools_ipactl_start_cmd is defined
         - freeipa_sssd_tools_ipactl_start_cmd | length > 0
         - ansible_facts.services['dirsrv@.service'].state == 'unknown'
