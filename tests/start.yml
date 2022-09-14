@@ -9,10 +9,10 @@
     freeipa_sssd_tools_service_facts_populate: true
     freeipa_sssd_tools_service_sssd_stop: false
     freeipa_sssd_tools_no_log: false
-    dirsrv_domain: "{{ ipa_domain | default('ipa.example.com') | upper | replace('.', '-') }}"
+    dirsrv_domain: "dirsrv@{{ ipa_domain | default('ipa.example.com') | upper | replace('.', '-') }}"
     freeipa_sssd_tools_services:
       - dirsrv@
-      - dirsrv@{{ dirsrv_domain }}
+      - "{{ dirsrv_domain }}"
       - httpd
       - ipa
       - ipa-api-syn
@@ -52,6 +52,7 @@
       when:
         - freeipa_sssd_tools_service_sssd_stop | bool
         - ansible_facts.services['dirsrv@.service'].state == 'unknown'
+        - ansible_facts.services['{{ dirsrv_domain }}'].state == 'stopped'
         - ansible_facts.services['ipa.service'].state == 'stopped'
         - ansible_facts.services['ntpd.service'].state == 'stopped'
         - ansible_facts.services['sssd.service'].state == 'running'
