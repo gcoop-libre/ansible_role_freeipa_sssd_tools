@@ -9,6 +9,8 @@
     freeipa_sssd_tools_service_facts_populate: true
     freeipa_sssd_tools_service_sssd_stop: false
     freeipa_sssd_tools_no_log: false
+    freeipa_sssd_tools_ipactl_bin: /usr/sbin/ipactl
+    freeipa_sssd_tools_ipactl_ignore_service_failure: false
     dirsrv_domain: "dirsrv@{{ ipa_domain | default('ipa.example.com') | upper | replace('.', '-') }}"
     freeipa_sssd_tools_services:
       - dirsrv@
@@ -61,3 +63,20 @@
       service_facts:
       no_log: "{{ freeipa_sssd_tools_no_log | bool }}"
       when: freeipa_sssd_tools_service_facts_populate | bool
+
+    - name: (freeipa_sssd_tools) define ipactl start command
+      set_fact:
+        freeipa_sssd_tools_ipactl_start_cmd: >
+          {{ freeipa_sssd_tools_ipactl_bin }} start --ignore-service-failure
+      when: freeipa_sssd_tools_ipactl_ignore_service_failure | bool
+
+    - name: (freeipa_sssd_tools) start IPA services
+      command: "{{ freeipa_sssd_tools_ipactl_start_cmd }}"
+      when:
+        - freeipa_sssd_tools_ipactl_start_cmd is defined
+        - freeipa_sssd_tools_ipactl_start_cmd | length > 0
+        - ansible_facts.services['dirsrv@.service'].state == 'unknown'
+        - ansible_facts.services['{{ dirsrv_domain }}'].state == 'stopped'
+        - ansible_facts.services['ipa.service'].state == 'stopped'
+        - ansible_facts.services['ntpd.service'].state == 'stopped'
+        - ansible_facts.services['sssd.service'].state == 'stopped'
