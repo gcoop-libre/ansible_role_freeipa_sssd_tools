@@ -81,13 +81,13 @@
         msg: "{{ item }}"
         verbosity: 2
       with_items:
-        - freeipa_sssd_tools_ipactl_start
-        - freeipa_sssd_tools_ipactl_start_cmd
-        - ansible_facts.services['dirsrv@.service'].state
-        - freeipa_sssd_tools_service_dirsrv_domain_state
-        - ansible_facts.services['ipa.service'].state
-        - ansible_facts.services['ntpd.service'].state
-        - ansible_facts.services['sssd.service'].state
+        - "{{ freeipa_sssd_tools_ipactl_start }}"
+        - "{{ freeipa_sssd_tools_ipactl_start_cmd }}"
+        - "{{ ansible_facts.services['dirsrv@.service'].state }}"
+        - "{{ freeipa_sssd_tools_service_dirsrv_domain_state }}"
+        - "{{ ansible_facts.services['ipa.service'].state }}"
+        - "{{ ansible_facts.services['ntpd.service'].state }}"
+        - "{{ ansible_facts.services['sssd.service'].state }}"
 
     - name: (freeipa_sssd_tools) start IPA services
       command: "{{ freeipa_sssd_tools_ipactl_start_cmd }}"
