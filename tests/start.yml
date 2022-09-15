@@ -74,7 +74,7 @@
 
     - name: (freeipa_sssd_tools) define service dirsrv domain state
       set_fact:
-        freeipa_sssd_tools_service_dirsrv_domain_state: ansible_facts.services['{{ dirsrv_domain }}'].state
+        freeipa_sssd_tools_service_dirsrv_domain_state: "{{ ansible_facts.services['{{ dirsrv_domain }}'].state }}"
 
     - name: (freeipa sssd tools) debug conditionals
       debug:
