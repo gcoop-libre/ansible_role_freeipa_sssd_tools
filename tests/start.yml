@@ -110,7 +110,7 @@
         - ansible_facts.services['sssd.service'].state == 'stopped'
 
     - name: (freeipa_sssd_tools) status IPA services
-      command: "{{ freeipa_sssd_tools_ipactl_start_cmd }}"
+      command: "{{ freeipa_sssd_tools_ipactl_status_cmd }}"
       when:
         - freeipa_sssd_tools_ipactl_status | bool
         - freeipa_sssd_tools_ipactl_status_cmd is defined
