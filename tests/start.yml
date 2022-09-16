@@ -2,7 +2,8 @@
 
 - name: Start/Restart FreeIPA SSSD Services
   hosts: [all]
-  gather_facts: false
+  setup:
+    gather_subset: 'min'
   become: yes
 
   vars:
