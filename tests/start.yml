@@ -137,6 +137,6 @@
         - freeipa_sssd_tools_service_sssd_start | bool
         - ansible_facts.services['dirsrv@.service'].state == 'unknown'
         - ansible_facts.services[dirsrv_domain].state == 'running'
-        - ansible_facts.services['ipa.service'].state == 'running'
+        - ansible_facts.services['ipa.service'].state == 'stopped'
         - ansible_facts.services['ntpd.service'].state == 'running'
         - ansible_facts.services['sssd.service'].state == 'stopped'
