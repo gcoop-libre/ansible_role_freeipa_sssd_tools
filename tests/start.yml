@@ -124,6 +124,11 @@
       when:
         - freeipa_sssd_tools_ipactl_start_successful not in freeipa_sssd_tools_ipactl_start_status.stderr
 
+    - name: (freeipa_sssd_tools) populate service facts after start IPA
+      service_facts:
+      no_log: "{{ freeipa_sssd_tools_no_log | bool }}"
+      when: freeipa_sssd_tools_service_facts_populate | bool
+
     - name: (freeipa_sssd_tools) ensure SSSD is startted when IPA is running
       service:
         name: sssd
