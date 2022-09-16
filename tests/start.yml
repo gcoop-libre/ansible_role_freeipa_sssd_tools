@@ -68,6 +68,8 @@
       no_log: "{{ freeipa_sssd_tools_no_log | bool }}"
       when: freeipa_sssd_tools_service_facts_populate | bool
 
+    # FreeIPA smb service fail to start after update
+    # CentOS failure https://pagure.io/freeipa/issue/8198
     - name: (freeipa_sssd_tools) define ipactl start command
       set_fact:
         freeipa_sssd_tools_ipactl_start_cmd: >
