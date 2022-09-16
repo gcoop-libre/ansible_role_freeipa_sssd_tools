@@ -132,7 +132,7 @@
     - name: (freeipa_sssd_tools) ensure SSSD is startted when IPA is running
       service:
         name: sssd
-        state: startted
+        state: started
       when:
         - freeipa_sssd_tools_service_sssd_start | bool
         - ansible_facts.services['dirsrv@.service'].state == 'unknown'
