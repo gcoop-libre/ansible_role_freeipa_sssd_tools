@@ -11,6 +11,7 @@
     freeipa_sssd_tools_service_facts_populate: true
     freeipa_sssd_tools_service_sssd_stop: false
     freeipa_sssd_tools_no_log: false
+    freeipa_sssd_tools_service_sssd_start: true
     freeipa_sssd_tools_ipactl_bin: /usr/sbin/ipactl
     freeipa_sssd_tools_ipactl_ignore_service_failure: true
     freeipa_sssd_tools_ipactl_start: true
@@ -122,3 +123,15 @@
       fail:
       when:
         - freeipa_sssd_tools_ipactl_start_successful not in freeipa_sssd_tools_ipactl_start_status.stderr
+
+    - name: (freeipa_sssd_tools) ensure SSSD is startted when IPA is running
+      service:
+        name: sssd
+        state: startted
+      when:
+        - freeipa_sssd_tools_service_sssd_start | bool
+        - ansible_facts.services['dirsrv@.service'].state == 'unknown'
+        - ansible_facts.services[dirsrv_domain].state == 'running'
+        - ansible_facts.services['ipa.service'].state == 'running'
+        - ansible_facts.services['ntpd.service'].state == 'running'
+        - ansible_facts.services['sssd.service'].state == 'stopped'
