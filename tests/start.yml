@@ -15,6 +15,7 @@
     freeipa_sssd_tools_ipactl_ignore_service_failure: true
     freeipa_sssd_tools_ipactl_start: true
     freeipa_sssd_tools_ipactl_start_cmd: "{{ freeipa_sssd_tools_ipactl_bin }} start"
+    freeipa_sssd_tools_ipactl_start_successful: ipactl command was successful
     freeipa_sssd_tools_ipactl_status: true
     freeipa_sssd_tools_ipactl_status_cmd: "{{ freeipa_sssd_tools_ipactl_bin }} status"
     dirsrv_domain: "dirsrv@{{ ipa_domain | default('ipa.example.com') | upper | replace('.', '-') }}.service"
@@ -115,3 +116,9 @@
         - freeipa_sssd_tools_ipactl_status | bool
         - freeipa_sssd_tools_ipactl_status_cmd is defined
         - freeipa_sssd_tools_ipactl_status_cmd | length > 0
+      register: freeipa_sssd_tools_ipactl_start_status
+
+    - name: (freeipa_sssd_tools) fail when status start was not successful
+      fail:
+      when:
+        - freeipa_sssd_tools_ipactl_start_successful not in freeipa_sssd_tools_ipactl_start_status.stderr
