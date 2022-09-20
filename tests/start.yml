@@ -93,8 +93,7 @@
         - freeipa_sssd_tools_ipactl_ignore_service_failure | bool
         - ansible_distribution == 'CentOS'
 
-
-    - name: (freeipa sssd tools) debug conditionals
+    - name: (freeipa sssd tools) debug conditionals II
       debug:
         msg: "{{ item }}"
         verbosity: 2
