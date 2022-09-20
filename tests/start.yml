@@ -135,3 +135,4 @@
         - ansible_facts.services[dirsrv_domain].state == 'running'
         - ansible_facts.services['ntpd.service'].state == 'running'
         - ansible_facts.services['sssd.service'].state == 'stopped'
+        - ansible_facts.services['krb5kdc.service'].state == 'running'
