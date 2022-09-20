@@ -64,8 +64,6 @@
         state: stopped
       when:
         - freeipa_sssd_tools_service_sssd_stop | bool
-        - ansible_facts.services['dirsrv@.service'].state == 'unknown'
-        - ansible_facts.services['ipa.service'].state == 'stopped'
         - ansible_facts.services[dirsrv_domain].state == 'stopped'
         - ansible_facts.services['ntpd.service'].state == 'stopped'
         - ansible_facts.services['sssd.service'].state == 'running'
@@ -93,8 +91,6 @@
       with_items:
         - "{{ freeipa_sssd_tools_ipactl_start }}"
         - "{{ freeipa_sssd_tools_ipactl_start_cmd }}"
-        - "{{ ansible_facts.services['dirsrv@.service'].state }}"
-        - "{{ ansible_facts.services['ipa.service'].state }}"
         - "{{ ansible_facts.services[dirsrv_domain].state }}"
         - "{{ ansible_facts.services['ntpd.service'].state }}"
         - "{{ ansible_facts.services['sssd.service'].state }}"
@@ -105,8 +101,6 @@
         - freeipa_sssd_tools_ipactl_start | bool
         - freeipa_sssd_tools_ipactl_start_cmd is defined
         - freeipa_sssd_tools_ipactl_start_cmd | length > 0
-        - ansible_facts.services['dirsrv@.service'].state == 'unknown'
-        - ansible_facts.services['ipa.service'].state == 'stopped'
         - ansible_facts.services[dirsrv_domain].state == 'stopped'
         - ansible_facts.services['ntpd.service'].state == 'stopped'
         - ansible_facts.services['sssd.service'].state == 'stopped'
@@ -138,8 +132,6 @@
         - sssd-secrets
       when:
         - freeipa_sssd_tools_service_sssd_start | bool
-        - ansible_facts.services['dirsrv@.service'].state == 'unknown'
         - ansible_facts.services[dirsrv_domain].state == 'running'
-        - ansible_facts.services['ipa.service'].state == 'stopped'
         - ansible_facts.services['ntpd.service'].state == 'running'
         - ansible_facts.services['sssd.service'].state == 'stopped'
