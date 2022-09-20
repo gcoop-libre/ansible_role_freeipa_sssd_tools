@@ -37,6 +37,9 @@
       - named-pkcs11
       - named-setup-rndc
       - ntpd
+      - pki-tomcatd
+      - pki-tomcatd-nuxwdog
+      - pki-tomcatd@pki-tomcat
       - ntpdate
       - sssd
       - sssd-autofs
