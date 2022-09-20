@@ -132,6 +132,15 @@
       no_log: "{{ freeipa_sssd_tools_no_log | bool }}"
       when: freeipa_sssd_tools_service_facts_populate | bool
 
+    - name: (freeipa sssd tools) debug conditionals III
+      debug: var="{{ item }}"
+      with_items:
+        - freeipa_sssd_tools_service_sssd_start
+        - ansible_facts.services[dirsrv_domain].state
+        - ansible_facts.services['ntpd.service'].state
+        - ansible_facts.services['sssd.service'].state
+        - ansible_facts.services['krb5kdc.service'].state
+
     - name: (freeipa_sssd_tools) ensure SSSD is startted when IPA is running
       service:
         name: "{{ item }}"
