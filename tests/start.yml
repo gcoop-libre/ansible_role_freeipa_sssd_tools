@@ -9,7 +9,7 @@
 
   vars:
     freeipa_sssd_tools_service_facts_populate: true
-    freeipa_sssd_tools_service_sssd_stop: false
+    freeipa_sssd_tools_service_sssd_stop: true
     freeipa_sssd_tools_no_log: false
     freeipa_sssd_tools_service_sssd_start: true
     freeipa_sssd_tools_ipactl_bin: /usr/sbin/ipactl
