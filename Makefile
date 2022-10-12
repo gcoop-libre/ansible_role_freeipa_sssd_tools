@@ -59,10 +59,10 @@ awx_job_launch:
 	awx-cli job launch -J $(AWX_GITLAB_JOB_LAUNCH) --monitor --limit $(AWX_GITLAB_JOB_LIMIT)
 
 lint:
-	[[ -d 'tests' ]] && cd tests; ansible-lint $(DEBUG) $(PLAYBOOK)
+	[[ -d 'tests' ]] && cd tests; find . -maxdepth 1 -type f -iname '*.yml' | xargs ansible-lint $(DEBUG)
 
 syntax:
-	[[ -d 'tests' ]] && cd tests; ansible-playbook $(DEBUG) -i $(HOSTS) --syntax-check $(PLAYBOOK)
+	[[ -d 'tests' ]] && cd tests; find . -maxdepth 1 -type f -iname '*.yml' | xargs ansible-playbook $(DEBUG) -i $(HOSTS) --syntax-check
 
 vault:
 	./vault_identity_list.sh $(VAULT_ID)

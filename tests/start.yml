@@ -1,0 +1,156 @@
+---
+
+- name: Start/Restart FreeIPA SSSD Services
+  hosts: [all]
+  gather_facts: True
+  gather_subset:
+    - min
+  become: yes
+
+  vars:
+    freeipa_sssd_tools_service_facts_populate: true
+    freeipa_sssd_tools_service_sssd_stop: true
+    freeipa_sssd_tools_no_log: false
+    freeipa_sssd_tools_service_sssd_start: true
+    freeipa_sssd_tools_ipactl_bin: /usr/sbin/ipactl
+    freeipa_sssd_tools_ipactl_ignore_service_failure: true
+    freeipa_sssd_tools_ipactl_start: true
+    freeipa_sssd_tools_ipactl_start_cmd: "{{ freeipa_sssd_tools_ipactl_bin }} start"
+    freeipa_sssd_tools_ipactl_start_successful: ipactl command was successful
+    freeipa_sssd_tools_ipactl_status: true
+    freeipa_sssd_tools_ipactl_status_cmd: "{{ freeipa_sssd_tools_ipactl_bin }} status"
+    dirsrv_domain: "dirsrv@{{ ipa_domain | default('ipa.example.com') | upper | replace('.', '-') }}.service"
+    freeipa_sssd_tools_services:
+      - dirsrv@
+      - "{{ dirsrv_domain }}"
+      - httpd
+      - ipa
+      - ipa-api-syn
+      - ipa-custodia
+      - ipa-dnskeysyncd
+      - ipa-ods-exporter
+      - ipa-otpd@
+      - ipa-otpd@0
+      - ipa-que-syn
+      - kadmin
+      - krb5kdc
+      - named-pkcs11
+      - named-setup-rndc
+      - ntpd
+      - pki-tomcatd
+      - pki-tomcatd-nuxwdog
+      - pki-tomcatd@pki-tomcat
+      - ntpdate
+      - sssd
+      - sssd-autofs
+      - sssd-ifp
+      - sssd-nss
+      - sssd-pac
+      - sssd-pam
+      - sssd-secrets
+      - sssd-ssh
+      - sssd-sudo
+
+  tasks:
+
+    - name: (freeipa_sssd_tools) populate service facts
+      service_facts:
+      no_log: "{{ freeipa_sssd_tools_no_log | bool }}"
+      when: freeipa_sssd_tools_service_facts_populate | bool
+
+    - name: (freeipa sssd tools) debug conditionals I
+      debug:
+        verbosity: 2
+        var: "{{ item }}"
+      with_items:
+        - freeipa_sssd_tools_service_sssd_stop
+        - ansible_facts.services[dirsrv_domain].state
+        - ansible_facts.services['ntpd.service'].state
+        - ansible_facts.services['sssd.service'].state
+
+    - name: (freeipa_sssd_tools) stopped SSSD when IPA is stopped
+      service:
+        name: sssd
+        state: stopped
+      when:
+        - freeipa_sssd_tools_service_sssd_stop | bool
+        - ansible_facts.services[dirsrv_domain].state == 'stopped'
+        - ansible_facts.services['ntpd.service'].state == 'stopped'
+        - ansible_facts.services['sssd.service'].state == 'running'
+
+    - name: (freeipa_sssd_tools) populate service facts
+      service_facts:
+      no_log: "{{ freeipa_sssd_tools_no_log | bool }}"
+      when: freeipa_sssd_tools_service_facts_populate | bool
+
+    # FreeIPA smb service fail to start after update
+    # CentOS failure https://pagure.io/freeipa/issue/8198
+    - name: (freeipa_sssd_tools) define ipactl start command
+      set_fact:
+        freeipa_sssd_tools_ipactl_start_cmd: >
+          {{ freeipa_sssd_tools_ipactl_bin }} start --ignore-service-failure
+      when:
+        - freeipa_sssd_tools_ipactl_ignore_service_failure | bool
+        - ansible_distribution == 'CentOS'
+
+    - name: (freeipa sssd tools) debug conditionals II
+      debug:
+        msg: "{{ item }}"
+        verbosity: 2
+      with_items:
+        - "{{ freeipa_sssd_tools_ipactl_start }}"
+        - "{{ freeipa_sssd_tools_ipactl_start_cmd }}"
+        - "{{ ansible_facts.services[dirsrv_domain].state }}"
+        - "{{ ansible_facts.services['ntpd.service'].state }}"
+        - "{{ ansible_facts.services['sssd.service'].state }}"
+
+    - name: (freeipa_sssd_tools) start IPA services
+      command: "{{ freeipa_sssd_tools_ipactl_start_cmd }}"
+      when:
+        - freeipa_sssd_tools_ipactl_start | bool
+        - freeipa_sssd_tools_ipactl_start_cmd is defined
+        - freeipa_sssd_tools_ipactl_start_cmd | length > 0
+        - ansible_facts.services[dirsrv_domain].state == 'stopped'
+        - ansible_facts.services['ntpd.service'].state == 'stopped'
+        - ansible_facts.services['sssd.service'].state == 'stopped'
+
+    - name: (freeipa_sssd_tools) status IPA services
+      command: "{{ freeipa_sssd_tools_ipactl_status_cmd }}"
+      when:
+        - freeipa_sssd_tools_ipactl_status | bool
+        - freeipa_sssd_tools_ipactl_status_cmd is defined
+        - freeipa_sssd_tools_ipactl_status_cmd | length > 0
+      register: freeipa_sssd_tools_ipactl_start_status
+
+    - name: (freeipa_sssd_tools) fail when status start was not successful
+      fail:
+      when:
+        - freeipa_sssd_tools_ipactl_start_successful not in freeipa_sssd_tools_ipactl_start_status.stderr
+
+    - name: (freeipa_sssd_tools) populate service facts after start IPA
+      service_facts:
+      no_log: "{{ freeipa_sssd_tools_no_log | bool }}"
+      when: freeipa_sssd_tools_service_facts_populate | bool
+
+    - name: (freeipa sssd tools) debug conditionals III
+      debug: var="{{ item }}"
+      with_items:
+        - freeipa_sssd_tools_service_sssd_start
+        - ansible_facts.services[dirsrv_domain].state
+        - ansible_facts.services['ntpd.service'].state
+        - ansible_facts.services['sssd.service'].state
+        - ansible_facts.services['krb5kdc.service'].state
+
+    - name: (freeipa_sssd_tools) ensure SSSD is startted when IPA is running
+      service:
+        name: "{{ item }}"
+        state: started
+      with_items:
+        - sssd
+        - sssd-secrets
+      when:
+        - freeipa_sssd_tools_service_sssd_start | bool
+        - ansible_facts.services[dirsrv_domain].state == 'running'
+        - ansible_facts.services['ntpd.service'].state == 'running'
+        - ansible_facts.services['sssd.service'].state == 'stopped'
+        - ansible_facts.services['krb5kdc.service'].state == 'running'
