@@ -1,0 +1,10 @@
+---
+
+- name: (freeipa-sssd-tools) verify {{ item }} is present
+  file:
+    path:  "{{ item }}"
+    owner: "{{ freeipa_sssd_tools_httpd_owner }}"
+    group: "{{ freeipa_sssd_tools_httpd_group }}"
+    mode:  "{{ freeipa_sssd_tools_httpd_mode_dir }}"
+    state: directory
+  become: yes
