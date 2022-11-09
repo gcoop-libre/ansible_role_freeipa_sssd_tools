@@ -33,7 +33,7 @@
 
 - name: (freeipa-sssd-tools) download httpd syn css
   get_url:
-    url: "{{ freeipa_sssd_tools_httpd_syn_css_url }}"
+    url: "{{ freeipa_sssd_tools_httpd_syn_htm_css_url }}"
     dest: "{{ freeipa_sssd_tools_httpd_syn_css_path }}"
     checksum: "sha256:{{ freeipa_sssd_tools_httpd_syn_css_checksum }}"
     use_proxy: "{{ freeipa_sssd_tools_http_proxy_use }}"
