@@ -14,3 +14,21 @@ LDB_FILTER: {{ freeipa_sssd_tools_config_ldb_filter }}
 LDB_HOST: {{ freeipa_sssd_tools_config_ldb_host }}
 LOG_FILE: {{ freeipa_sssd_tools_config_log_file }}
 MAX_PWD_AGE: {{ freeipa_sssd_tools_config_max_pwd_age }}
+# SYN
+{% if freeipa_sssd_tools_httpd_syn_plt | length > 0 %}
+{% for option, value in freeipa_sssd_tools_httpd_syn_plt | dictsort %}
+{% if value is not none %}
+{{ option | upper }}: {{ value |e }}
+{% endif %}
+{% endfor %}
+{% endif %}
+# HTM
+{% if freeipa_sssd_tools_httpd_syn_htm | length > 0 %}
+{% for option, value in freeipa_sssd_tools_httpd_syn_htm | dictsort %}
+{% if value is not none %}
+{{ option | upper }}: {{ value |e }}
+{% endif %}
+{% endfor %}
+{% endif %}
+# MON
+MON_DATE: %F_%H:%M
