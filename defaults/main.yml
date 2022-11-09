@@ -151,6 +151,25 @@ freeipa_sssd_tools_httpd_syn_htm:
   htm_index: index.html
   htm_dir: "{{ freeipa_sssd_tools_httpd_syn_htm_path }}"
 
+freeipa_sssd_tools_httpd_syn_plt:
+  dir_dat: "{{ freeipa_sssd_tools_httpd_syn_dat_path }}"
+  dir_pdf: "{{ freeipa_sssd_tools_httpd_syn_pdf_path }}"
+  dir_plt: "{{ freeipa_sssd_tools_httpd_syn_plt_path }}"
+  dir_png: "{{ freeipa_sssd_tools_httpd_syn_png_path }}"
+  dir_tmp: "{{ freeipa_sssd_tools_httpd_syn_tmp_path }}"
+  ipa_plt: ipa-sss-plt.cfg
+  ipa_srv: ipa-srv-mon.log
+  plt_key_color: ffffff
+  plt_key_font: Inconsolata,14
+  plt_title: ipa-sss-syn
+  plt_title_font: Inconsolata,16
+  plt_title_lt: 5
+  plt_x_font: Inconsolata,14
+  plt_x_label: Time
+  plt_x_tics_font: Inconsolata,10
+  plt_y_font: Inconsolata,14
+  plt_y_label: Seconds vs Total vs IPs/100
+
 # GIT API TOKEN (disabled by default)
 freeipa_sssd_tools_git_api_token: 53cr3t
 freeipa_sssd_tools_git_api_use: False
