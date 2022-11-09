@@ -143,6 +143,14 @@ freeipa_sssd_tools_httpd_syn_htm_css_url: https://raw.githubusercontent.com/Chal
 freeipa_sssd_tools_httpd_syn_htm_title: FreeIPA SSSD Sync
 freeipa_sssd_tools_httpd_syn_include: false
 
+freeipa_sssd_tools_httpd_syn_htm:
+  htm_title: FreeIPA SSSD Sync
+  htm_css: css/mini-dark.css
+  htm_top: 14
+  htm_tpl: ipa-sss-htm.tpl
+  htm_index: index.html
+  htm_dir: "{{ freeipa_sssd_tools_httpd_syn_htm_path }}"
+
 # GIT API TOKEN (disabled by default)
 freeipa_sssd_tools_git_api_token: 53cr3t
 freeipa_sssd_tools_git_api_use: False
