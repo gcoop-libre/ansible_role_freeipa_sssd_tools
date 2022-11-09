@@ -123,6 +123,26 @@ freeipa_sssd_tools_httpd_syn_pdf_path: "{{ freeipa_sssd_tools_httpd_syn_htm_path
 freeipa_sssd_tools_httpd_syn_plt_path: "{{ freeipa_sssd_tools_httpd_syn_htm_path }}/plt"
 freeipa_sssd_tools_httpd_syn_png_path: "{{ freeipa_sssd_tools_httpd_syn_htm_path }}/img"
 freeipa_sssd_tools_httpd_syn_tmp_path: "{{ freeipa_sssd_tools_httpd_syn_htm_path }}/tmp"
+
+# IPA SYN HTML
+freeipa_sssd_tools_httpd_group: root
+freeipa_sssd_tools_httpd_ipa_path: /etc/httpd/conf.d/ipa.conf
+freeipa_sssd_tools_httpd_mode_dir: '0755'
+freeipa_sssd_tools_httpd_mode_file: '0644'
+freeipa_sssd_tools_httpd_owner: root
+freeipa_sssd_tools_httpd_restart: true
+freeipa_sssd_tools_httpd_syn_cnf: true
+freeipa_sssd_tools_httpd_syn_cnf_path: /etc/httpd/conf.d/syn.conf
+freeipa_sssd_tools_httpd_syn_conf: true
+freeipa_sssd_tools_httpd_syn_css_down: true
+freeipa_sssd_tools_httpd_syn_dir: true
+freeipa_sssd_tools_httpd_syn_htm_alias: /syn
+freeipa_sssd_tools_httpd_syn_htm_css_checksum: 97dccce9ef8af555ac6bbba43944a782f23fdf4b920e2d2737f975667bb66d40
+freeipa_sssd_tools_httpd_syn_htm_css_path: "{{ freeipa_sssd_tools_httpd_syn_css_path }}/mini-dark.css"
+freeipa_sssd_tools_httpd_syn_htm_css_url: https://raw.githubusercontent.com/Chalarangelo/mini.css/master/dist/mini-dark.css
+freeipa_sssd_tools_httpd_syn_htm_title: FreeIPA SSSD Sync
+freeipa_sssd_tools_httpd_syn_include: false
+
 # GIT API TOKEN (disabled by default)
 freeipa_sssd_tools_git_api_token: 53cr3t
 freeipa_sssd_tools_git_api_use: False
