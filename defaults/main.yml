@@ -115,6 +115,14 @@ freeipa_sssd_tools_http_proxy_env: []
 #  http_proxy: '{{ freeipa_sssd_tools_http_proxy_url }}'
 #  https_proxy: '{{ freeipa_sssd_tools_http_proxy_url }}'
 
+# IPA SYN PATHS
+freeipa_sssd_tools_httpd_syn_htm_path: /var/www/html/syn
+freeipa_sssd_tools_httpd_syn_css_path: "{{ freeipa_sssd_tools_httpd_syn_htm_path }}/css"
+freeipa_sssd_tools_httpd_syn_dat_path: "{{ freeipa_sssd_tools_httpd_syn_htm_path }}/dat"
+freeipa_sssd_tools_httpd_syn_pdf_path: "{{ freeipa_sssd_tools_httpd_syn_htm_path }}/pdf"
+freeipa_sssd_tools_httpd_syn_plt_path: "{{ freeipa_sssd_tools_httpd_syn_htm_path }}/plt"
+freeipa_sssd_tools_httpd_syn_png_path: "{{ freeipa_sssd_tools_httpd_syn_htm_path }}/img"
+freeipa_sssd_tools_httpd_syn_tmp_path: "{{ freeipa_sssd_tools_httpd_syn_htm_path }}/tmp"
 # GIT API TOKEN (disabled by default)
 freeipa_sssd_tools_git_api_token: 53cr3t
 freeipa_sssd_tools_git_api_use: False
