@@ -46,3 +46,12 @@
     state: restarted
   become: yes
   when: freeipa_sssd_tools_httpd_restart | bool
+
+- name: (freeipa_sssd_tools) test httpd /syn
+  uri:
+    url: "{{ freeipa_sssd_tools_httpd_syn_url }}"
+    method: GET
+    status_code: 200
+  register: freeipa_sssd_tools_httpd_syn_test_result
+  become: no
+  when: freeipa_sssd_tools_httpd_syn_url_test | bool
