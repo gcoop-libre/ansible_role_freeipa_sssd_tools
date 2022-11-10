@@ -144,6 +144,7 @@ freeipa_sssd_tools_httpd_syn_htm_title: FreeIPA SSSD Sync
 freeipa_sssd_tools_httpd_syn_include: false
 freeipa_sssd_tools_httpd_syn_proto: https
 freeipa_sssd_tools_httpd_syn_url: "{{ freeipa_sssd_tools_httpd_syn_proto }}://{{ ansible_fqdn }}{{ freeipa_sssd_tools_httpd_syn_htm_alias }}/"
+freeipa_sssd_tools_httpd_syn_url_test: true
 
 freeipa_sssd_tools_httpd_syn_htm:
   htm_title: FreeIPA SSSD Sync
