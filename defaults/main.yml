@@ -23,7 +23,7 @@ freeipa_sssd_tools_syn_cmd: "{{ freeipa_sssd_tools_dir }}/ipa-sss-syn"
 # Tools - File Permissions
 freeipa_sssd_tools_set_permissions: true
 freeipa_sssd_tools_set_permissions_dir: true
-freeipa_sssd_tools_set_permissions_file_min: true
+freeipa_sssd_tools_set_permissions_file_min: false
 freeipa_sssd_tools_set_permissions_py: true
 freeipa_sssd_tools_set_permissions_ownership: true
 freeipa_sssd_tools_set_permissions_db: true
