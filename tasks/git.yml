@@ -48,6 +48,8 @@
 
 - name: (freeipa-sssd-tools) remove untracked files from directory {{ freeipa_sssd_tools_dir }}
   command: git clean -f
+  args:
+    chdir: "{{ freeipa_sssd_tools_dir }}"
   become: true
   when:
     - git_repo_dir is defined
