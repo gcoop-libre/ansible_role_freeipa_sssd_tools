@@ -10,7 +10,7 @@
 
 - name: (freeipa_sssd_tools) ensure scripts has correct permissions
   file:
-    path: '{{ item }}'
+    path: '{{ freeipa_sssd_tools_dir }}/{{ item }}'
     mode: '{{ freeipa_sssd_tools_set_permissions_script_mode }}'
   when: freeipa_sssd_tools_set_permissions_script | bool
   with_items:
