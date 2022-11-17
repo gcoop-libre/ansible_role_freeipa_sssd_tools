@@ -202,6 +202,7 @@ freeipa_sssd_tools_git_force: True
 freeipa_sssd_tools_git_update: True
 
 # GIT CLONE
+freeipa_sssd_tools_git_clean_untracked: False
 freeipa_sssd_tools_git_clone: True
 freeipa_sssd_tools_git_config: "{{ freeipa_sssd_tools_dir }}/.git/config"
 freeipa_sssd_tools_git_prefix: https://
