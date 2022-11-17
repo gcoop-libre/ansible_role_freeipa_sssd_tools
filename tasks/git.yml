@@ -53,7 +53,7 @@
     - git_repo_dir is defined
     - git_repo_config is defined
     - git_repo_dir.stat.exists | bool
-    - git_repo_config.failed | bool
+    - not git_repo_config.failed | bool
     - freeipa_sssd_tools_git_clean_untracked | bool
 
 - name: (freeipa-sssd-tools) clone freeipa-sssd-tools repository
