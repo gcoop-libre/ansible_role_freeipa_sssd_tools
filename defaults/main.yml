@@ -233,7 +233,7 @@ freeipa_sssd_tools_cron_entries:
     user: "{{ freeipa_sssd_tools_username }}"
   - name: ipa-srv-mon
     cron_file: freeipa-sssd-tools
-    enabled: "{{ freeipa_sssd_tools_cron_ipa_usr_mon }}"
+    enabled: "{{ freeipa_sssd_tools_cron_ipa_srv_mon }}"
     hour: '*'
     job: "{{ freeipa_sssd_tools_dir }}/ipa-srv-mon"
     minute: '*'
