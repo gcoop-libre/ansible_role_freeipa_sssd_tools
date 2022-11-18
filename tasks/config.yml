@@ -14,6 +14,15 @@
     mode:  "{{ freeipa_sssd_tools_config_mode }}"
   become: yes
 
+- name: (freeipa-sssd-tools) set ipa-sss-plt.cfg
+  template:
+    src: templates/ipa-sss-plt.cfg.j2
+    dest:  "{{ freeipa_sssd_tools_httpd_syn_plt_conf }}"
+    owner: "{{ freeipa_sssd_tools_config_owner }}"
+    group: "{{ freeipa_sssd_tools_config_group }}"
+    mode:  "{{ freeipa_sssd_tools_config_mode }}"
+    become: yes
+
 - name: (freeipa-sssd-tools) ensure ipa-sss-syn.log exists
   file:
     path: "{{ freeipa_sssd_tools_config_log_file }}"
