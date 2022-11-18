@@ -9,11 +9,12 @@
 
 - name: (freeipa-sssd-tools) cron jobs
   cron:
-    name: "{{ item.name }}"
-    minute: "{{ item.minute }}"
-    hour: "{{ item.hour }}"
-    job: "{{ item.job }}"
-    cron_file: "{{ item.cron_file }}"
+    name: "{{ item.name | default(omit) }}"
+    minute: "{{ item.minute | default(omit) }}"
+    hour: "{{ item.hour | default(omit) }}"
+    job: "{{ item.job | default(mandatory) }}"
+    cron_file: "{{ item.cron_file | default(omit) }}"
+    env: "{{ item.env | default(omit) }}"
   become: yes
   when: item.enabled
   with_items:
