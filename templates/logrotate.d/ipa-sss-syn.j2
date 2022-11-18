@@ -1,0 +1,9 @@
+{{ freeipa_sssd_tools_config_log_file }} {
+{% if freeipa_sssd_tools_logrorate_ipa_sss_syn | length > 0 %}
+{% for item in freeipa_sssd_tools_logrorate_ipa_sss_syn %}
+{% if item is not none %}
+  {{ item }}
+{% endif %}
+{% endfor %}
+{% endif %}
+}
