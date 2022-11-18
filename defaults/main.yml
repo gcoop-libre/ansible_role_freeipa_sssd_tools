@@ -232,6 +232,8 @@ freeipa_sssd_tools_config_ldap_net_timeout: 5
 freeipa_sssd_tools_config_ldap_pass: 53cr37
 freeipa_sssd_tools_config_ldap_scope: sub
 freeipa_sssd_tools_config_ldap_search_base: 'OU=users,DC=addomain,DC=com'
+freeipa_sssd_tools_config_ldap_exclude_users: '[A-Z\-]+'
+freeipa_sssd_tools_config_ldap_search_users: OU=users,DC=addomain,DC=com
 
 # LDB CONFIG (set ldap_user and ip_domain)
 freeipa_sssd_tools_ldap_domain: addomain.com
