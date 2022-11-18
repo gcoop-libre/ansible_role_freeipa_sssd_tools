@@ -219,13 +219,33 @@ freeipa_sssd_tools_cron_ipa_usr_syn: true
 freeipa_sssd_tools_cron_ipa_srv_mon: true
 freeipa_sssd_tools_cron_ipa_sss_all: true
 freeipa_sssd_tools_cron_entries:
-  - name: ipa-sss-syn
+  - name: PATH
+    cron_file: freeipa-sssd-tools
+    enabled: true
+    env: yes
+    job: "{{ freeipa_sssd_tools_dir }}/usr/local/bin:/sbin:/usr/sbin:/usr/local/bin:/usr/bin:/bin"
+  - name: ipa-usr-syn
+    cron_file: freeipa-sssd-tools
+    enabled: "{{ freeipa_sssd_tools_cron_ipa_usr_syn }}"
+    hour: "21"
+    job: "IPA_SSS_SYN_SHOW=0 {{ freeipa_sssd_tools_dir }}/ipa-usr-syn"
     minute: "0"
-    hour: "*"
-    job: "{{ freeipa_sssd_tools_dir }}/ipa-sss-syn admin"
     user: "{{ freeipa_sssd_tools_username }}"
-    cron_file: ipa-sss-syn
-    enabled: False
+  - name: ipa-srv-mon
+    cron_file: freeipa-sssd-tools
+    enabled: "{{ freeipa_sssd_tools_cron_ipa_usr_mon }}"
+    hour: '*'
+    job: "{{ freeipa_sssd_tools_dir }}/ipa-srv-mon"
+    minute: '*'
+    user: "{{ freeipa_sssd_tools_username }}"
+  - name: ipa-sss-all
+    cron_file: freeipa-sssd-tools
+    enabled: "{{ freeipa_sssd_tools_cron_ipa_sss_all }}"
+    hour: '*'
+    job: "cd /var/log && {{ freeipa_sssd_tools_dir }}/ipa-sss-all"
+    minute: '*/10'
+    user: "{{ freeipa_sssd_tools_username }}"
+
 # LOGROTATE
 freeipa_sssd_tools_logrotate_configure: true
 freeipa_sssd_tools_logrotate_dir: /etc/logrotate.d
