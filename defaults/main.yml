@@ -224,12 +224,12 @@ freeipa_sssd_tools_cron_entries:
     cron_file: ipa-sss-syn
     enabled: False
 # LOGROTATE
-freeipa_sssd_tools_logrorate_configure: true
-freeipa_sssd_tools_logrorate_dir: /etc/logrotate.d
-freeipa_sssd_tools_logrorate_group: root
-freeipa_sssd_tools_logrorate_mode: '0644'
-freeipa_sssd_tools_logrorate_owner: root
-freeipa_sssd_tools_logrorate_ipa_sss_syn:
+freeipa_sssd_tools_logrotate_configure: true
+freeipa_sssd_tools_logrotate_dir: /etc/logrotate.d
+freeipa_sssd_tools_logrotate_group: root
+freeipa_sssd_tools_logrotate_mode: '0644'
+freeipa_sssd_tools_logrotate_owner: root
+freeipa_sssd_tools_logrotate_ipa_sss_syn:
    - monthly
    - delaycompress
    - compress

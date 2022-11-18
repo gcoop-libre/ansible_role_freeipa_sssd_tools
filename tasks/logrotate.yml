@@ -3,9 +3,9 @@
 - name: (freeipa-sssd-tools) configure logrotate for ipa-sss-syn
   template:
     src: templates/logrotate.d/ipa-sss-syn.j2
-    dest:  "{{ freeipa_sssd_tools_logrorate_dir }}"
-    owner: "{{ freeipa_sssd_tools_logrorate_owner }}"
-    group: "{{ freeipa_sssd_tools_logrorate_group }}"
-    mode:  "{{ freeipa_sssd_tools_logrorate_mode }}"
+    dest:  "{{ freeipa_sssd_tools_logrotate_dir }}"
+    owner: "{{ freeipa_sssd_tools_logrotate_owner }}"
+    group: "{{ freeipa_sssd_tools_logrotate_group }}"
+    mode:  "{{ freeipa_sssd_tools_logrotate_mode }}"
   become: yes
-  when: freeipa_sssd_tools_logrorate_ipa_sss_syn | length > 0
+  when: freeipa_sssd_tools_logrotate_ipa_sss_syn | length > 0
