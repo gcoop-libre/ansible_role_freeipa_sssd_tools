@@ -180,8 +180,8 @@ freeipa_sssd_tools_httpd_syn_plt:
   dir_plt: "{{ freeipa_sssd_tools_httpd_syn_plt_path }}"
   dir_png: "{{ freeipa_sssd_tools_httpd_syn_png_path }}"
   dir_tmp: "{{ freeipa_sssd_tools_httpd_syn_tmp_path }}"
-  ipa_plt: ipa-sss-plt.cfg
-  ipa_srv: ipa-srv-mon.log
+  ipa_plt: /root/ipa-sss-plt.cfg
+  ipa_srv: /var/log/ipa-srv-mon.log
   plt_key_color: ffffff
   plt_key_font: Inconsolata,14
   plt_title: ipa-sss-syn
