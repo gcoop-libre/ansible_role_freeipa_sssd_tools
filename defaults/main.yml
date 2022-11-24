@@ -220,12 +220,6 @@ freeipa_sssd_tools_cron_ipa_usr_syn: true
 freeipa_sssd_tools_cron_ipa_srv_mon: true
 freeipa_sssd_tools_cron_ipa_sss_all: true
 freeipa_sssd_tools_cron_entries:
-  - name: PATH
-    cron_file: freeipa-sssd-tools
-    enabled: true
-    env: yes
-    job: "{{ freeipa_sssd_tools_dir }}/usr/local/bin:/sbin:/usr/sbin:/usr/local/bin:/usr/bin:/bin"
-    user: "{{ freeipa_sssd_tools_username }}"
   - name: ipa-usr-syn
     cron_file: freeipa-sssd-tools
     enabled: "{{ freeipa_sssd_tools_cron_ipa_usr_syn }}"
