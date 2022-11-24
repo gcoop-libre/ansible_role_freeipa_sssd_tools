@@ -15,13 +15,21 @@
 - name: (freeipa-sssd-tools) cron jobs
   cron:
     name: "{{ item.name | default(omit) }}"
-    minute: "{{ item.minute | default(omit) }}"
+    cron_file: "{{ item.cron_file | default(mandatory) }}"
+    day: "{{ item.day | default(omit) }}"
     hour: "{{ item.hour | default(omit) }}"
     job: "{{ item.job | default(mandatory) }}"
-    cron_file: "{{ item.cron_file | default(omit) }}"
-    env: "{{ item.env | default(omit) }}"
+    minute: "{{ item.minute | default(omit) }}"
+    month: "{{ item.month | default(omit) }}"
+    weekday: "{{ item.weekday | default(omit) }}"
+    user: "{{ freeipa_sssd_tools_username | default(mandatory) }}"
   become: yes
-  when: item.enabled
+  when:
+    - item.enabled is defined
+    - item.enabled | bool
+    - item.cron_file is defined
+    - item.job is defined
+    - item.user is defined
   with_items:
     - "{{ freeipa_sssd_tools_cron_entries }}"
 
