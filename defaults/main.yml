@@ -215,6 +215,7 @@ freeipa_sssd_tools_git_environment:
 freeipa_sssd_tools_cron_configure: False
 freeipa_sssd_tools_cron_path: "{{ freeipa_sssd_tools_dir }}/usr/local/bin:/sbin:/usr/sbin:/usr/local/bin:/usr/bin:/bin"
 freeipa_sssd_tools_cron_restart: False
+freeipa_sssd_tools_cron_service: crond
 freeipa_sssd_tools_cron_ipa_usr_syn: true
 freeipa_sssd_tools_cron_ipa_srv_mon: true
 freeipa_sssd_tools_cron_ipa_sss_all: true
