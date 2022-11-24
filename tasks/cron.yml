@@ -3,9 +3,14 @@
 - name: (freeipa-sssd-tools) add PATH on top of crontab
   cron:
     name: PATH
+    cron_file: freeipa-sssd-tools
     env: yes
-    value: "{{ freeipa_sssd_tools_cron_path }}"
+    job: "{{ freeipa_sssd_tools_cron_path | default(mandatory) }}"
+    user: "{{ freeipa_sssd_tools_username }}"
   become: yes
+  when:
+    - freeipa_sssd_tools_cron_path is defined
+    - freeipa_sssd_tools_username is defined
 
 - name: (freeipa-sssd-tools) cron jobs
   cron:
