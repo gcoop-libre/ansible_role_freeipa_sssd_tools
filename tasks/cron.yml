@@ -35,7 +35,7 @@
 
 - name: (freeipa-sssd-tools) restart service cron
   service:
-    name: cron
+    name: "{{ freeipa_sssd_tools_cron_service | default(mandatory) }}"
     state: restarted
   become: yes
   when: freeipa_sssd_tools_cron_restart | bool
