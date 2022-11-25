@@ -1,9 +1,7 @@
 ---
 
 - name: (freeipa-sssd-tools) check directories defined in PATH of crontab
-  file:
-    path: "{{ item }}"
-    state: directory
+  command: "test -d {{ item }}"
   with_items: "{{ freeipa_sssd_tools_cron_path.split(':') }}"
   when: freeipa_sssd_tools_cron_path is defined
 
