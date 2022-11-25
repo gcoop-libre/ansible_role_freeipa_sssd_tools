@@ -5,6 +5,18 @@
   with_items: "{{ freeipa_sssd_tools_cron_path.split(':') }}"
   when: freeipa_sssd_tools_cron_path is defined
 
+- name: (freeipa-sssd-tools) test ipa-usr-all to get users from LDAP/AD
+  shell: ipa-usr-all
+  args:
+    executable: /bin/bash
+  environment: "{{ freeipa_sssd_tools_cron_test_environment | default(omit) }}"
+  no_log: "{{ freeipa_sssd_tools_cron_test_no_log | default(true) }}"
+  register: ipa_usr_all_result
+  become: yes
+  when:
+    - freeipa_sssd_tools_cron_test_ipa_usr_all is defined
+    - freeipa_sssd_tools_cron_test_ipa_usr_all | bool
+
 - name: (freeipa-sssd-tools) add PATH on top of crontab
   cron:
     name: PATH
