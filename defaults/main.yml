@@ -217,7 +217,7 @@ freeipa_sssd_tools_cron_path: "{{ freeipa_sssd_tools_dir }}:/usr/local/bin:/sbin
 freeipa_sssd_tools_cron_restart: False
 freeipa_sssd_tools_cron_service: crond
 freeipa_sssd_tools_cron_test_environment:
-  - PATH: "{{ freeipa_sssd_tools_cron_path }}"
+  PATH: "{{ freeipa_sssd_tools_cron_path }}"
 freeipa_sssd_tools_cron_test_ipa_usr_all: false
 freeipa_sssd_tools_cron_test_ipa_usr_syn: false
 freeipa_sssd_tools_cron_test_no_log: true
@@ -353,3 +353,12 @@ freeipa_sssd_tools_yum_repositories_configure: true
 freeipa_sssd_tools_yum_repo_updates_enabled: true
 freeipa_sssd_tools_yum_repo_updates_source_baseurl: '{{ freeipa_sssd_tools_yum_repo_base_source_baseurl }}'
 freeipa_sssd_tools_yum_repo_updates_source_enabled: false
+
+freeipa_sssd_tools_ramdisk_fstab: false
+freeipa_sssd_tools_ramdisk_mounted: true
+freeipa_sssd_tools_ramdisk_opts:
+  size: 2048M
+  mode: '0700'
+  uid: sssd
+  gid: sssd
+  rootcontext: 'system_u:object_r:sssd_var_lib_t:s0'
