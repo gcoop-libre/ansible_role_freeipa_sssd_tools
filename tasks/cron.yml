@@ -27,6 +27,16 @@
     - freeipa_sssd_tools_cron_test_write_users | bool
     - ipa_usr_all_result is defined
 
+- name: (freeipa-sssd-tools) test ipa-usr-syn using temporal test users file
+  shell: IPA_USR_SYN_GET=0 ipa-usr-syn {{ freeipa_sssd_tools_cron_test_tmp_users }}
+  args:
+    executable: /bin/bash
+  environment: "{{ freeipa_sssd_tools_cron_test_environment | default(omit) }}"
+  become: yes
+  when:
+    - freeipa_sssd_tools_cron_test_ipa_usr_syn is defined
+    - freeipa_sssd_tools_cron_test_ipa_usr_syn | bool
+
 - name: (freeipa-sssd-tools) add PATH on top of crontab
   cron:
     name: PATH
