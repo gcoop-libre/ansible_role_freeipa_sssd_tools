@@ -216,6 +216,13 @@ freeipa_sssd_tools_cron_configure: False
 freeipa_sssd_tools_cron_path: "{{ freeipa_sssd_tools_dir }}:/usr/local/bin:/sbin:/usr/sbin:/usr/local/bin:/usr/bin:/bin"
 freeipa_sssd_tools_cron_restart: False
 freeipa_sssd_tools_cron_service: crond
+freeipa_sssd_tools_cron_test_environment:
+  - PATH: "{{ freeipa_sssd_tools_cron_path }}"
+freeipa_sssd_tools_cron_test_ipa_usr_all: false
+freeipa_sssd_tools_cron_test_ipa_usr_syn: false
+freeipa_sssd_tools_cron_test_no_log: true
+freeipa_sssd_tools_cron_test_tmp_users: /tmp/ipa-usr-all-test-users
+freeipa_sssd_tools_cron_test_write_users: false
 freeipa_sssd_tools_cron_ipa_usr_syn: true
 freeipa_sssd_tools_cron_ipa_srv_mon: true
 freeipa_sssd_tools_cron_ipa_sss_all: true
