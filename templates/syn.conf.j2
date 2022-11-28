@@ -1,0 +1,8 @@
+Alias {{ freeipa_sssd_tools_httpd_syn_htm_alias }} "{{ freeipa_sssd_tools_httpd_syn_htm_path }}"
+
+# Turn off Apache authentication
+<Location "{{ freeipa_sssd_tools_httpd_syn_htm_path }}">
+  Satisfy Any
+  Order Deny,Allow
+  Allow from all
+</Location>
