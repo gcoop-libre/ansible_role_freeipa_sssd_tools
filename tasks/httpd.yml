@@ -1,0 +1,57 @@
+---
+
+- name: (freeipa-sssd-tools) include httpd syn directories
+  include_tasks: httpd-dirs.yml
+  when:
+    - freeipa_sssd_tools_httpd_syn_dir | bool
+  with_items:
+    - "{{ freeipa_sssd_tools_httpd_syn_htm_path }}"
+    - "{{ freeipa_sssd_tools_httpd_syn_css_path }}"
+    - "{{ freeipa_sssd_tools_httpd_syn_dat_path }}"
+    - "{{ freeipa_sssd_tools_httpd_syn_pdf_path }}"
+    - "{{ freeipa_sssd_tools_httpd_syn_plt_path }}"
+    - "{{ freeipa_sssd_tools_httpd_syn_png_path }}"
+    - "{{ freeipa_sssd_tools_httpd_syn_tmp_path }}"
+
+- name: (freeipa-sssd-tools) generate httpd syn.conf
+  template:
+    src: templates/syn.conf.j2
+    dest:  "{{ freeipa_sssd_tools_httpd_syn_cnf_path }}"
+    owner: "{{ freeipa_sssd_tools_httpd_owner }}"
+    group: "{{ freeipa_sssd_tools_httpd_group }}"
+    mode:  "{{ freeipa_sssd_tools_httpd_mode_file }}"
+  become: yes
+  when: freeipa_sssd_tools_httpd_syn_cnf | bool
+
+- name: (freeipa-sssd-tools) include httpd syn.conf in ipa.conf
+  lineinfile:
+    path: "{{ freeipa_sssd_tools_http_ipa_path }}"
+    line: "Include {{ freeipa_sssd_tools_http_syn_path }}"
+    state: present
+  become: yes
+  when: freeipa_sssd_tools_httpd_syn_include | bool
+
+- name: (freeipa-sssd-tools) download httpd syn css
+  get_url:
+    url: "{{ freeipa_sssd_tools_httpd_syn_htm_css_url }}"
+    dest: "{{ freeipa_sssd_tools_httpd_syn_css_path }}"
+    checksum: "sha256:{{ freeipa_sssd_tools_httpd_syn_htm_css_checksum }}"
+    use_proxy: "{{ freeipa_sssd_tools_http_proxy_use }}"
+  environment: "{{ freeipa_sssd_tools_http_proxy_env }}"
+  when: freeipa_sssd_tools_httpd_syn_css_down | bool
+
+- name: (freeipa-sssd-tools) restart service httpd
+  service:
+    name: httpd
+    state: restarted
+  become: yes
+  when: freeipa_sssd_tools_httpd_restart | bool
+
+- name: (freeipa_sssd_tools) test httpd /syn
+  uri:
+    url: "{{ freeipa_sssd_tools_httpd_syn_url }}"
+    method: GET
+    status_code: 200
+  register: freeipa_sssd_tools_httpd_syn_test_result
+  become: no
+  when: freeipa_sssd_tools_httpd_syn_url_test | bool

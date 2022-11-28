@@ -1,0 +1,18 @@
+---
+
+- name: (freeipa-sssd-tools) configure logrotate for ipa-sss-syn
+  template:
+    src: templates/logrotate.d/ipa-sss-syn.j2
+    dest:  "{{ freeipa_sssd_tools_logrotate_dir }}/ipa-sss-syn"
+    owner: "{{ freeipa_sssd_tools_logrotate_owner }}"
+    group: "{{ freeipa_sssd_tools_logrotate_group }}"
+    mode:  "{{ freeipa_sssd_tools_logrotate_mode }}"
+  become: yes
+  when: freeipa_sssd_tools_logrotate_ipa_sss_syn | length > 0
+
+- name: (freeipa-sssd-tools) execute logrotate dry-run ipa-sss-syn
+  shell: "logrotate -d {{ freeipa_sssd_tools_logrotate_dir }}/ipa-sss-syn"
+  args:
+    executable: /bin/bash
+  changed_when: False
+  become: yes

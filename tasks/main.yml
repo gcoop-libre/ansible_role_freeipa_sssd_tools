@@ -53,11 +53,21 @@
     - freeipa_sssd_tools_cron_configure | bool
     - freeipa_sssd_tools_cron_entries | length > 0
 
+- name: (freeipa_sssd_tools) include logrotate tasks
+  include_tasks: logrotate.yml
+  when:
+    - freeipa_sssd_tools_logrotate_configure | bool
+
 - name: (freeipa_sssd_tools) include systemd tasks
   include_tasks: systemd.yml
   when:
     - freeipa_sssd_tools_api_deploy | bool
     - freeipa_sssd_tools_api_systemd | bool
+
+- name: (freeipa_sssd_tools) include httpd tasks
+  include_tasks: httpd.yml
+  when:
+    - freeipa_sssd_tools_httpd_syn_conf | bool
 
 - name: (freeipa_sssd_tools) include test-syn tasks
   include_tasks: test-syn.yml
