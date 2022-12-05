@@ -40,6 +40,13 @@
     - ipa_api_syn_result is defined
     - ipa_api_syn_result.json.retval | default('') != 'OK'
 
+- name: (freeipa_sssd_tools) pause between test and verify ipa-api-qry
+  pause:
+    seconds: '{{ freeipa_sssd_tools_test_pause }}'
+  when:
+    - freeipa_sssd_tools_test_pause is defined
+    - freeipa_sssd_tools_test_pause | int > 0
+
 - name: (freeipa_sssd_tools) test ipa-api-qry sAMAccountName {{ item }}
   uri:
     url: "{{ freeipa_sssd_tools_api_uwsgi_test_qry }}/{{ item }}"
