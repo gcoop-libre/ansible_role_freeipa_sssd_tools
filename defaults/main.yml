@@ -354,6 +354,7 @@ freeipa_sssd_tools_yum_repo_updates_enabled: true
 freeipa_sssd_tools_yum_repo_updates_source_baseurl: '{{ freeipa_sssd_tools_yum_repo_base_source_baseurl }}'
 freeipa_sssd_tools_yum_repo_updates_source_enabled: false
 
+freeipa_sssd_tools_ramdisk_configure: true
 freeipa_sssd_tools_ramdisk_fstab: false
 freeipa_sssd_tools_ramdisk_mounted: true
 freeipa_sssd_tools_ramdisk_opts:
