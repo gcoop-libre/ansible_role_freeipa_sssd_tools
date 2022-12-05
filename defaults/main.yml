@@ -251,6 +251,13 @@ freeipa_sssd_tools_cron_entries:
     job: "cd /var/log && {{ freeipa_sssd_tools_dir }}/ipa-sss-all"
     minute: '*/10'
     user: "{{ freeipa_sssd_tools_username }}"
+  - name: ipa-sss-rsy
+    cron_file: freeipa-sssd-tools
+    enabled: "{{ freeipa_sssd_tools_cron_ipa_sss_rsy }}"
+    hour: '*'
+    job: "{{ freeipa_sssd_tools_dir }}/ipa-sss-rsy {{ freeipa_sssd_tools_cron_ipa_sss_rsy_backup }}"
+    minute: '*/5'
+    user: "{{ freeipa_sssd_tools_username }}"
 
 # LOGROTATE
 freeipa_sssd_tools_logrotate_configure: true
