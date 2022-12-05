@@ -227,6 +227,7 @@ freeipa_sssd_tools_cron_test_write_users: false
 freeipa_sssd_tools_cron_ipa_usr_syn: true
 freeipa_sssd_tools_cron_ipa_srv_mon: true
 freeipa_sssd_tools_cron_ipa_sss_all: true
+freeipa_sssd_tools_cron_ipa_sss_rsy: true
 freeipa_sssd_tools_cron_entries:
   - name: ipa-usr-syn
     cron_file: freeipa-sssd-tools
