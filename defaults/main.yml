@@ -41,6 +41,7 @@ freeipa_sssd_tools_set_permissions_script_files:
   - ipa-sss-day
   - ipa-sss-dff
   - ipa-sss-htm
+  - ipa-sss-ldb
   - ipa-sss-log
   - ipa-sss-plt
   - ipa-sss-rsy
