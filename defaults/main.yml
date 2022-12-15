@@ -45,6 +45,7 @@ freeipa_sssd_tools_set_permissions_script_files:
   - ipa-sss-log
   - ipa-sss-plt
   - ipa-sss-rsy
+  - ipa-sss-rtr
   - ipa-sss-sum
   - ipa-sss-syn
   - ipa-sss-usr
