@@ -138,6 +138,19 @@
         - ansible_facts.services['ntpd.service'].state == 'stopped'
         - ansible_facts.services['sssd.service'].state == 'stopped'
 
+    - name: (freeipa-sssd-tools) SSSD cache count records
+      shell: "LDB_DIR={{ item }} {{ freeipa_sssd_tools_dir }}/ipa-sss-ldb"
+      args:
+        executable: /bin/bash
+      register: ipa_sss_ldb_result
+      changed_when: false
+      failed_when:
+        - ipa_sss_ldb_result.rc != 0
+      become: true
+      loop:
+        - /var/lib/sss/db
+        - /var/lib/ipa/backup/sss-db
+
     - name: (freeipa-sssd-tools) start cron service
       service:
         name: crond
@@ -218,3 +231,16 @@
         - ansible_facts.services['ntpd.service'].state == 'running'
         - ansible_facts.services['sssd.service'].state == 'stopped'
         - ansible_facts.services['krb5kdc.service'].state == 'running'
+
+    - name: (freeipa-sssd-tools) SSSD cache count records
+      shell: "LDB_DIR={{ item }} {{ freeipa_sssd_tools_dir }}/ipa-sss-ldb"
+      args:
+        executable: /bin/bash
+      register: ipa_sss_ldb_result
+      changed_when: false
+      failed_when:
+        - ipa_sss_ldb_result.rc != 0
+      become: true
+      loop:
+        - /var/lib/sss/db
+        - /var/lib/ipa/backup/sss-db
