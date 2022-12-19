@@ -94,6 +94,20 @@
         - freeipa_sssd_tools_service_crond_stop | bool
         - freeipa_sssd_tools_sssd_restore_cache | bool
 
+    - name: (freeipa-sssd-tools) fail when ipa-sss-rsy is running
+      command: pgrep ipa-sss-rsy
+      register: ipa_sss_rsy_result
+      changed_when: false
+      become: yes
+      failed_when:
+        - ipa_sss_rsy_result.rc == 0
+        - ipa_sss_rsy_result.stdout_lines | length > 0
+        - freeipa_sssd_tools_service_sssd_stop | bool
+        - freeipa_sssd_tools_sssd_restore_cache | bool
+        - ansible_facts.services[dirsrv_domain].state == 'stopped'
+        - ansible_facts.services['ntpd.service'].state == 'stopped'
+        - ansible_facts.services['sssd.service'].state == 'stopped'
+
     # FreeIPA smb service fail to start after update
     # CentOS failure https://pagure.io/freeipa/issue/8198
     - name: (freeipa_sssd_tools) define ipactl start command
