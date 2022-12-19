@@ -72,17 +72,19 @@
         - ansible_facts.services['ntpd.service'].state
         - ansible_facts.services['sssd.service'].state
 
-    - name: (freeipa-sssd-tools) SSSD cache count records in /var/lib/sss/db
-      shell: "{{ freeipa_sssd_tools_dir }}/ipa-sss-ldb"
+    - name: (freeipa-sssd-tools) SSSD cache count records
+      shell: "LDB_DIR={{ item }} {{ freeipa_sssd_tools_dir }}/ipa-sss-ldb"
       args:
         executable: /bin/bash
       environment:
-        LDB_DIR: /var/lib/sss/db
         register: ipa_sss_ldb_result
       changed_when: false
       failed_when:
         - ipa_sss_ldb_result.rc != 0
       become: true
+      loop:
+        - /var/lib/sss/db
+        - /var/lib/ipa/backup/sss-db
 
     - name: (freeipa_sssd_tools) stopped SSSD when IPA is stopped
       service:
