@@ -76,8 +76,7 @@
       shell: "LDB_DIR={{ item }} {{ freeipa_sssd_tools_dir }}/ipa-sss-ldb"
       args:
         executable: /bin/bash
-      environment:
-        register: ipa_sss_ldb_result
+      register: ipa_sss_ldb_result
       changed_when: false
       failed_when:
         - ipa_sss_ldb_result.rc != 0
