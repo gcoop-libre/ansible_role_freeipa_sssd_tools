@@ -9,6 +9,7 @@
 
   vars:
     freeipa_sssd_tools_dir: /opt/freeipa-sssd-tools
+    freeipa_sssd_tools_service_crond_start: true
     freeipa_sssd_tools_service_crond_stop: true
     freeipa_sssd_tools_sssd_restore_cache: true
     freeipa_sssd_tools_service_facts_populate: true
@@ -123,6 +124,15 @@
         - ansible_facts.services[dirsrv_domain].state == 'stopped'
         - ansible_facts.services['ntpd.service'].state == 'stopped'
         - ansible_facts.services['sssd.service'].state == 'stopped'
+
+    - name: (freeipa-sssd-tools) start cron service
+      service:
+        name: crond
+        state: started
+      become: yes
+      when:
+        - freeipa_sssd_tools_service_crond_start | bool
+        - freeipa_sssd_tools_sssd_restore_cache | bool
 
     # FreeIPA smb service fail to start after update
     # CentOS failure https://pagure.io/freeipa/issue/8198
