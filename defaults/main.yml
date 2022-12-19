@@ -41,8 +41,11 @@ freeipa_sssd_tools_set_permissions_script_files:
   - ipa-sss-day
   - ipa-sss-dff
   - ipa-sss-htm
+  - ipa-sss-ldb
   - ipa-sss-log
   - ipa-sss-plt
+  - ipa-sss-rsy
+  - ipa-sss-rtr
   - ipa-sss-sum
   - ipa-sss-syn
   - ipa-sss-usr
@@ -226,6 +229,9 @@ freeipa_sssd_tools_cron_test_write_users: false
 freeipa_sssd_tools_cron_ipa_usr_syn: true
 freeipa_sssd_tools_cron_ipa_srv_mon: true
 freeipa_sssd_tools_cron_ipa_sss_all: true
+freeipa_sssd_tools_cron_ipa_sss_rsy: true
+freeipa_sssd_tools_cron_ipa_sss_db: true
+freeipa_sssd_tools_cron_ipa_sss_rsy_backup: /var/lib/ipa/backup/sss-db
 freeipa_sssd_tools_cron_entries:
   - name: ipa-usr-syn
     cron_file: freeipa-sssd-tools
@@ -247,6 +253,20 @@ freeipa_sssd_tools_cron_entries:
     hour: '*'
     job: "cd /var/log && {{ freeipa_sssd_tools_dir }}/ipa-sss-all"
     minute: '*/10'
+    user: "{{ freeipa_sssd_tools_username }}"
+  - name: ipa-sss-rsy
+    cron_file: freeipa-sssd-tools
+    enabled: "{{ freeipa_sssd_tools_cron_ipa_sss_rsy }}"
+    hour: '*'
+    job: "{{ freeipa_sssd_tools_dir }}/ipa-sss-rsy {{ freeipa_sssd_tools_cron_ipa_sss_rsy_backup }}"
+    minute: '*/5'
+    user: "{{ freeipa_sssd_tools_username }}"
+  - name: sss-db weekly backup
+    cron_file: freeipa-sssd-tools
+    enabled: "{{ freeipa_sssd_tools_cron_ipa_sss_db }}"
+    hour: '1'
+    job: tar czf {{ freeipa_sssd_tools_cron_ipa_sss_rsy_backup }}-$(date +\%u).tar.gz {{ freeipa_sssd_tools_cron_ipa_sss_rsy_backup }}
+    minute: '0'
     user: "{{ freeipa_sssd_tools_username }}"
 
 # LOGROTATE
@@ -354,6 +374,7 @@ freeipa_sssd_tools_yum_repo_updates_enabled: true
 freeipa_sssd_tools_yum_repo_updates_source_baseurl: '{{ freeipa_sssd_tools_yum_repo_base_source_baseurl }}'
 freeipa_sssd_tools_yum_repo_updates_source_enabled: false
 
+freeipa_sssd_tools_ramdisk_configure: true
 freeipa_sssd_tools_ramdisk_fstab: false
 freeipa_sssd_tools_ramdisk_mounted: true
 freeipa_sssd_tools_ramdisk_opts:
