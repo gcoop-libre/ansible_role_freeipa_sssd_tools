@@ -8,6 +8,8 @@
   become: yes
 
   vars:
+    freeipa_sssd_tools_service_crond_stop: true
+    freeipa_sssd_tools_sssd_restore_cache: true
     freeipa_sssd_tools_service_facts_populate: true
     freeipa_sssd_tools_service_sssd_stop: true
     freeipa_sssd_tools_no_log: false
@@ -82,6 +84,15 @@
       service_facts:
       no_log: "{{ freeipa_sssd_tools_no_log | bool }}"
       when: freeipa_sssd_tools_service_facts_populate | bool
+
+    - name: (freeipa-sssd-tools) stop cron service
+      service:
+        name: crond
+        state: stopped
+      become: yes
+      when:
+        - freeipa_sssd_tools_service_crond_stop | bool
+        - freeipa_sssd_tools_sssd_restore_cache | bool
 
     # FreeIPA smb service fail to start after update
     # CentOS failure https://pagure.io/freeipa/issue/8198
