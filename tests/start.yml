@@ -8,6 +8,7 @@
   become: yes
 
   vars:
+    freeipa_sssd_tools_dir: /opt/freeipa-sssd-tools
     freeipa_sssd_tools_service_crond_stop: true
     freeipa_sssd_tools_sssd_restore_cache: true
     freeipa_sssd_tools_service_facts_populate: true
@@ -104,6 +105,21 @@
         - ipa_sss_rsy_result.stdout_lines | length > 0
         - freeipa_sssd_tools_service_sssd_stop | bool
         - freeipa_sssd_tools_sssd_restore_cache | bool
+        - ansible_facts.services[dirsrv_domain].state == 'stopped'
+        - ansible_facts.services['ntpd.service'].state == 'stopped'
+        - ansible_facts.services['sssd.service'].state == 'stopped'
+
+    - name: (freeipa-sssd-tools) restore SSSD ramdisk
+      shell: "{{ freeipa_sssd_tools_dir }}/ipa-sss-rtr"
+      args:
+        executable: /bin/bash
+      environment:
+        PATH: "{{ freeipa_sssd_tools_dir }}:{{ ansible_env.PATH }}"
+      register: ipa_sss_rtr_result
+      failed_when:
+        - ipa_sss_rtr_result.rc != 0
+      become: true
+      when:
         - ansible_facts.services[dirsrv_domain].state == 'stopped'
         - ansible_facts.services['ntpd.service'].state == 'stopped'
         - ansible_facts.services['sssd.service'].state == 'stopped'
