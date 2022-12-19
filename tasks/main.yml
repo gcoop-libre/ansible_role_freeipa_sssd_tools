@@ -27,6 +27,11 @@
     state: directory
   become: yes
 
+- name: (freeipa_sssd_tools) include ramdisk tasks
+  include_tasks: ramdisk.yml
+  when:
+    - freeipa_sssd_tools_ramdisk_configure | bool
+
 - name: (freeipa_sssd_tools) include python requirements tasks
   include_tasks: python-reqs.yml
   when:

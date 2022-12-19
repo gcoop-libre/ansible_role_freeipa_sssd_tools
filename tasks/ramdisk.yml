@@ -1,0 +1,19 @@
+---
+
+- name: (freeipa_sssd_tools) ensure /var/lib/sss/db present in /etc/fstab
+  mount:
+    fstype: tmpfs
+    opts: "{{ freeipa_sssd_tools_ramdisk_opts.keys() | zip(freeipa_sssd_tools_ramdisk_opts.values()) | map('join','=') | join(',') }}"
+    path: /var/lib/sss/db
+    src: tmpfs
+    state: present
+  when: freeipa_sssd_tools_ramdisk_fstab | bool
+
+- name: (freeipa_sssd_tools) mount /var/lib/sss/db
+  mount:
+    fstype: tmpfs
+    opts: "{{ freeipa_sssd_tools_ramdisk_opts.keys() | zip(freeipa_sssd_tools_ramdisk_opts.values()) | map('join','=') | join(',') }}"
+    path: /var/lib/sss/db
+    src: tmpfs
+    state: mounted
+  when: freeipa_sssd_tools_ramdisk_mounted | bool
