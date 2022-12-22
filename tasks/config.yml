@@ -21,7 +21,7 @@
     owner: "{{ freeipa_sssd_tools_config_owner }}"
     group: "{{ freeipa_sssd_tools_config_group }}"
     mode:  "{{ freeipa_sssd_tools_config_mode }}"
-    become: yes
+  become: yes
 
 - name: (freeipa-sssd-tools) ensure ipa-sss-syn.log exists
   file:

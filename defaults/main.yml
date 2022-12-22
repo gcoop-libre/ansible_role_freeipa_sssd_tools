@@ -144,6 +144,7 @@ freeipa_sssd_tools_httpd_syn_css_path: "{{ freeipa_sssd_tools_httpd_syn_htm_path
 freeipa_sssd_tools_httpd_syn_dat_path: "{{ freeipa_sssd_tools_httpd_syn_htm_path }}/dat"
 freeipa_sssd_tools_httpd_syn_pdf_path: "{{ freeipa_sssd_tools_httpd_syn_htm_path }}/pdf"
 freeipa_sssd_tools_httpd_syn_plt_conf: /root/ipa-sss-plt.cfg
+freeipa_sssd_tools_httpd_srv_mon_path: /var/log/ipa-srv-mon.log
 freeipa_sssd_tools_httpd_syn_plt_path: "{{ freeipa_sssd_tools_httpd_syn_htm_path }}/plt"
 freeipa_sssd_tools_httpd_syn_png_path: "{{ freeipa_sssd_tools_httpd_syn_htm_path }}/img"
 freeipa_sssd_tools_httpd_syn_tmp_path: "{{ freeipa_sssd_tools_httpd_syn_htm_path }}/tmp"
@@ -185,7 +186,7 @@ freeipa_sssd_tools_httpd_syn_plt:
   dir_png: "{{ freeipa_sssd_tools_httpd_syn_png_path }}"
   dir_tmp: "{{ freeipa_sssd_tools_httpd_syn_tmp_path }}"
   ipa_plt: "{{ freeipa_sssd_tools_httpd_syn_plt_conf }}"
-  ipa_srv: /var/log/ipa-srv-mon.log
+  ipa_srv: "{{ freeipa_sssd_tools_httpd_srv_mon_path }}"
   plt_key_color: ffffff
   plt_key_font: Inconsolata,14
   plt_title: ipa-sss-syn
@@ -244,7 +245,7 @@ freeipa_sssd_tools_cron_entries:
     cron_file: freeipa-sssd-tools
     enabled: "{{ freeipa_sssd_tools_cron_ipa_srv_mon }}"
     hour: '*'
-    job: "{{ freeipa_sssd_tools_dir }}/ipa-srv-mon"
+    job: "{{ freeipa_sssd_tools_dir }}/ipa-srv-mon >> {{ freeipa_sssd_tools_httpd_srv_mon_path }}"
     minute: '*'
     user: "{{ freeipa_sssd_tools_username }}"
   - name: ipa-sss-all
