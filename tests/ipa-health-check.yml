@@ -1,6 +1,6 @@
 ---
 
-- name: Install and Configure FreeIPA SSSD Tools
+- name: Get FreeIPA SSSD Tools and execute Health Check
   hosts: [all]
   become: yes
 
@@ -53,3 +53,4 @@
       freeipa_sssd_tools_yum_repo_updates_enabled: false
       freeipa_sssd_tools_ramdisk_configure: false
       freeipa_sssd_tools_ramdisk_mounted: false
+      freeipa_sssd_tools_health_check: true
