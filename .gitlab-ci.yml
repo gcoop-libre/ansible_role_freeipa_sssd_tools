@@ -15,6 +15,7 @@ stages:
   - ansible-lint
   - ansible-syntax-check
   - ansible-awx
+  - ansible-awx-ipa-hlt-chk
 
 ansible-lint:
   stage: ansible-lint
