@@ -20,6 +20,8 @@
     state: present
     update_cache: true
   become: yes
+  when:
+    - ansible_os_family is 'RedHat' or ansible_os_family is 'AlmaLinux'
 
 - name: (freeipa-sssd-tools) ensure required packages are installed
   package:
