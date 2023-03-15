@@ -72,3 +72,13 @@
     - freeipa_sssd_tools_git_repo is defined
     - freeipa_sssd_tools_git_repo |  length > 0
     - freeipa_sssd_tools_dir is defined
+
+- name: (freeipa-sssd-tools) show last commit
+  command: git log -1
+  args:
+    chdir: "{{ freeipa_sssd_tools_dir }}"
+  become: true
+  when:
+    - freeipa_sssd_tools_git_repo is defined
+    - freeipa_sssd_tools_git_repo |  length > 0
+    - freeipa_sssd_tools_dir is defined
