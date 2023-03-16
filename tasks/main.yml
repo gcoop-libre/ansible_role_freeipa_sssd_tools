@@ -82,10 +82,9 @@
   loop: "{{ freeipa_sssd_tools_test_users }}"
 
 - name: (freeipa_sssd_tools) execute health check
-  shell: ipa-hlt-chk
+  shell: "{{ freeipa_sssd_tools_dir }}/ipa-hlt-chk"
   args:
     executable: /bin/bash
-    chdir: "{{ freeipa_sssd_tools_dir }}"
   become: true
   when:
     - freeipa_sssd_tools_health_check | bool
