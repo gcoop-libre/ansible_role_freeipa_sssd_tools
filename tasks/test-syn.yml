@@ -73,13 +73,30 @@
     - ipa_api_qry_result is defined
     - ipa_api_qry_result.json.retval | default('') != 'OK'
 
+- name: (freeipa_sssd_tools) test API /resyn sAMAccountName {{ item }}
+  uri:
+    url: "{{ freeipa_sssd_tools_api_uwsgi_test_resyn }}/{{ item }}"
+    method: GET
+    status_code: 200
+    return_content: yes
+  register: ipa_api_resyn_result
+  become: no
+
+- name: (freeipa_sssd_tools) verify API /resyn retval sAMAccountName {{ item }}
+  fail:
+    msg: unknown error
+  when:
+    - ipa_api_resyn_result is defined
+    - ipa_api_resyn_result.json.retval | default('') != 'OK'
+
+- name: (freeipa_sssd_tools) pause between test API /resyn and verify /qry
   pause:
     seconds: '{{ freeipa_sssd_tools_test_pause }}'
   when:
     - freeipa_sssd_tools_test_pause is defined
     - freeipa_sssd_tools_test_pause | int > 0
 
-- name: (freeipa_sssd_tools) test ipa-api-qry sAMAccountName {{ item }}
+- name: (freeipa_sssd_tools) test API /qry sAMAccountName {{ item }}
   uri:
     url: "{{ freeipa_sssd_tools_api_uwsgi_test_qry }}/{{ item }}"
     method: GET
@@ -88,7 +105,7 @@
   register: ipa_api_qry_result
   become: no
 
-- name: (freeipa_sssd_tools) verify ipa-api-qry retval sAMAccountName {{ item }}
+- name: (freeipa_sssd_tools) verify API /qry retval sAMAccountName {{ item }}
   fail:
     msg: unknown error
   when:
