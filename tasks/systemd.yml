@@ -20,6 +20,14 @@
   become: yes
   when: freeipa_sssd_tools_api_que_sysd
 
+- name: (freeipa_sssd_tools) kill API processes
+  shell: "pkill -9 -f {{ freeipa_sssd_tools_api_uwsgi_bin }}"
+  ignore_errors: true
+  become: yes
+  when:
+    - freeipa_sssd_tools_api_uwsgi_kill is defined
+    - freeipa_sssd_tools_api_uwsgi_kill | bool
+
 - name: (freeipa_sssd_tools) activate API's systemd unit
   systemd:
     name: ipa-api-syn.service
