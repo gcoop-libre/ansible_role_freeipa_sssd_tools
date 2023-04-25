@@ -34,6 +34,13 @@
     - ipa_sss_syn_result is defined
     - ipa_sss_syn_result.rc | default('') in freeipa_sssd_tools_test_errors_critical
 
+- name: (freeipa_sssd_tools) pause between test ipa-sss-syn and test API /syn
+  pause:
+    seconds: '{{ freeipa_sssd_tools_test_pause }}'
+  when:
+    - freeipa_sssd_tools_test_pause is defined
+    - freeipa_sssd_tools_test_pause | int > 0
+
 - name: (freeipa_sssd_tools) test API /syn sAMAccountName {{ item }}
   uri:
     url: "{{ freeipa_sssd_tools_api_uwsgi_test_syn }}/{{ item }}"
@@ -49,13 +56,6 @@
   when:
     - ipa_api_syn_result is defined
     - ipa_api_syn_result.json.retval | default('') != 'OK'
-
-- name: (freeipa_sssd_tools) pause between test API /syn and verify /qry
-  pause:
-    seconds: '{{ freeipa_sssd_tools_test_pause }}'
-  when:
-    - freeipa_sssd_tools_test_pause is defined
-    - freeipa_sssd_tools_test_pause | int > 0
 
 - name: (freeipa_sssd_tools) test API /qry sAMAccountName {{ item }}
   uri:
