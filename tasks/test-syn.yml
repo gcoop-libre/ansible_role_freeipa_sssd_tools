@@ -36,10 +36,10 @@
 
 - name: (freeipa_sssd_tools) pause between test ipa-sss-syn and test API /syn
   pause:
-    seconds: '{{ freeipa_sssd_tools_test_pause }}'
+    seconds: '{{ freeipa_sssd_tools_test_pause_syn_syn }}'
   when:
-    - freeipa_sssd_tools_test_pause is defined
-    - freeipa_sssd_tools_test_pause | int > 0
+    - freeipa_sssd_tools_test_pause_syn_syn is defined
+    - freeipa_sssd_tools_test_pause_syn_syn | int > 0
 
 - name: (freeipa_sssd_tools) test API /syn sAMAccountName {{ item }}
   uri:
@@ -52,10 +52,17 @@
 
 - name: (freeipa_sssd_tools) verify API /syn retval sAMAccountName {{ item }}
   fail:
-    msg: unknown error
+    msg: "unknown error '{{ ipa_api_syn_result.json.result }}' with retval '{{ ipa_api_syn_result.json.retval }}'"
   when:
     - ipa_api_syn_result is defined
     - ipa_api_syn_result.json.retval | default('') != 'OK'
+
+- name: (freeipa_sssd_tools) pause between test /syn and test /qry
+  pause:
+    seconds: '{{ freeipa_sssd_tools_test_pause_syn_qry }}'
+  when:
+    - freeipa_sssd_tools_test_pause_syn_qry is defined
+    - freeipa_sssd_tools_test_pause_syn_qry | int > 0
 
 - name: (freeipa_sssd_tools) test API /qry sAMAccountName {{ item }}
   uri:
@@ -68,7 +75,7 @@
 
 - name: (freeipa_sssd_tools) verify API /qry retval sAMAccountName {{ item }}
   fail:
-    msg: unknown error
+    msg: "unknown error '{{ ipa_api_qry_result.json.result }}' with retval '{{ ipa_api_qry_result.json.retval }}'"
   when:
     - ipa_api_qry_result is defined
     - ipa_api_qry_result.json.retval | default('') != 'OK'
@@ -84,17 +91,17 @@
 
 - name: (freeipa_sssd_tools) verify API /resyn retval sAMAccountName {{ item }}
   fail:
-    msg: unknown error
+    msg: "unknown error '{{ ipa_api_resyn_result.json.result }}' with retval '{{ ipa_api_resyn_result.json.retval }}'"
   when:
     - ipa_api_resyn_result is defined
     - ipa_api_resyn_result.json.retval | default('') != 'OK'
 
 - name: (freeipa_sssd_tools) pause between test API /resyn and verify /qry
   pause:
-    seconds: '{{ freeipa_sssd_tools_test_pause }}'
+    seconds: '{{ freeipa_sssd_tools_test_pause_syn_qry }}'
   when:
-    - freeipa_sssd_tools_test_pause is defined
-    - freeipa_sssd_tools_test_pause | int > 0
+    - freeipa_sssd_tools_test_pause_syn_qry is defined
+    - freeipa_sssd_tools_test_pause_syn_qry | int > 0
 
 - name: (freeipa_sssd_tools) test API /qry sAMAccountName {{ item }}
   uri:
@@ -107,7 +114,8 @@
 
 - name: (freeipa_sssd_tools) verify API /qry retval sAMAccountName {{ item }}
   fail:
-    msg: unknown error
+    msg: "unknown error '{{ ipa_api_qry_result.json.result }}' with retval '{{ ipa_api_qry_result.json.retval }}'"
   when:
     - ipa_api_qry_result is defined
     - ipa_api_qry_result.json.retval | default('') != 'OK'
+    - ipa_api_qry_result.json.result | default('') != 'Account not found'
