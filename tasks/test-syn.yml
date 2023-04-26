@@ -84,7 +84,7 @@
 
 - name: (freeipa_sssd_tools) verify API /resyn retval sAMAccountName {{ item }}
   fail:
-    msg: unknown error
+    msg: "unknown error '{{ ipa_api_resyn_result.json.result }}' with retval '{{ ipa_api_resyn_result.json.retval }}'"
   when:
     - ipa_api_resyn_result is defined
     - ipa_api_resyn_result.json.retval | default('') != 'OK'
