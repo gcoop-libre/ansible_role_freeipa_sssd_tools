@@ -91,10 +91,10 @@
 
 - name: (freeipa_sssd_tools) pause between test API /resyn and verify /qry
   pause:
-    seconds: '{{ freeipa_sssd_tools_test_pause }}'
+    seconds: '{{ freeipa_sssd_tools_test_pause_syn_qry }}'
   when:
-    - freeipa_sssd_tools_test_pause is defined
-    - freeipa_sssd_tools_test_pause | int > 0
+    - freeipa_sssd_tools_test_pause_syn_qry is defined
+    - freeipa_sssd_tools_test_pause_syn_qry | int > 0
 
 - name: (freeipa_sssd_tools) test API /qry sAMAccountName {{ item }}
   uri:
