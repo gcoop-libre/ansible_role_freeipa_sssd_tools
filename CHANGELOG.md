@@ -2,8 +2,49 @@
 
  - this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html)
 
-## [`Unreleased - 2022-12-19`](https://gitlab.com/gcoop-libre/ansible_role_freeipa_sssd_tools/-/compare/v0.5.0...develop)
+## [`Unreleased - 2023-04-26`](https://gitlab.com/gcoop-libre/ansible_role_freeipa_sssd_tools/-/compare/v0.8.0...develop)
 
+
+## [`v0.8.0 - 2023-04-26`](https://gitlab.com/gcoop-libre/ansible_role_freeipa_sssd_tools/-/compare/v0.5.1...v0.8.0) _add tests for API /resyn, fix pause test syn/syn, add pause test syn/qry, kill uwsgi before restart ipa-api-syn service, add show last commit after clone_
+
+### `CHANGELOG`
+
+- update ChangeLog from v0.2.4 to v0.5.0
+
+### `defaults/main`
+
+- define pause between test syn/syn (60s) and test syn/qry (5s)
+- enable freeipa_sssd_tools_api_uwsgi_kill by default
+- add freeipa_sssd_tools_api_uwsgi_test_resyn for /resyn
+
+### `tasks/git`
+
+- show last commit after clone FreeIPA SSSD Tools
+
+### `tasks/systemd`
+
+- kill API processes when freeipa_sssd_tools_api_uwsgi_kill is enabled
+
+### `tasks/test-syn`
+
+- add pause between test API syn/qry
+- use freeipa_sssd_tools_test_pause_syn_qry between test resyn/qry
+- use freeipa_sssd_tools_test_pause_syn_syn between test syn/syn
+- add json.result and json.retval to clarify unknown error in verify API /syn retval
+- add json.result and json.retval to clarify unknown error in verify API /qry retval
+- add json.result and json.retval to clarify unknown error in verify API /resyn retval
+- ignore error when json.result is 'Account not found' in verify API /qry retval
+- move pause between test ipa-sss-syn and test API /syn
+- add test, verify API /resyn with test and verify /qry
+- rename test and verify API /qry
+- remove unnecessary pause and rename verify API /syn
+- rename test API /syn
+- add test and verify ipa-sss-syn with IPA_SSS_SYN_LAST=0
+
+## [`v0.5.1 - 2022-12-22`](https://gitlab.com/gcoop-libre/ansible_role_freeipa_sssd_tools/-/compare/v0.5.0...v0.5.1) _define freeipa_sssd_tools_httpd_srv_mon_path and use in cron job and fix identation become in set ipa-sss-plt.cfg_
+
+- defaults/main: define freeipa_sssd_tools_httpd_srv_mon_path and use in cron job
+- tasks/config: fix identation become in set ipa-sss-plt.cfg
 
 ## [`v0.5.0 - 2022-12-19`](https://gitlab.com/gcoop-libre/ansible_role_freeipa_sssd_tools/-/compare/v0.4.0...v0.5.0) _add tasks to ensure ramdisk present in fstab and verify is mounted add ipa-sss-rsy in crontab to backup SSSD cache, execute ipa-sss-rtr to restore backup when start IPA services_
 
@@ -596,3 +637,4 @@
 - Added RedHat packages required by ipa-api-syn
 
 ## [`v0.1.0 - 2021-11-26`](https://gitlab.com/gcoop-libre/ansible_role_freeipa_sssd_tools/-/compare/51d30cb...v0.1.0) _first release_
+
