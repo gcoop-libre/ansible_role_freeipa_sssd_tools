@@ -36,10 +36,10 @@
 
 - name: (freeipa_sssd_tools) pause between test ipa-sss-syn and test API /syn
   pause:
-    seconds: '{{ freeipa_sssd_tools_test_pause }}'
+    seconds: '{{ freeipa_sssd_tools_test_pause_syn_syn }}'
   when:
-    - freeipa_sssd_tools_test_pause is defined
-    - freeipa_sssd_tools_test_pause | int > 0
+    - freeipa_sssd_tools_test_pause_syn_syn is defined
+    - freeipa_sssd_tools_test_pause_syn_syn | int > 0
 
 - name: (freeipa_sssd_tools) test API /syn sAMAccountName {{ item }}
   uri:
