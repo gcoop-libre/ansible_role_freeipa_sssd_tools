@@ -316,6 +316,8 @@ freeipa_sssd_tools_syn_environment:
   IPA_SSS_SYN_SHOW: '1'
   IPA_SSS_SYN_PIVOT: '1'
   IPA_SSS_SYN_DEBUG: '0'
+freeipa_sssd_tools_test_pause_syn_syn: 60
+freeipa_sssd_tools_test_pause_syn_qry: 5
 freeipa_sssd_tools_test_users:
   - admin
 freeipa_sssd_tools_test_errors_critical:
