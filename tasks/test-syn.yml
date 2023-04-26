@@ -111,3 +111,4 @@
   when:
     - ipa_api_qry_result is defined
     - ipa_api_qry_result.json.retval | default('') != 'OK'
+    - ipa_api_qry_result.json.result | default('') != 'Account not found'
