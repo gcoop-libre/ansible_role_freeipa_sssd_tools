@@ -99,6 +99,7 @@ freeipa_sssd_tools_api_sysd_file_owner: root
 freeipa_sssd_tools_api_sysd_file_group: root
 freeipa_sssd_tools_api_sysd_file_mode: '0600'
 freeipa_sssd_tools_api_uwsgi_bin: /usr/bin/uwsgi
+freeipa_sssd_tools_api_uwsgi_kill: true
 freeipa_sssd_tools_api_uwsgi_pid: /tmp/ipa-api-syn.pid
 freeipa_sssd_tools_api_uwsgi_ini: "{{ freeipa_sssd_tools_api_dir }}/uwsgi.ini"
 freeipa_sssd_tools_api_uwsgi_cmd: >
@@ -120,6 +121,7 @@ freeipa_sssd_tools_api_log_file: /var/log/ipa-api.log
 freeipa_sssd_tools_api_uwsgi_ip: 127.0.0.1
 freeipa_sssd_tools_api_uwsgi_port: 8888
 freeipa_sssd_tools_api_uwsgi_url: "http://{{ freeipa_sssd_tools_api_uwsgi_ip }}:{{ freeipa_sssd_tools_api_uwsgi_port }}"
+freeipa_sssd_tools_api_uwsgi_test_resyn: "{{ freeipa_sssd_tools_api_uwsgi_url }}/resyn"
 freeipa_sssd_tools_api_uwsgi_test_syn: "{{ freeipa_sssd_tools_api_uwsgi_url }}/syn"
 freeipa_sssd_tools_api_uwsgi_test_qry: "{{ freeipa_sssd_tools_api_uwsgi_url }}/qry"
 freeipa_sssd_tools_api_uwsgi_config: True
@@ -314,6 +316,8 @@ freeipa_sssd_tools_syn_environment:
   IPA_SSS_SYN_SHOW: '1'
   IPA_SSS_SYN_PIVOT: '1'
   IPA_SSS_SYN_DEBUG: '0'
+freeipa_sssd_tools_test_pause_syn_syn: 60
+freeipa_sssd_tools_test_pause_syn_qry: 5
 freeipa_sssd_tools_test_users:
   - admin
 freeipa_sssd_tools_test_errors_critical:

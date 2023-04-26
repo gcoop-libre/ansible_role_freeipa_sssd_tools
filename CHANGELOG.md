@@ -2,6 +2,145 @@
 
  - this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html)
 
+## [`Unreleased - 2022-12-19`](https://gitlab.com/gcoop-libre/ansible_role_freeipa_sssd_tools/-/compare/v0.5.0...develop)
+
+
+## [`v0.5.0 - 2022-12-19`](https://gitlab.com/gcoop-libre/ansible_role_freeipa_sssd_tools/-/compare/v0.4.0...v0.5.0) _add tasks to ensure ramdisk present in fstab and verify is mounted add ipa-sss-rsy in crontab to backup SSSD cache, execute ipa-sss-rtr to restore backup when start IPA services_
+
+- tests/start: add count records in SSSD cache and backup after restore backup and after start SSSD
+- tests/start: fix invalid register syntax in count records in SSSD cache and backup cache before restore
+- tests/start: count records in SSSD cache and backup cache before restore
+- tests/start: add task to count records in SSSD cache
+- tests/start: add task to start cron service after restore ramdisk backup
+- tests/start: add task to execute ipa-sss-rtr to restore ramdisk backup
+- tests/start: add task to fail when ipa-sss-rsy is running
+- tests/start: add task to stop cron service before restore ramdisk
+- defaults/main: add ipa-sss-rtr in freeipa_sssd_tools_set_permissions_script_files
+- tasks/cron: write temporal test users when freeipa_sssd_tools_cron_test_ipa_usr_all is enabled
+- defaults/main: define sss-db weekly backup cron job
+- defaults/main: enable freeipa_sssd_tools_cron_ipa_sss_db
+- defaults/main: add ipa-sss-ldb in freeipa_sssd_tools_set_permissions_script_files
+- tasks/test-syn: add pause between test and verify ipa-api-qry
+- defaults/main: add cron job ipa-sss-rsy for execute rsync of sssd cache
+- defaults/main: define freeipa_sssd_tools_cron_ipa_sss_rsy_backup ad /var/lib/ipa/backup/sss-db
+- defaults/main: enable freeipa_sssd_tools_cron_ipa_sss_rsy
+- defaults/main: add ipa-sss-rsy in freeipa_sssd_tools_set_permissions_script_files
+- tasks/main: include ramdisk tasks
+- tasks/ramdisk: add tasks to ensure ramdisk present in fstab and verify ramdisk is mounted
+- defaults/main: enable freeipa_sssd_tools_ramdisk_configure
+
+## [`v0.4.0 - 2022-11-28`](https://gitlab.com/gcoop-libre/ansible_role_freeipa_sssd_tools/-/compare/v0.3.0...v0.4.0) _configure logrotate and crontabs to get and sync users and generate and plot metrics, add /syn in httpd to serve metrics, clean up untracked git files, and fix script permissions_
+
+### `CHANGELOG`
+
+- add CHANGELOG.md from v0.1.0 to v0.3.0
+
+### `defaults/main`
+
+- fix typo in freeipa_sssd_tools_cron_test_environment definition
+- define variables for test crontab commands before configure crontab
+- fix typo in freeipa_sssd_tools_cron_path, add missing ':'
+- remove PATH define from freeipa_sssd_tools_cron_entries
+- define name of cron service in freeipa_sssd_tools_cron_service
+- set freeipa_sssd_tools_cron_path with all bin paths
+- define user un cron entry when define PATH
+- fix typo, replace freeipa_sssd_tools_cron_ipa_usr_mon with freeipa_sssd_tools_cron_ipa_srv_mon
+- redefine crontab entries for scripts ipa-sss-syn, ipa-srv-mon and ipa-sss-all
+- define variables to enable/disable crontab for scripts
+- add variables to configure logrotate for ipa-sss-syn
+- use freeipa_sssd_tools_httpd_syn_plt_conf in ipa_plt variable in freeipa_sssd_tools_httpd_syn_plt
+- freeipa_sssd_tools_httpd_syn_plt_conf as /root/ipa-sss-plt.cfg as default
+- add PATH in ipa_plt and ipa_srv variables in freeipa_sssd_tools_httpd_syn_plt
+- define LDAP variables for exclude and search users in ipa-config
+- remove ipa-sss-rsy from freeipa_sssd_tools_set_permissions_script_files
+- disable remove untrackted files in git repository by default
+- define freeipa_sssd_tools_set_permissions_script_files with default mode 0750
+- disable freeipa_sssd_tools_set_permissions_file_min
+- add variable to run httpd syn url test, enabled by default
+- add variables to build url of httpd syn
+- add freeipa httpd syn plot variables
+- add freeipa httpd syn template variables
+- add freeipa httpd syn config and html and css variables
+- add freeipa httpd syn paths variables
+
+### `general`
+
+- fix typo, replace logrorate with logrotate in defaults, tasks and template
+
+### `tasks/config`
+
+- add task to set ipa-sss-plt.cfg for define gnuplot style and common variables
+
+### `tasks/cron`
+
+- add task to test ipa-usr-syn using temporal users files before configure crontab
+- add task to test write temporal test users file to test ipa-usr-syn before configure crontab
+- add task to test ipa-usr-all to get users from LDAP/AD before configure crontab
+- check directories (without create) defined in PATH of crontab before add PATH
+- check directories defined in PATH of crontab before add PATH
+- use freeipa_sssd_tools_cron_service in service name when restart service cron
+- add day, month, user and weekday options, add conditionals when define cron entries jobs
+- add cron_file, job and user options, add conditionals when add PATH on top of crontab
+- set default behavior for cron attributes and add env option for environment variables
+
+### `tasks/git`
+
+- define freeipa_sssd_tools_dir in remove untracked files in git repository before clone when is git repository
+- remove untracked files in git repository before clone when is git repository
+- add task to remove untracked files in git repository before clone
+
+### `tasks/httpd`
+
+- add task to run httpd syn url test
+- fix typo variable to verify checksum when download httpd syn css
+- fix typo variable to download httpd syn css
+- add freeipa httpd tasks to configure apache to serve metrics on /syn
+
+### `tasks/httpd-dirs`
+
+- add the freeipa httpd task to create directories
+
+### `tasks/logrotate`
+
+- add task to execute logrotate in dry-run mode
+- fix destination path of logrotate ipa-sss-syn
+- add task to configure logrotate for ipa-sss-syn
+
+### `tasks/main`
+
+- include logrotate tasks
+- includes httpd tasks to configure trace metrics
+
+### `tasks/packages`
+
+- add task to ensure plot required packages are installed
+
+### `tasks/permissions`
+
+- add freeipa_sssd_tools_dir in ensure scripts has correct permissions
+- add task to ensure scripts has correct permissions
+
+### `templates/ipa-config`
+
+- add LDAP variables for exclude and search users in ipa-config
+- add freeipa template to configure plot metrics
+
+### `templates/logrotate.d`
+
+- add template to configure logrotate for ipa-sss-syn
+
+### `templates/syn.conf`
+
+- add the freeipa httpd template to configure access to metrics in /syn
+
+### `vars/AlmaLinux`
+
+- define freeipa_sssd_tools_plot_packages
+
+### `vars/RedHat`
+
+- define freeipa_sssd_tools_plot_packages
+
 ## [`v0.3.0 - 2022-10-12`](https://gitlab.com/gcoop-libre/ansible_role_freeipa_sssd_tools/-/compare/v0.2.4...v0.3.0) _add playbook for start/restart FreeIPA SSSD services_
 
 ### `doc`
