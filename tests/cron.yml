@@ -1,0 +1,13 @@
+---
+
+- name: Configure Crontab entries for FreeIPA SSSD Tools
+  hosts: [all]
+  become: yes
+
+  tasks:
+
+  - name: (freeipa_sssd_tools) include cron tasks
+    include_tasks: cron.yml
+    when:
+      - freeipa_sssd_tools_cron_configure | bool
+      - freeipa_sssd_tools_cron_entries | length > 0
