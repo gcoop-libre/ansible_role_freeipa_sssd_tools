@@ -15,6 +15,7 @@ freeipa_sssd_tools_config_file: "{{ freeipa_sssd_tools_config_dir }}/.ipa-config
 freeipa_sssd_tools_config_owner: root
 freeipa_sssd_tools_config_group: root
 freeipa_sssd_tools_config_mode: '0640'
+freeipa_sssd_tools_date: "{{ ansible_date_time.date }}"
 freeipa_sssd_tools_log_owner: root
 freeipa_sssd_tools_log_group: root
 freeipa_sssd_tools_log_mode: '0640'
