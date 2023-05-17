@@ -1,0 +1,60 @@
+---
+
+  - name: (freeipa_sssd_tools) define freeipa_sssd_tools_log_date
+    set_fact:
+      freeipa_sssd_tools_log_date: >
+        {{ freeipa_sssd_tools_date }}
+        {{ freeipa_sssd_tools_log_separator }}
+        {{ freeipa_sssd_tools_config_log_file }}
+
+  - name: (freeipa_sssd_tools) define freeipa_sssd_tools_log_day_cmd
+    set_fact:
+      freeipa_sssd_tools_log_day_cmd: >
+        XSTART={{ freeipa_sssd_tools_log_xstart }}
+        XEND={{ freeipa_sssd_tools_log_xend }}
+        ipa-sss-day
+        {{ freeipa_sssd_tools_config_log_file }}
+        {{ freeipa_sssd_tools_date }}
+
+  - name: (freeipa_sssd_tools) define freeipa_sssd_tools_log_usr_cmd
+    set_fact:
+      freeipa_sssd_tools_log_usr_cmd: >
+        ipa-sss-usr
+        {{ freeipa_sssd_tools_log_date }}
+        {{ freeipa_sssd_tools_date }}
+
+  - name: (freeipa_sssd_tools) define freeipa_sssd_tools_log_nsy_cmd
+    set_fact:
+      freeipa_sssd_tools_log_nsy_cmd: >
+        ipa-sss-usr
+        {{ freeipa_sssd_tools_log_date }}
+        {{ freeipa_sssd_tools_date }}
+
+  - name: (freeipa_sssd_tools) define freeipa_sssd_tools_log_exp_cmd
+    set_fact:
+      freeipa_sssd_tools_log_exp_cmd: >
+        ipa-sss-usr
+        {{ freeipa_sssd_tools_log_date }}
+        {{ freeipa_sssd_tools_date }}
+
+  - name: (freeipa_sssd_tools) define freeipa_sssd_tools_log_dat_cmd
+    set_fact:
+      freeipa_sssd_tools_log_dat_cmd: >
+        ipa-sss-usr
+        {{ freeipa_sssd_tools_log_date }}
+        {{ freeipa_sssd_tools_date }}
+
+  - name: (freeipa_sssd_tools) define freeipa_sssd_tools_log_log_cmd
+    set_fact:
+      freeipa_sssd_tools_log_log_cmd: >
+        ipa-sss-usr
+        {{ freeipa_sssd_tools_log_date }}
+        {{ freeipa_sssd_tools_date }}
+
+  - name: (freeipa_sssd_tools) define freeipa_sssd_tools_log_plt_cmd
+    set_fact:
+      freeipa_sssd_tools_log_plt_cmd: >
+        ipa-sss-plt
+        {{ freeipa_sssd_tools_date }}
+        {{ freeipa_sssd_tools_log_xstart }}
+        {{ freeipa_sssd_tools_log_xend }}
