@@ -1,0 +1,13 @@
+---
+
+  - name: (freeipa_sssd_tools) split SynLog by date
+    shell: "{{ freeipa_sssd_tools_log_day_cmd }}"
+    args:
+      executable: /bin/bash
+    environment:
+      PATH: "{{ freeipa_sssd_tools_dir }}:{{ ansible_env.PATH }}"
+    when:
+      - freeipa_sssd_tools_log_day is defined
+      - freeipa_sssd_tools_log_day | bool
+      - freeipa_sssd_tools_log_day_cmd is defined
+      - freeipa_sssd_tools_log_day_cmd | length > 0
