@@ -11,3 +11,15 @@
       - freeipa_sssd_tools_log_day | bool
       - freeipa_sssd_tools_log_day_cmd is defined
       - freeipa_sssd_tools_log_day_cmd | length > 0
+
+  - name: (freeipa_sssd_tools) filter SynLog with unsynchronized logs
+    shell: "{{ freeipa_sssd_tools_log_nsy_cmd }}"
+    args:
+      executable: /bin/bash
+    environment:
+      PATH: "{{ freeipa_sssd_tools_dir }}:{{ ansible_env.PATH }}"
+    when:
+      - freeipa_sssd_tools_log_nsy is defined
+      - freeipa_sssd_tools_log_nsy | bool
+      - freeipa_sssd_tools_log_nsy_cmd is defined
+      - freeipa_sssd_tools_log_nsy_cmd | length > 0
