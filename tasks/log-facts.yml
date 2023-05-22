@@ -1,5 +1,16 @@
 ---
 
+  - name: (freeipa_sssd_tools) test freeipa_sssd_tools_date
+    command: date -d '{{ freeipa_sssd_tools_date }}' +'%Y-%m-%d'
+    register: result_date
+    ignore_errors: true
+    when: freeipa_sssd_tools_date is defined
+
+  - name: (freeipa_sssd_tools) fail when freeipa_sssd_tools_date is invalid
+    fail:
+      msg: INVALID DATE {{ freeipa_sssd_tools_date }}
+    when: result_date.rc != 0
+
   - name: (freeipa_sssd_tools) define freeipa_sssd_tools_log_date
     set_fact:
       freeipa_sssd_tools_log_date: >-
