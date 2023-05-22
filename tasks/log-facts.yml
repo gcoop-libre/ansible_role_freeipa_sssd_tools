@@ -23,10 +23,7 @@
 
   - name: (freeipa_sssd_tools) define freeipa_sssd_tools_log_date
     set_fact:
-      freeipa_sssd_tools_log_date: >-
-        {{ freeipa_sssd_tools_date -}}
-        {{ freeipa_sssd_tools_log_separator }}
-        {{- freeipa_sssd_tools_log_name }}
+      freeipa_sssd_tools_log_date: '{{ freeipa_sssd_tools_date + freeipa_sssd_tools_log_separator + freeipa_sssd_tools_log_name }}'
 
   - name: (freeipa_sssd_tools) define freeipa_sssd_tools_log_day_cmd
     set_fact:
