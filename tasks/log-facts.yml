@@ -11,6 +11,11 @@
       msg: INVALID DATE {{ freeipa_sssd_tools_date }}
     when: result_date.rc != 0
 
+  - name: (freeipa_sssd_tools) ensure freeipa_sssd_tools_date has value
+    set_fact:
+      freeipa_sssd_tools_date: result_date.stdout
+    when: result_date.rc == 0
+
   - name: (freeipa_sssd_tools) define freeipa_sssd_tools_log_date
     set_fact:
       freeipa_sssd_tools_log_date: >-
