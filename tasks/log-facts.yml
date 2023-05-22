@@ -21,7 +21,7 @@
       freeipa_sssd_tools_log_date: >-
         {{ freeipa_sssd_tools_date -}}
         {{ freeipa_sssd_tools_log_separator }}
-        {{- freeipa_sssd_tools_config_log_file | basename }}
+        {{- freeipa_sssd_tools_config_log_file.split('/') | last }}
 
   - name: (freeipa_sssd_tools) define freeipa_sssd_tools_log_day_cmd
     set_fact:
