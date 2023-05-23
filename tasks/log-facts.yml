@@ -72,7 +72,7 @@
   - name: (freeipa_sssd_tools) define freeipa_sssd_tools_log_dat_cmd
     set_fact:
       freeipa_sssd_tools_log_dat_cmd: >-
-        ipa-sss-usr
+        ipa-sss-dat
         {{ freeipa_sssd_tools_log_date }}
         {{ freeipa_sssd_tools_var_date }}
 
