@@ -65,7 +65,7 @@
   - name: (freeipa_sssd_tools) define freeipa_sssd_tools_log_exp_cmd
     set_fact:
       freeipa_sssd_tools_log_exp_cmd: >-
-        ipa-sss-usr
+        ipa-sss-exp
         {{ freeipa_sssd_tools_log_date }}
         {{ freeipa_sssd_tools_var_date }}
 
