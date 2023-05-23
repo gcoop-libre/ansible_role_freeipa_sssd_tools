@@ -1,19 +1,30 @@
 ---
 
-  - name: (freeipa_sssd_tools) test freeipa_sssd_tools_date
-    command: date -d '{{ freeipa_sssd_tools_date }}' +'%Y-%m-%d'
+  - name: (freeipa_sssd_tools) define freeipa_sssd_tools_var_date as now
+    set_fact:
+      freeipa_sssd_tools_var_date: "{{ ansible_date_time.date }}"
+
+  - name: (freeipa_sssd_tools) redefine freeipa_sssd_tools_var_date with freeipa_sssd_tools_date when is not empty
+    set_fact:
+      freeipa_sssd_tools_var_date: "{{ freeipa_sssd_tools_date }}"
+    when:
+      - freeipa_sssd_tools_date is defined
+      - freeipa_sssd_tools_date | length > 0
+
+  - name: (freeipa_sssd_tools) test freeipa_sssd_tools_var_date
+    command: date -d '{{ freeipa_sssd_tools_var_date }}' +'%Y-%m-%d'
     register: result_date
     ignore_errors: true
-    when: freeipa_sssd_tools_date is defined
+    when: freeipa_sssd_tools_var_date is defined
 
-  - name: (freeipa_sssd_tools) fail when freeipa_sssd_tools_date is invalid
+  - name: (freeipa_sssd_tools) fail when freeipa_sssd_tools_var_date is invalid
     fail:
-      msg: INVALID DATE {{ freeipa_sssd_tools_date }}
+      msg: INVALID DATE {{ freeipa_sssd_tools_var_date }}
     when: result_date.rc != 0
 
-  - name: (freeipa_sssd_tools) ensure freeipa_sssd_tools_date has value
+  - name: (freeipa_sssd_tools) ensure freeipa_sssd_tools_var_date has value
     set_fact:
-      freeipa_sssd_tools_date: '{{ result_date.stdout }}'
+      freeipa_sssd_tools_var_date: '{{ result_date.stdout }}'
     when: result_date.rc == 0
 
   - name: (freeipa_sssd_tools) define freeipa_sssd_tools_log_name
@@ -23,56 +34,59 @@
 
   - name: (freeipa_sssd_tools) define freeipa_sssd_tools_log_date
     set_fact:
-      freeipa_sssd_tools_log_date: '{{ freeipa_sssd_tools_date + freeipa_sssd_tools_log_separator + freeipa_sssd_tools_log_name }}'
+      freeipa_sssd_tools_log_date: >-
+        {{ freeipa_sssd_tools_var_date-}}
+        {{ freeipa_sssd_tools_log_separator }}
+        {{-freeipa_sssd_tools_log_name }}
 
   - name: (freeipa_sssd_tools) define freeipa_sssd_tools_log_day_cmd
     set_fact:
-      freeipa_sssd_tools_log_day_cmd: >
+      freeipa_sssd_tools_log_day_cmd: >-
         XSTART={{ freeipa_sssd_tools_log_xstart }}
         XEND={{ freeipa_sssd_tools_log_xend }}
         ipa-sss-day
         {{ freeipa_sssd_tools_config_log_file }}
-        {{ freeipa_sssd_tools_date }}
+        {{ freeipa_sssd_tools_var_date }}
 
   - name: (freeipa_sssd_tools) define freeipa_sssd_tools_log_usr_cmd
     set_fact:
-      freeipa_sssd_tools_log_usr_cmd: >
+      freeipa_sssd_tools_log_usr_cmd: >-
         ipa-sss-usr
         {{ freeipa_sssd_tools_log_date }}
-        {{ freeipa_sssd_tools_date }}
+        {{ freeipa_sssd_tools_var_date }}
 
   - name: (freeipa_sssd_tools) define freeipa_sssd_tools_log_nsy_cmd
     set_fact:
-      freeipa_sssd_tools_log_nsy_cmd: >
+      freeipa_sssd_tools_log_nsy_cmd: >-
         ipa-sss-nsy
         {{ freeipa_sssd_tools_log_date }}
-        {{ freeipa_sssd_tools_date }}
+        {{ freeipa_sssd_tools_var_date }}
 
   - name: (freeipa_sssd_tools) define freeipa_sssd_tools_log_exp_cmd
     set_fact:
-      freeipa_sssd_tools_log_exp_cmd: >
+      freeipa_sssd_tools_log_exp_cmd: >-
         ipa-sss-usr
         {{ freeipa_sssd_tools_log_date }}
-        {{ freeipa_sssd_tools_date }}
+        {{ freeipa_sssd_tools_var_date }}
 
   - name: (freeipa_sssd_tools) define freeipa_sssd_tools_log_dat_cmd
     set_fact:
-      freeipa_sssd_tools_log_dat_cmd: >
+      freeipa_sssd_tools_log_dat_cmd: >-
         ipa-sss-usr
         {{ freeipa_sssd_tools_log_date }}
-        {{ freeipa_sssd_tools_date }}
+        {{ freeipa_sssd_tools_var_date }}
 
   - name: (freeipa_sssd_tools) define freeipa_sssd_tools_log_log_cmd
     set_fact:
-      freeipa_sssd_tools_log_log_cmd: >
+      freeipa_sssd_tools_log_log_cmd: >-
         ipa-sss-usr
         {{ freeipa_sssd_tools_log_date }}
-        {{ freeipa_sssd_tools_date }}
+        {{ freeipa_sssd_tools_var_date }}
 
   - name: (freeipa_sssd_tools) define freeipa_sssd_tools_log_plt_cmd
     set_fact:
-      freeipa_sssd_tools_log_plt_cmd: >
+      freeipa_sssd_tools_log_plt_cmd: >-
         ipa-sss-plt
-        {{ freeipa_sssd_tools_date }}
+        {{ freeipa_sssd_tools_var_date }}
         {{ freeipa_sssd_tools_log_xstart }}
         {{ freeipa_sssd_tools_log_xend }}
