@@ -252,6 +252,15 @@
         - ansible_facts.services['sssd.service'].state == 'stopped'
         - ansible_facts.services['krb5kdc.service'].state == 'running'
 
+    - name: (freeipa-sssd-tools) get SSSD process IDs
+      pids:
+        name: sssd
+      register: freeipa_sssd_tools_sssd_pids
+
+    - name: (freeipa-sssd-tools) show SSSD process IDs
+      debug:
+        msg: "PIDS of SSSD:{{ freeipa_sssd_tools_sssd_pids.pids | join(',') }}"
+
     - name: (freeipa-sssd-tools) SSSD cache count records
       shell: "LDB_DIR={{ item }} {{ freeipa_sssd_tools_dir }}/ipa-sss-ldb"
       args:
