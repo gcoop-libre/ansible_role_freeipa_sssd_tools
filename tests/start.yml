@@ -235,10 +235,10 @@
         - ansible_facts.services['sssd.service'].state
         - ansible_facts.services['krb5kdc.service'].state
 
-    - name: (freeipa_sssd_tools) ensure SSSD is startted when IPA is running
+    - name: (freeipa_sssd_tools) ensure SSSD is started when IPA is running
       service:
         name: "{{ item }}"
-        state: started
+        state: restarted
       with_items:
         - sssd
         - sssd-secrets
