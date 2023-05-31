@@ -256,9 +256,10 @@
       shell: ps up $(pgrep -f sssd)
       register: freeipa_sssd_tools_sssd_pids
 
-    - name: (freeipa-sssd-tools) show SSSD process IDs
-      debug:
-        msg: "PIDS of SSSD:{{ freeipa_sssd_tools_sssd_pids.stdout }}"
+    - name: (freeipa-sssd-tools) fail when don't get SSSD process IDs
+      fail:
+        msg: could not get process IDs from SSSD service
+      when: freeipa_sssd_tools_sssd_pids.rc != 0
 
     - name: (freeipa-sssd-tools) SSSD cache count records
       shell: "LDB_DIR={{ item }} {{ freeipa_sssd_tools_dir }}/ipa-sss-ldb"
