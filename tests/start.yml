@@ -253,8 +253,7 @@
         - ansible_facts.services['krb5kdc.service'].state == 'running'
 
     - name: (freeipa-sssd-tools) get SSSD process IDs
-      pids:
-        name: sssd
+      command: ps up $(pgrep -f sssd)
       register: freeipa_sssd_tools_sssd_pids
 
     - name: (freeipa-sssd-tools) show SSSD process IDs
