@@ -164,6 +164,9 @@
       failed_when:
         - ipa_sss_ldb_result.rc != 0
       become: true
+      when:
+        - ipa_sss_cache_result.stat.exists | bool
+        - ipa_sss_cache_backup_result.stat.exists | bool
       loop:
         - /var/lib/sss/db
         - /var/lib/ipa/backup/sss-db
