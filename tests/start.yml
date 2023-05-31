@@ -62,6 +62,12 @@
       no_log: "{{ freeipa_sssd_tools_no_log | bool }}"
       when: freeipa_sssd_tools_service_facts_populate | bool
 
+    - name: (freeipa-sssd-tools) verify if SSSD cache exists
+      stat:
+        path: '{{ freeipa_sssd_tools_config_ldb_host }}'
+      ignore_errors: true
+      register: ipa_sss_cache_result
+
     - name: (freeipa sssd tools) debug conditionals I
       debug:
         verbosity: 2
