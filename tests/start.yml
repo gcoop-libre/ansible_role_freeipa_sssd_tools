@@ -68,6 +68,12 @@
       ignore_errors: true
       register: ipa_sss_cache_result
 
+    - name: (freeipa-sssd-tools) verify if SSSD cache backup exists
+      stat:
+        path: '{{ freeipa_sssd_tools_sssd_cache_backup }}'
+      ignore_errors: true
+      register: ipa_sss_cache_backup_result
+
     - name: (freeipa sssd tools) debug conditionals I
       debug:
         verbosity: 2
