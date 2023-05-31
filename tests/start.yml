@@ -83,6 +83,8 @@
         - ansible_facts.services[dirsrv_domain].state
         - ansible_facts.services['ntpd.service'].state
         - ansible_facts.services['sssd.service'].state
+        - ipa_sss_cache_result.stat.exists
+        - ipa_sss_cache_backup_result.stat.exists
 
     - name: (freeipa-sssd-tools) SSSD cache count records
       shell: "LDB_DIR={{ item }} {{ freeipa_sssd_tools_dir }}/ipa-sss-ldb"
