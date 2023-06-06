@@ -1,11 +1,40 @@
-# [_ANSIBLE_ROLE_FREEIPA_SSSD_TOOLS CHANGELOG_](https://gitlab.com/gcoop-libre/ansible_role_freeipa_sssd_tools.git)
+# [_ANSIBLE_ROLE_FREEIPA_SSSD_TOOLS CHANGELOG_](https://gitlab.com/gcoop-libre/ansible_role_freeipa_sssd_tools)
 
  - this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html)
 
-## [`Unreleased - 2023-04-26`](https://gitlab.com/gcoop-libre/ansible_role_freeipa_sssd_tools/-/compare/v0.8.0...develop)
+## [`Unreleased - 2023-06-06`](https://gitlab.com/gcoop-libre/ansible_role_freeipa_sssd_tools/-/compare/v0.8.0...develop)
 
+### `CHANGELOG`
 
-## [`v0.8.0 - 2023-04-26`](https://gitlab.com/gcoop-libre/ansible_role_freeipa_sssd_tools/-/compare/v0.5.1...v0.8.0) _add tests for API /resyn, fix pause test syn/syn, add pause test syn/qry, kill uwsgi before restart ipa-api-syn service, add show last commit after clone_
+- update ChangeLog from v0.5.0 to v0.8.0
+
+### `defaults/main`
+
+- add freeipa_sssd_tools_sssd_cache_backup for SSSD cache backup queries
+
+### `tests/ansible-lint`
+
+- add 301 to skip list to allow use module command rather tan module pids
+
+### `tests/cron`
+
+- add playbook for configure crontab entries (backport from feature/ipa-sss-log-day)
+
+### `tests/start`
+
+- replace debug SSSD Pids with fail when don't get SSSD process IDs
+- repair the process ID lists obtained by pgrep and passed to the ps command to get SSSD process IDs
+- replace command module with shell to get SSSD process ID
+- use command module to skip install psutils required by pidgs module for get SSSD process IDs
+- get and show SSSD process IDs after ensure SSSD is started when IPA is running task
+- execute SSSD cache count records when SSSD cache and backup exists after restore SSSD ramdisk task
+- replace started with restarted to ensure SSSD is startted when IPA is running and actual SSSD state is stopped
+- execute SSSD cache count records when SSSD cache and backup exists
+- add ipa_sss_cache_result and ipa_sss_cache_backup_result to debug conditionals I
+- verify if SSSD cache backup exists
+- verify if SSSD cache exists
+
+## [`v0.8.0 - 2023-04-26`](https://gitlab.com/gcoop-libre/ansible_role_freeipa_sssd_tools/-/compare/v0.5.3...v0.8.0) _add tests for API /resyn, fix pause test syn/syn, add pause test syn/qry, kill uwsgi before restart ipa-api-syn service, add show last commit after clone_
 
 ### `CHANGELOG`
 
@@ -13,6 +42,7 @@
 
 ### `defaults/main`
 
+- add freeipa_sssd_tools_sssd_cache_backup for SSSD cache backup queries
 - define pause between test syn/syn (60s) and test syn/qry (5s)
 - enable freeipa_sssd_tools_api_uwsgi_kill by default
 - add freeipa_sssd_tools_api_uwsgi_test_resyn for /resyn
@@ -40,6 +70,48 @@
 - remove unnecessary pause and rename verify API /syn
 - rename test API /syn
 - add test and verify ipa-sss-syn with IPA_SSS_SYN_LAST=0
+
+### `tests/ansible-lint`
+
+- add 301 to skip list to allow use module command rather tan module pids
+
+### `tests/cron`
+
+- add playbook for configure crontab entries (backport from feature/ipa-sss-log-day)
+
+### `tests/start`
+
+- replace debug SSSD Pids with fail when don't get SSSD process IDs
+- repair the process ID lists obtained by pgrep and passed to the ps command to get SSSD process IDs
+- replace command module with shell to get SSSD process ID
+- use command module to skip install psutils required by pidgs module for get SSSD process IDs
+- get and show SSSD process IDs after ensure SSSD is started when IPA is running task
+- execute SSSD cache count records when SSSD cache and backup exists after restore SSSD ramdisk task
+- replace started with restarted to ensure SSSD is startted when IPA is running and actual SSSD state is stopped
+- execute SSSD cache count records when SSSD cache and backup exists
+- add ipa_sss_cache_result and ipa_sss_cache_backup_result to debug conditionals I
+- verify if SSSD cache backup exists
+- verify if SSSD cache exists
+
+## [`v0.5.3 - 2023-06-02`](https://gitlab.com/gcoop-libre/ansible_role_freeipa_sssd_tools/-/compare/v0.5.2...v0.5.3) _verify if SSSD cache and cache backup exists and replace started with restarted to ensure SSSD is startted when IPA is running and actual SSSD state is stopped_
+
+- tests/start: replace debug SSSD Pids with fail when don't get SSSD process IDs
+- tests/start: repair the process ID lists obtained by pgrep and passed to the ps command to get SSSD process IDs
+- tests/start: replace command module with shell to get SSSD process ID
+- tests/ansible-lint: add 301 to skip list to allow use module command rather tan module pids
+- tests/start: use command module to skip install psutils required by pidgs module for get SSSD process IDs
+- tests/start: get and show SSSD process IDs after ensure SSSD is started when IPA is running task
+- tests/start: execute SSSD cache count records when SSSD cache and backup exists after restore SSSD ramdisk task
+- tests/start: replace started with restarted to ensure SSSD is startted when IPA is running and actual SSSD state is stopped
+- defaults/main: add freeipa_sssd_tools_sssd_cache_backup for SSSD cache backup queries
+- tests/start: execute SSSD cache count records when SSSD cache and backup exists
+- tests/start: add ipa_sss_cache_result and ipa_sss_cache_backup_result to debug conditionals I
+- tests/start: verify if SSSD cache backup exists
+- tests/start: verify if SSSD cache exists
+
+## [`v0.5.2 - 2023-05-25`](https://gitlab.com/gcoop-libre/ansible_role_freeipa_sssd_tools/-/compare/v0.5.1...v0.5.2) _add playbook for configure crontab entries_
+
+- tests/cron: add playbook for configure crontab entries (backport from feature/ipa-sss-log-day)
 
 ## [`v0.5.1 - 2022-12-22`](https://gitlab.com/gcoop-libre/ansible_role_freeipa_sssd_tools/-/compare/v0.5.0...v0.5.1) _define freeipa_sssd_tools_httpd_srv_mon_path and use in cron job and fix identation become in set ipa-sss-plt.cfg_
 
