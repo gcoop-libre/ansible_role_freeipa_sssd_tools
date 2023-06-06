@@ -388,3 +388,4 @@ freeipa_sssd_tools_ramdisk_opts:
   uid: sssd
   gid: sssd
   rootcontext: 'system_u:object_r:sssd_var_lib_t:s0'
+freeipa_sssd_tools_sssd_cache_backup: '{{ freeipa_sssd_tools_cron_ipa_sss_rsy_backup }}/cache_{{ freeipa_sssd_tools_config_ipa_domain }}.ldb'
