@@ -37,7 +37,7 @@
       - freeipa_sssd_tools_log_exp_cmd | length > 0
 
   - name: (freeipa_sssd_tools) generate SynLog report for one day
-    shell: "{{ freeipa_sssd_tools_log_exp_cmd }}"
+    shell: "{{ freeipa_sssd_tools_log_log_cmd }}"
     args:
       executable: /bin/bash
     environment:
