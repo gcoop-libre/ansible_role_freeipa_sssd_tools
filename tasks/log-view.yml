@@ -1,0 +1,15 @@
+---
+
+  - name: (freeipa_sssd_tools) verify SynLog report exists
+    stat:
+      path: '{{ freeipa_sssd_tools_log_log_md }}'
+    ignore_errors: true
+    register:  freeipa_sssd_tools_log_log_md_result
+
+  - name: (freeipa_sssd_tools) view SynLog report for one day
+    command: cat {{ freeipa_sssd_tools_log_log_md }}
+    when:
+      - freeipa_sssd_tools_log_log_view is defined
+      - freeipa_sssd_tools_log_log_view == true
+      - freeipa_sssd_tools_log_log_md_result is defined
+      - freeipa_sssd_tools_log_log_md_result.stat.exists == true
