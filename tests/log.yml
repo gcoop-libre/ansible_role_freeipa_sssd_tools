@@ -14,3 +14,6 @@
 
     - name: (freeipa_sssd_tools) include log process tasks
       include_tasks: ../tasks/log-process.yml
+
+    - name: (freeipa_sssd_tools) include log view tasks
+      include_tasks: ../tasks/log-view.yml
