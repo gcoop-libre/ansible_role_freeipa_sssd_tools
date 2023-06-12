@@ -24,6 +24,18 @@
       - freeipa_sssd_tools_log_nsy_cmd is defined
       - freeipa_sssd_tools_log_nsy_cmd | length > 0
 
+  - name: (freeipa_sssd_tools) filter SynLog of sAMAccountName with at least one sync error (error!=0)
+    shell: "{{ freeipa_sssd_tools_log_err_cmd }}"
+    args:
+      executable: /bin/bash
+    environment:
+      PATH: "{{ freeipa_sssd_tools_dir }}:{{ ansible_env.PATH }}"
+    when:
+      - freeipa_sssd_tools_log_err is defined
+      - freeipa_sssd_tools_log_err | bool
+      - freeipa_sssd_tools_log_err_cmd is defined
+      - freeipa_sssd_tools_log_err_cmd | length > 0
+
   - name: (freeipa_sssd_tools) filter SynLog when record date match with accountExpires date
     shell: "{{ freeipa_sssd_tools_log_exp_cmd }}"
     args:
