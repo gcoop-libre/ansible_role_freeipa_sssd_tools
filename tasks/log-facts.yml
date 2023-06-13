@@ -85,6 +85,7 @@
         ipa-sss-err
         {{ freeipa_sssd_tools_log_date }}
         {{ freeipa_sssd_tools_var_date }}
+        {{ freeipa_sssd_tools_log_err_log }}
 
   - name: (freeipa_sssd_tools) define freeipa_sssd_tools_log_exp_cmd
     set_fact:
