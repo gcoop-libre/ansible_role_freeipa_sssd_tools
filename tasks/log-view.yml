@@ -20,3 +20,10 @@
     ignore_errors: true
     register:  freeipa_sssd_tools_log_err_log_result
 
+  - name: (freeipa_sssd_tools) view SynLog error
+    command: cat {{ freeipa_sssd_tools_log_err_log }}
+    when:
+      - freeipa_sssd_tools_log_err_view is defined
+      - freeipa_sssd_tools_log_err_view
+      - freeipa_sssd_tools_log_err_log_result is defined
+      - freeipa_sssd_tools_log_err_log_result.stat.exists
