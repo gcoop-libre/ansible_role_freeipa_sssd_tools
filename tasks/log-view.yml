@@ -13,3 +13,10 @@
       - freeipa_sssd_tools_log_log_view
       - freeipa_sssd_tools_log_log_md_result is defined
       - freeipa_sssd_tools_log_log_md_result.stat.exists
+
+  - name: (freeipa_sssd_tools) verify SynLog error exists
+    stat:
+      path: '{{ freeipa_sssd_tools_log_err_log }}'
+    ignore_errors: true
+    register:  freeipa_sssd_tools_log_err_log_result
+
