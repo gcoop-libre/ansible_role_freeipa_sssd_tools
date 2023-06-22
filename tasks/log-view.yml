@@ -27,3 +27,9 @@
       - freeipa_sssd_tools_log_err_view
       - freeipa_sssd_tools_log_err_log_result is defined
       - freeipa_sssd_tools_log_err_log_result.stat.exists
+
+  - name: (freeipa_sssd_tools) verify SynLog error report exists
+    stat:
+      path: '{{ freeipa_sssd_tools_rpt_err_md }}'
+    ignore_errors: true
+    register: freeipa_sssd_tools_rpt_err_md_result
