@@ -33,3 +33,11 @@
       path: '{{ freeipa_sssd_tools_rpt_err_md }}'
     ignore_errors: true
     register: freeipa_sssd_tools_rpt_err_md_result
+
+  - name: (freeipa_sssd_tools) view SynLog error
+    command: cat {{ freeipa_sssd_tools_rpt_err_log }}
+    when:
+      - freeipa_sssd_tools_rpt_err_view is defined
+      - freeipa_sssd_tools_rpt_err_view
+      - freeipa_sssd_tools_rpt_err_md_result is defined
+      - freeipa_sssd_tools_rpt_err_md_result.stat.exists
