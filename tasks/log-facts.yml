@@ -47,12 +47,6 @@
         {{-freeipa_sssd_tools_log_separator }}
         {{-freeipa_sssd_tools_log_name | replace('.log','.md') }}
 
-  - name: (freeipa_sssd_tools) define freeipa_sssd_tools_log_err_md
-    set_fact:
-      freeipa_sssd_tools_log_err_md: >-
-        {{ freeipa_sssd_tools_httpd_syn_pdf_path-}}/
-        {{-freeipa_sssd_tools_log_err_log | replace('.log','.md') }}
-
   - name: (freeipa_sssd_tools) define freeipa_sssd_tools_log_day_cmd
     set_fact:
       freeipa_sssd_tools_log_day_cmd: >-
@@ -84,6 +78,12 @@
         error
         {{-freeipa_sssd_tools_log_separator-}}
         {{ freeipa_sssd_tools_log_name }}
+
+  - name: (freeipa_sssd_tools) define freeipa_sssd_tools_log_err_md
+    set_fact:
+      freeipa_sssd_tools_log_err_md: >-
+        {{ freeipa_sssd_tools_httpd_syn_pdf_path-}}/
+        {{-freeipa_sssd_tools_log_err_log | replace('.log','.md') }}
 
   - name: (freeipa_sssd_tools) define freeipa_sssd_tools_log_err_cmd
     set_fact:
