@@ -289,15 +289,15 @@ freeipa_sssd_tools_logrotate_group: root
 freeipa_sssd_tools_logrotate_mode: '0644'
 freeipa_sssd_tools_logrotate_owner: root
 freeipa_sssd_tools_logrotate_ipa_sss_syn:
-   - monthly
-   - delaycompress
-   - compress
-   - rotate 12
-   - missingok
-   - notifempty
-   - dateext
-   - dateformat -%Y-%m
-   - create 0644 root root
+  - monthly
+  - delaycompress
+  - compress
+  - rotate 12
+  - missingok
+  - notifempty
+  - dateext
+  - dateformat -%Y-%m
+  - create 0644 root root
 
 # EXTERNAL LDAP/AD CONFIG (set credentials, host and dn and search_base)
 freeipa_sssd_tools_config_ldap_bind_dn: 'OU=users,DC=addomain,DC=com'
