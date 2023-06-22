@@ -4,7 +4,7 @@
     stat:
       path: '{{ freeipa_sssd_tools_log_log_md }}'
     ignore_errors: true
-    register:  freeipa_sssd_tools_log_log_md_result
+    register: freeipa_sssd_tools_log_log_md_result
 
   - name: (freeipa_sssd_tools) view SynLog report for one day
     command: cat {{ freeipa_sssd_tools_log_log_md }}
@@ -18,7 +18,7 @@
     stat:
       path: '{{ freeipa_sssd_tools_log_err_log }}'
     ignore_errors: true
-    register:  freeipa_sssd_tools_log_err_log_result
+    register: freeipa_sssd_tools_log_err_log_result
 
   - name: (freeipa_sssd_tools) view SynLog error
     command: cat {{ freeipa_sssd_tools_log_err_log }}
