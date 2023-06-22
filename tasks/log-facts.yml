@@ -93,6 +93,14 @@
         {{ freeipa_sssd_tools_var_date }}
         {{ freeipa_sssd_tools_log_err_log }}
 
+  - name: (freeipa_sssd_tools) define freeipa_sssd_tools_rpt_err_cmd
+    set_fact:
+      freeipa_sssd_tools_rpt_err_cmd: >-
+        OUT={{ freeipa_sssd_tools_rpt_err_md }}
+        ipa-sss-log
+        {{ freeipa_sssd_tools_log_err_log }}
+        {{ freeipa_sssd_tools_var_date }}
+
   - name: (freeipa_sssd_tools) define freeipa_sssd_tools_log_exp_cmd
     set_fact:
       freeipa_sssd_tools_log_exp_cmd: >-
