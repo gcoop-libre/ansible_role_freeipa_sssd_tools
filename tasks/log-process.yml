@@ -60,3 +60,14 @@
       - freeipa_sssd_tools_log_exp_cmd is defined
       - freeipa_sssd_tools_log_exp_cmd | length > 0
 
+  - name: (freeipa_sssd_tools) generate SynLog report for errors
+    shell: "{{ freeipa_sssd_tools_rpt_err_cmd }}"
+    args:
+      executable: /bin/bash
+    environment:
+      PATH: "{{ freeipa_sssd_tools_dir }}:{{ ansible_env.PATH }}"
+    when:
+      - freeipa_sssd_tools_log_err_rpt is defined
+      - freeipa_sssd_tools_log_err_rpt | bool
+      - freeipa_sssd_tools_log_err_rpt_cmd is defined
+      - freeipa_sssd_tools_log_err_rpt_cmd | length > 0
