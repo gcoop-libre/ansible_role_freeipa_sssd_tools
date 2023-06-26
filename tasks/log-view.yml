@@ -35,7 +35,7 @@
     register: freeipa_sssd_tools_rpt_err_md_result
 
   - name: (freeipa_sssd_tools) view SynLog error report
-    command: cat {{ freeipa_sssd_tools_rpt_err_log }}
+    command: cat {{ freeipa_sssd_tools_rpt_err_md }}
     when:
       - freeipa_sssd_tools_rpt_err_view is defined
       - freeipa_sssd_tools_rpt_err_view
