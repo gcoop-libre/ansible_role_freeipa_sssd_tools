@@ -39,9 +39,9 @@
         {{ freeipa_sssd_tools_log_separator }}
         {{-freeipa_sssd_tools_log_name }}
 
-  - name: (freeipa_sssd_tools) define freeipa_sssd_tools_log_log_md
+  - name: (freeipa_sssd_tools) define freeipa_sssd_tools_rpt_log_md
     set_fact:
-      freeipa_sssd_tools_log_log_md: >-
+      freeipa_sssd_tools_rpt_log_md: >-
         {{ freeipa_sssd_tools_httpd_syn_pdf_path-}}/
         {{-freeipa_sssd_tools_var_date }}
         {{-freeipa_sssd_tools_log_separator }}
@@ -115,9 +115,9 @@
         {{ freeipa_sssd_tools_log_date }}
         {{ freeipa_sssd_tools_var_date }}
 
-  - name: (freeipa_sssd_tools) define freeipa_sssd_tools_log_log_cmd
+  - name: (freeipa_sssd_tools) define freeipa_sssd_tools_log_rpt_cmd
     set_fact:
-      freeipa_sssd_tools_log_log_cmd: >-
+      freeipa_sssd_tools_log_rpt_cmd: >-
         ipa-sss-log
         {{ freeipa_sssd_tools_log_date }}
         {{ freeipa_sssd_tools_var_date }}
