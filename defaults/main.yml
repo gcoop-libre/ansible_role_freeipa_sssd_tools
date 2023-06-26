@@ -30,6 +30,7 @@ freeipa_sssd_tools_log_xstart: '07:00'
 freeipa_sssd_tools_rpt_err: true
 freeipa_sssd_tools_rpt_err_view: true
 freeipa_sssd_tools_rpt_log: true
+freeipa_sssd_tools_rpt_log_view: true
 freeipa_sssd_tools_syn_cmd: "{{ freeipa_sssd_tools_dir }}/ipa-sss-syn"
 
 # Tools - File Permissions
