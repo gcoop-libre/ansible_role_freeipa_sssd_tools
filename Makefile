@@ -41,7 +41,7 @@ inventory:
 	[[ -d $(INVENTORY_DIR) ]] || git clone $(GIT_URL)/$(INVENTORY) $(INVENTORY_DIR)
 
 inventory_env: inventory
-	cd $(INVENTORY_DIR) && git checkout $(ENV);git pull
+	cd $(INVENTORY_DIR) && git checkout $(ENV);git pull;git log -1
 
 pre-commit:
 	pre-commit install

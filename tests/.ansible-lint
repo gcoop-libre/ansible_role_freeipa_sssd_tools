@@ -2,8 +2,8 @@ parseable: true
 use_default_rules: true
 verbosity: 2
 skip_list:
-  - 204
-  - 305
-  - 301
-  - 302
-  - 303
+  - '204'
+  - '301'
+  - '302'
+  - '303'
+  - '305'
