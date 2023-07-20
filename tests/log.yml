@@ -1,0 +1,19 @@
+---
+
+- name: Process FreeIPA SYN Logs
+  hosts: [all]
+  gather_facts: True
+  gather_subset:
+    - min
+  become: yes
+
+  tasks:
+
+    - name: (freeipa_sssd_tools) include log setfact tasks
+      include_tasks: ../tasks/log-facts.yml
+
+    - name: (freeipa_sssd_tools) include log process tasks
+      include_tasks: ../tasks/log-process.yml
+
+    - name: (freeipa_sssd_tools) include log view tasks
+      include_tasks: ../tasks/log-view.yml
