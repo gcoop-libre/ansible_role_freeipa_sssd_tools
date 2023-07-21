@@ -2,23 +2,113 @@
 
  - this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html)
 
-## [`Unreleased - 2023-06-06`](https://gitlab.com/gcoop-libre/ansible_role_freeipa_sssd_tools/-/compare/v0.8.0...develop)
+## [`Unreleased - 2023-07-21`](https://gitlab.com/gcoop-libre/ansible_role_freeipa_sssd_tools/-/compare/v0.9.0...develop)
+
+### `Makefile`
+
+- add rule changelog for dynamic generate CHANGELOG.md using git-tag-changelog
+- add rule readme for dynamic generate README.md using git-tag-readme with Tags Summary section
+
+### `README`
+
+- add .readme-footer to use with git-tag-readme
+- add .readme-header to use with git-tag-readme
+
+## [`v0.9.0 - 2023-07-20`](https://gitlab.com/gcoop-libre/ansible_role_freeipa_sssd_tools/-/compare/v0.8.0...v0.9.0) _add playbook log.yml to get, process and view synchronization logs of the time range of a specific day_
 
 ### `CHANGELOG`
 
+- update ChangeLog, add v0.5.2, v0.5.3 and Unreleased (2023-06-06)
 - update ChangeLog from v0.5.0 to v0.8.0
+
+### `default/main`
+
+- enable freeipa_sssd_tools_log_err_view to view SynLog error
 
 ### `defaults/main`
 
+- enable freeipa_sssd_tools_log_rpt_log_view to view generated SynLog error report in Markdown
+- enable freeipa_sssd_tools_log_rpt_log to generate SynLog error report
+- fix minor identatation reported by yamllint when define freeipa_sssd_tools_logrotate_ipa_sss_syn
+- enable freeipa_sssd_tools_rpt_err and freeipa_sssd_tools_rpt_err_view
+- enable filter SynLog with at least one sync error
 - add freeipa_sssd_tools_sssd_cache_backup for SSSD cache backup queries
+- add quotes to ensure strings to freeipa_sssd_tools_log_xend and freeipa_sssd_tools_log_xstart
+- define freeipa_sssd_tools_log_xstart and freeipa_sssd_tools_log_xend for process logs with 07:00 and 19:00 as defaults
+- define freeipa_sssd_tools_log_separator with '-' as default
+- define freeipa_sssd_tools_date with current date as default (YYYY-MM-DD)
+
+### `Makefile`
+
+- show last commit after git pull in inventory_env rule
+
+### `tasks/log-facts`
+
+- replace variable prefix freeipa_sssd_tools_log_log with freeipa_sssd_tools_rpt_log
+- define freeipa_sssd_tools_rpt_err_cmd to generate report of records with at least one sync error
+- rename freeipa_sssd_tools_log_err_md as freeipa_sssd_tools_rpt_err
+- define freeipa_sssd_tools_log_err_md after define freeipa_sssd_tools_log_err_log
+- fix identation when define freeipa_sssd_tools_log_err_md
+- define freeipa_sssd_tools_log_err_md to save report of records with at least one sync error
+- explicitly specify the output log file as the third parameter when define freeipa_sssd_tools_log_err_cmd
+- define freeipa_sssd_tools_log_err_log to save records with at least one sync error
+- define freeipa_sssd_tools_log_err_cmd to run ipa-sss-err for filter SynLog with at least one sync error
+- define freeipa_sssd_tools_log_log_md
+- replace ipa-sss-usr with ipa-sss-log when define freeipa_sssd_tools_log_dat_cmd
+- replace ipa-sss-usr with ipa-sss-dat when define freeipa_sssd_tools_log_dat_cmd
+- replace ipa-sss-usr with ipa-sss-exp when define freeipa_sssd_tools_log_exp_cmd
+- refactor use freeipa_sssd_tools_log_date only when is not empty, use freeipa_sssd_tools_var_date with now as default
+- replace multiline with oneline when define freeipa_sssd_tools_log_date
+- define freeipa_sssd_tools_log_name before define freeipa_sssd_tools_log_date
+- replace basename filter with split when define freeipa_sssd_tools_log_date
+- ensure freeipa_sssd_tools_date has value from date test
+- ensure freeipa_sssd_tools_date has value (default now)
+- test freeipa_sssd_tools_date and fail when is invalid
+- fix typo, replace ipa-sss-usr with ipa-sss-nsy in freeipa_sssd_tools_log_nsy_cmd
+- join multiple lines by removing spaces by defining freeipa_sssd_tools_log_date and using the base name of the original log file
+- define variables for process all logs
+
+### `tasks/log-process`
+
+- replace variable prefix freeipa_sssd_tools_log_log with freeipa_sssd_tools_rpt_log and fix conditionals when generate SynLog report
+- replace conditionals prefix freeipa_sssd_tools_log_err with freeipa_sssd_tools_rpt_err
+- add task to execute ipa-sss-log with log with records with at least one sync error
+- filter SynLog with at least one sync error when freeipa_sssd_tools_log_err is enabled
+- fix task 'generate SynLog report for one day', execute freeipa_sssd_tools_log_log_cmd
+- add task for generate SynLog report for one day whe freeipa_sssd_tools_log_log is enabled
+- add filter SynLog when record date match with accountExpires date when freeipa_sssd_tools_log_exp is enabled
+- add task for filter SynLog with unsynchronized logs when freeipa_sssd_tools_log_nsy is enabled
+- add task for split SynLog by date when freeipa_sssd_tools_log_day is enabled
+
+### `tasks/log-view`
+
+- replace variable prefix freeipa_sssd_tools_log_log with freeipa_sssd_tools_rpt_log and fix conditionals when verify and generate SynLog report
+- use freeipa_sssd_tools_rpt_err_md as variable for SynLog error report in Markdown
+- rename task for view SynLog error report
+- fix minor identatation reported by yamllint
+- view SynLog error report when freeipa_sssd_tools_rpt_err_view is enabled
+- verify if SynLog error report exists
+- view SynLog error when freeipa_sssd_tools_log_err_view is enabled
+- verify if SynLog error exists
+- fix ansible-lint [E601] Don't compare to literal True/False
+- view SynLog report when freeipa_sssd_tools_log_log_view is enabled
 
 ### `tests/ansible-lint`
 
+- force error codes as strings in skip_list
 - add 301 to skip list to allow use module command rather tan module pids
 
 ### `tests/cron`
 
 - add playbook for configure crontab entries (backport from feature/ipa-sss-log-day)
+- change path in include_tasks to ../tasks/cron.yml
+- change identation and path of include cron tasks
+- add playbook for configure crontab entries
+
+### `tests/log`
+
+- include log view tasks
+- add playbook for process logs
 
 ### `tests/start`
 
