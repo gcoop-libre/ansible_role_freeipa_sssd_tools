@@ -25,7 +25,7 @@
     freeipa_sssd_tools_ipactl_status_cmd: "{{ freeipa_sssd_tools_ipactl_bin }} status"
     dirsrv_domain: "dirsrv@{{ ipa_domain | default('ipa.example.com') | upper | replace('.', '-') }}.service"
     freeipa_sssd_tools_ipactl_status_krb5kdc_down: 'krb5kdc Service: STOPPED'
-    freeipa_sssd_tools_ipactl_status_krb5kdc_up: 'SubState=running'
+    freeipa_sssd_tools_systemctl_status_krb5kdc_up: 'SubState=running'
     freeipa_sssd_tools_ipactl_status_krb5kdc_stopped: False
     freeipa_sssd_tools_services:
       - dirsrv@
@@ -274,7 +274,7 @@
         - ansible_facts.services[dirsrv_domain].state == 'running'
         - ansible_facts.services['ntpd.service'].state == 'running'
         - ansible_facts.services['sssd.service'].state == 'stopped'
-        - 'freeipa_sssd_tools_ipactl_status_krb5kdc_up | string in freeipa_sssd_tools_systemctl_status_krb5kdc_substate.stdout'
+        - 'freeipa_sssd_tools_systemctl_status_krb5kdc_up | string in freeipa_sssd_tools_systemctl_status_krb5kdc_substate.stdout'
 
     - name: (freeipa-sssd-tools) get SSSD process IDs
       shell: ps up $(pgrep -f sssd)
