@@ -24,6 +24,8 @@
     freeipa_sssd_tools_ipactl_status: true
     freeipa_sssd_tools_ipactl_status_cmd: "{{ freeipa_sssd_tools_ipactl_bin }} status"
     dirsrv_domain: "dirsrv@{{ ipa_domain | default('ipa.example.com') | upper | replace('.', '-') }}.service"
+    freeipa_sssd_tools_ipactl_status_krb5kdc_down: 'krb5kdc Service: STOPPED'
+    freeipa_sssd_tools_ipactl_status_krb5kdc_stopped: False
     freeipa_sssd_tools_services:
       - dirsrv@
       - "{{ dirsrv_domain }}"
@@ -237,6 +239,23 @@
         - ansible_facts.services['ntpd.service'].state
         - ansible_facts.services['sssd.service'].state
         - ansible_facts.services['krb5kdc.service'].state
+
+    - name: (freeipa_sssd_tools) enable freeipa_sssd_tools_krb5kdc_stopped when krb5kdc is STOPPED
+      set_fact:
+        freeipa_sssd_tools_ipactl_status_krb5kdc_stopped: True
+      when:
+        - freeipa_sssd_tools_ipactl_status | bool
+        - freeipa_sssd_tools_ipactl_status_cmd is defined
+        - freeipa_sssd_tools_ipactl_status_cmd | length > 0
+        - 'freeipa_sssd_tools_ipactl_status_krb5kdc_down | string in freeipa_sssd_tools_ipactl_start_status.stdout'
+
+    - name: (freeipa_sssd_tools) start krb5kdc service when krb5kdc is STOPPED
+      service:
+        name: krb5kdc
+        state: started
+      when:
+        - freeipa_sssd_tools_ipactl_status_krb5kdc_stopped is defined
+        - freeipa_sssd_tools_ipactl_status_krb5kdc_stopped | bool
 
     - name: (freeipa_sssd_tools) ensure SSSD is started when IPA is running
       service:
