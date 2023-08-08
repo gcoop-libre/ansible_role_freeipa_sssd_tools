@@ -274,6 +274,7 @@
         - ansible_facts.services[dirsrv_domain].state == 'running'
         - ansible_facts.services['ntpd.service'].state == 'running'
         - ansible_facts.services['sssd.service'].state == 'stopped'
+        - 'freeipa_sssd_tools_ipactl_status_krb5kdc_up | string in freeipa_sssd_tools_systemctl_status_krb5kdc_substate.stdout'
 
     - name: (freeipa-sssd-tools) get SSSD process IDs
       shell: ps up $(pgrep -f sssd)
