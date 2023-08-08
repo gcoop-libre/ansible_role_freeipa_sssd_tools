@@ -258,6 +258,10 @@
         - freeipa_sssd_tools_ipactl_status_krb5kdc_stopped is defined
         - freeipa_sssd_tools_ipactl_status_krb5kdc_stopped | bool
 
+    - name: (freeipa_sssd_tools) get SubState property of krb5kdc from systemctl
+      command: systemctl show --property=SubState krb5kdc
+      register: freeipa_sssd_tools_systemctl_status_krb5kdc_substate
+
     - name: (freeipa_sssd_tools) ensure SSSD is started when IPA is running
       service:
         name: "{{ item }}"
@@ -270,7 +274,6 @@
         - ansible_facts.services[dirsrv_domain].state == 'running'
         - ansible_facts.services['ntpd.service'].state == 'running'
         - ansible_facts.services['sssd.service'].state == 'stopped'
-        - ansible_facts.services['krb5kdc.service'].state == 'running'
 
     - name: (freeipa-sssd-tools) get SSSD process IDs
       shell: ps up $(pgrep -f sssd)
