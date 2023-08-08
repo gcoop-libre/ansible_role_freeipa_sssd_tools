@@ -25,6 +25,7 @@
     freeipa_sssd_tools_ipactl_status_cmd: "{{ freeipa_sssd_tools_ipactl_bin }} status"
     dirsrv_domain: "dirsrv@{{ ipa_domain | default('ipa.example.com') | upper | replace('.', '-') }}.service"
     freeipa_sssd_tools_ipactl_status_krb5kdc_down: 'krb5kdc Service: STOPPED'
+    freeipa_sssd_tools_ipactl_status_krb5kdc_up: 'SubState=running'
     freeipa_sssd_tools_ipactl_status_krb5kdc_stopped: False
     freeipa_sssd_tools_services:
       - dirsrv@
