@@ -1,0 +1,6 @@
+# Ansible Role: `gcoop-libre.freeipa_sssd_tools`
+
+This role, install and configure useful scripts for _FreeIPA_.
+
+## Tags Summary
+

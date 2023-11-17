@@ -72,3 +72,9 @@ plugins/lookup/pass/lookup_plugins/pass.py:
 	cd tests && git clone $(GIT_URL)/ansible_lookup_plugin_pass.git plugins/lookup/pass
 
 dependencies: plugins/lookup/pass/lookup_plugins/pass.py
+
+changelog:
+	git-tag-changelog
+
+readme:
+	NO_TAG_LINK=1 git-tag-readme
