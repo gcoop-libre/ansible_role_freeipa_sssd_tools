@@ -244,6 +244,13 @@
         - ansible_facts.services['krb5kdc.service'].state
         - ansible_facts.services['httpd.service'].state
 
+    - name: (freeipa_sssd_tools) start httpd service when httpd is STOPPED
+      service:
+        name: httpd
+        state: started
+      when:
+        - ansible_facts.services['httpd.service'].state in ['stopped','inactive']
+
     - name: (freeipa_sssd_tools) enable freeipa_sssd_tools_krb5kdc_stopped when krb5kdc is STOPPED
       set_fact:
         freeipa_sssd_tools_ipactl_status_krb5kdc_stopped: True
