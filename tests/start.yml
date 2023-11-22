@@ -257,7 +257,8 @@
         name: httpd
         state: started
       when:
-        - ansible_facts.services['httpd.service'].state in ['stopped','inactive']
+        - freeipa_sssd_tools_service_httpd_start is defined
+        - freeipa_sssd_tools_service_httpd_start | bool
 
     - name: (freeipa_sssd_tools) define freeipa_sssd_tools_httpd_log_error when is undefined
       set_fact:
