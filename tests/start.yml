@@ -250,7 +250,7 @@
       set_fact:
         freeipa_sssd_tools_service_httpd_start: true
       when:
-        - ansible_facts.services['httpd.service'].state in ['stopped','inactive']
+        - ansible_facts.services['httpd.service'].state in ['stopped','inactive','unknown']
 
     - name: (freeipa_sssd_tools) start httpd service when httpd is STOPPED
       service:
