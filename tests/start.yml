@@ -60,7 +60,7 @@
 
   tasks:
 
-    - name: (freeipa_sssd_tools) populate service facts
+    - name: (freeipa sssd tools) populate service facts at the beginning
       service_facts:
       no_log: "{{ freeipa_sssd_tools_no_log | bool }}"
       when: freeipa_sssd_tools_service_facts_populate | bool
