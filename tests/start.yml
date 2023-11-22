@@ -265,6 +265,7 @@
       no_log: "{{ freeipa_sssd_tools_no_log | bool }}"
       when:
         - freeipa_sssd_tools_service_facts_populate | bool
+        - freeipa_sssd_tools_service_httpd_start is defined
         - freeipa_sssd_tools_service_httpd_start | bool
 
     - name: (freeipa_sssd_tools) define freeipa_sssd_tools_httpd_log_error when is undefined
