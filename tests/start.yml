@@ -335,3 +335,8 @@
       loop:
         - /var/lib/sss/db
         - /var/lib/ipa/backup/sss-db
+
+    - name: (freeipa sssd tools) populate service facts at the end
+      service_facts:
+      no_log: "{{ freeipa_sssd_tools_no_log | bool }}"
+      when: freeipa_sssd_tools_service_facts_populate | bool
