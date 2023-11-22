@@ -116,10 +116,12 @@
         - ansible_facts.services['ntpd.service'].state == 'stopped'
         - ansible_facts.services['sssd.service'].state == 'running'
 
-    - name: (freeipa_sssd_tools) populate service facts
+    - name: (freeipa_sssd_tools) populate service facts after stop SSSD
       service_facts:
       no_log: "{{ freeipa_sssd_tools_no_log | bool }}"
-      when: freeipa_sssd_tools_service_facts_populate | bool
+      when:
+        - freeipa_sssd_tools_service_facts_populate | bool
+        - freeipa_sssd_tools_service_sssd_stop | bool
 
     - name: (freeipa-sssd-tools) stop cron service
       service:
