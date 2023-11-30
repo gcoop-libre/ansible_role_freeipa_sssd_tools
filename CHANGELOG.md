@@ -2,7 +2,28 @@
 
  - this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html)
 
-## [`Unreleased - 2023-07-21`](https://gitlab.com/gcoop-libre/ansible_role_freeipa_sssd_tools/-/compare/v0.9.0...develop)
+## [`Unreleased - 2023-08-08`](https://gitlab.com/gcoop-libre/ansible_role_freeipa_sssd_tools/-/compare/v0.9.2...develop)
+
+- tests/start: show last lines of httpd error log when freeipa_sssd_tools_service_httpd_start is enabled
+- tests/start: fix role name in tasks of populate service facts in the beginning and the end of playbook
+- tests/start: add task to populate service facts in the end of playbook
+- tests/start: clarify task name to populate service facts in the beginning of playbook
+- tests/start: add unknown state to enable freeipa_sssd_tools_service_httpd_start when httpd is STOPPED
+- tests/start: add freeipa_sssd_tools_service_httpd_start is defined in conditional of populate service facts after start httpd
+- tests/start: populate service facts after start httpd
+- tests/start: start httpd when freeipa_sssd_tools_service_httpd_start is true
+- tests/start: define freeipa_sssd_tools_service_httpd_start when httpd is STOPPED
+- tests/start: populate service facts after stopping SSSD when is required
+- tests/start: show last lines of httpd error log after start httpd
+- tests/start: define freeipa_sssd_tools_httpd_log_error when is undefined
+- tests/start: start httpd service when is stopped or inactive
+- tests/start: add httpd.service to debug conditionals (I|II|III)
+
+## [`v0.9.2 - 2023-11-30`](https://gitlab.com/gcoop-libre/ansible_role_freeipa_sssd_tools/-/compare/v0.9.1...v0.9.2) _get httpd status from ansible_facts to start httpd service when is stopped, improve tasks names and debug conditionals_
+
+### `CHANGELOG`
+
+- update Unreleased, add v0.9.0
 
 ### `Makefile`
 
@@ -11,8 +32,34 @@
 
 ### `README`
 
+- update README.md generated with git-tag-readme including Tags Summary
 - add .readme-footer to use with git-tag-readme
 - add .readme-header to use with git-tag-readme
+
+### `tests/start`
+
+- show last lines of httpd error log when freeipa_sssd_tools_service_httpd_start is enabled
+- fix role name in tasks of populate service facts in the beginning and the end of playbook
+- add task to populate service facts in the end of playbook
+- clarify task name to populate service facts in the beginning of playbook
+- add unknown state to enable freeipa_sssd_tools_service_httpd_start when httpd is STOPPED
+- add freeipa_sssd_tools_service_httpd_start is defined in conditional of populate service facts after start httpd
+- populate service facts after start httpd
+- start httpd when freeipa_sssd_tools_service_httpd_start is true
+- define freeipa_sssd_tools_service_httpd_start when httpd is STOPPED
+- populate service facts after stopping SSSD when is required
+- show last lines of httpd error log after start httpd
+- define freeipa_sssd_tools_httpd_log_error when is undefined
+- start httpd service when is stopped or inactive
+- add httpd.service to debug conditionals (I|II|III)
+
+## [`v0.9.1 - 2023-08-08`](https://gitlab.com/gcoop-libre/ansible_role_freeipa_sssd_tools/-/compare/v0.9.0...v0.9.1) _get krb5kdc status from ipactl status sdtout and get SubState property from systemctl to start krb5kdc service when krb5kdc is STOPPED/dead to mitigate unknown state from ansible_facts_
+
+- tests/start: rename freeipa_sssd_tools_ipactl_status_krb5kdc_up with freeipa_sssd_tools_systemctl_status_krb5kdc_up
+- tests/start: use status of krb5kdc from sysmtemctl as conditional to ensure SSSD is started when IPA is running
+- tests/start: get SubState property of krb5kdc from systemctl after start krb5kdc task
+- tests/start: define freeipa_sssd_tools_ipactl_status_krb5kdc_up as SubState=running
+- tests/start: get krb5kdc status from ipactl status sdtout and start krb5kdc service when krb5kdc is STOPPED
 
 ## [`v0.9.0 - 2023-07-20`](https://gitlab.com/gcoop-libre/ansible_role_freeipa_sssd_tools/-/compare/v0.8.0...v0.9.0) _add playbook log.yml to get, process and view synchronization logs of the time range of a specific day_
 
