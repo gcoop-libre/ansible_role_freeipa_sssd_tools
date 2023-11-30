@@ -277,7 +277,8 @@
     - name: (freeipa_sssd_tools) show last lines of httpd error log after start httpd
       command: tail {{ freeipa_sssd_tools_httpd_log_error }}
       when:
-        - ansible_facts.services['httpd.service'].state in ['stopped','inactive']
+        - freeipa_sssd_tools_service_httpd_start is defined
+        - freeipa_sssd_tools_service_httpd_start | bool
 
     - name: (freeipa_sssd_tools) enable freeipa_sssd_tools_krb5kdc_stopped when krb5kdc is STOPPED
       set_fact:
