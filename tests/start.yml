@@ -60,7 +60,7 @@
 
   tasks:
 
-    - name: (freeipa_sssd_tools) populate service facts
+    - name: (freeipa_sssd_tools) populate service facts at the beginning
       service_facts:
       no_log: "{{ freeipa_sssd_tools_no_log | bool }}"
       when: freeipa_sssd_tools_service_facts_populate | bool
@@ -86,6 +86,7 @@
         - ansible_facts.services[dirsrv_domain].state
         - ansible_facts.services['ntpd.service'].state
         - ansible_facts.services['sssd.service'].state
+        - ansible_facts.services['httpd.service'].state
         - ipa_sss_cache_result.stat.exists
         - ipa_sss_cache_backup_result.stat.exists
 
@@ -115,10 +116,12 @@
         - ansible_facts.services['ntpd.service'].state == 'stopped'
         - ansible_facts.services['sssd.service'].state == 'running'
 
-    - name: (freeipa_sssd_tools) populate service facts
+    - name: (freeipa_sssd_tools) populate service facts after stop SSSD
       service_facts:
       no_log: "{{ freeipa_sssd_tools_no_log | bool }}"
-      when: freeipa_sssd_tools_service_facts_populate | bool
+      when:
+        - freeipa_sssd_tools_service_facts_populate | bool
+        - freeipa_sssd_tools_service_sssd_stop | bool
 
     - name: (freeipa-sssd-tools) stop cron service
       service:
@@ -203,6 +206,7 @@
         - "{{ ansible_facts.services[dirsrv_domain].state }}"
         - "{{ ansible_facts.services['ntpd.service'].state }}"
         - "{{ ansible_facts.services['sssd.service'].state }}"
+        - "{{ ansible_facts.services['httpd.service'].state }}"
 
     - name: (freeipa_sssd_tools) start IPA services
       command: "{{ freeipa_sssd_tools_ipactl_start_cmd }}"
@@ -240,6 +244,41 @@
         - ansible_facts.services['ntpd.service'].state
         - ansible_facts.services['sssd.service'].state
         - ansible_facts.services['krb5kdc.service'].state
+        - ansible_facts.services['httpd.service'].state
+
+    - name: (freeipa_sssd_tools) define freeipa_sssd_tools_service_httpd_start when httpd is STOPPED
+      set_fact:
+        freeipa_sssd_tools_service_httpd_start: true
+      when:
+        - ansible_facts.services['httpd.service'].state in ['stopped','inactive','unknown']
+
+    - name: (freeipa_sssd_tools) start httpd service when httpd is STOPPED
+      service:
+        name: httpd
+        state: started
+      when:
+        - freeipa_sssd_tools_service_httpd_start is defined
+        - freeipa_sssd_tools_service_httpd_start | bool
+
+    - name: (freeipa_sssd_tools) populate service facts after start httpd
+      service_facts:
+      no_log: "{{ freeipa_sssd_tools_no_log | bool }}"
+      when:
+        - freeipa_sssd_tools_service_facts_populate | bool
+        - freeipa_sssd_tools_service_httpd_start is defined
+        - freeipa_sssd_tools_service_httpd_start | bool
+
+    - name: (freeipa_sssd_tools) define freeipa_sssd_tools_httpd_log_error when is undefined
+      set_fact:
+        freeipa_sssd_tools_httpd_log_error: /var/log/httpd/error_log
+      when:
+        - freeipa_sssd_tools_httpd_log_error is undefined
+
+    - name: (freeipa_sssd_tools) show last lines of httpd error log after start httpd
+      command: tail {{ freeipa_sssd_tools_httpd_log_error }}
+      when:
+        - freeipa_sssd_tools_service_httpd_start is defined
+        - freeipa_sssd_tools_service_httpd_start | bool
 
     - name: (freeipa_sssd_tools) enable freeipa_sssd_tools_krb5kdc_stopped when krb5kdc is STOPPED
       set_fact:
@@ -297,3 +336,8 @@
       loop:
         - /var/lib/sss/db
         - /var/lib/ipa/backup/sss-db
+
+    - name: (freeipa_sssd_tools) populate service facts at the end
+      service_facts:
+      no_log: "{{ freeipa_sssd_tools_no_log | bool }}"
+      when: freeipa_sssd_tools_service_facts_populate | bool
