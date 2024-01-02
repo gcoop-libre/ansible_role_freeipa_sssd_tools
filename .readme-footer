@@ -32,6 +32,15 @@ Available variables with default values in `defaults/main.yml`.
 
 ```
 
+## Useful Playbooks
+
+| _playbook_                       | _description_                                                     |
+|----------------------------------|-------------------------------------------------------------------|
+| [`cron.yml`](../tests/cron.yml)  | Configure Crontab entries for _FreeIPA_ _SSSD_ _Tools_            |
+| [`log.yml`](../tests/log.yml)    | Generate stats report from _FreeIPA_ _SSSD_ _Tools_ _logs_        |
+| [`start.yml`](../tests/start.md) | Start _FreeIPA_ _Tools_ Services and restore persistent `RAMDISK` |
+| [`test.yml`](../tests/test.yml)  | Install and configure _FreeIPA_ _Tools_                           |
+
 ## License
 
 GNU General Public License, GPLv3.
