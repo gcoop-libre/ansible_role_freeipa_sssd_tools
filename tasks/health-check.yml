@@ -1,0 +1,7 @@
+---
+
+- name: (freeipa_sssd_tools) execute health check
+  shell: "{{ freeipa_sssd_tools_dir }}/ipa-hlt-chk"
+  args:
+    executable: /bin/bash
+  become: true
