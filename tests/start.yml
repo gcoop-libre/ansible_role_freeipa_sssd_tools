@@ -341,3 +341,8 @@
       service_facts:
       no_log: "{{ freeipa_sssd_tools_no_log | bool }}"
       when: freeipa_sssd_tools_service_facts_populate | bool
+
+    - name: (freeipa sssd tools) fail when dirsrv service is STOPPED
+      fail:
+      when:
+        - ansible_facts.services[dirsrv_domain].state == 'stopped'
