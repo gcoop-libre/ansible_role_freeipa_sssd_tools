@@ -269,6 +269,20 @@
         - freeipa_sssd_tools_service_dirsrv_start is defined
         - freeipa_sssd_tools_service_dirsrv_start | bool
 
+    - name: (freeipa_sssd_tools) restart SSSD service after start dirsrv
+      service:
+        name: "{{ item }}"
+        state: restarted
+      with_items:
+        - sssd
+        - sssd-secrets
+        name: sssd
+      when:
+        - freeipa_sssd_tools_service_sssd_restart is defined
+        - freeipa_sssd_tools_service_sssd_restart | bool
+        - freeipa_sssd_tools_service_dirsrv_start is defined
+        - freeipa_sssd_tools_service_dirsrv_start | bool
+
     - name: (freeipa_sssd_tools) define freeipa_sssd_tools_service_httpd_start when httpd is STOPPED
       set_fact:
         freeipa_sssd_tools_service_httpd_start: true
