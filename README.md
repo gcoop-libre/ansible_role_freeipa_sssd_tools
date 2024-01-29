@@ -7,6 +7,7 @@ This role, install and configure useful scripts for _FreeIPA_.
 
 | _date_     | _tag_      | _description_                                                                                                                                                                            |
 |------------|------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| 2024-01-29 | `  v0.9.3` | get dirsrv status from ansible_facts to start dirsrv service and restart sssd when is dirsrv is stopped and add task to fail when dirsrv service is STOPPED at end of playbook           |
 | 2023-11-30 | `  v0.9.2` | get httpd status from ansible_facts to start httpd service when is stopped, improve tasks names and debug conditionals                                                                   |
 | 2023-08-08 | `  v0.9.1` | get krb5kdc status from ipactl status sdtout and get SubState property from systemctl to start krb5kdc service when krb5kdc is STOPPED/dead to mitigate unknown state from ansible_facts |
 | 2023-07-20 | `  v0.9.0` | add playbook log.yml to get, process and view synchronization logs of the time range of a specific day                                                                                   |
