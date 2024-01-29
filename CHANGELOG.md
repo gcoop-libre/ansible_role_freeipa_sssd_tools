@@ -2,22 +2,34 @@
 
  - this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html)
 
-## [`Unreleased - 2023-08-08`](https://gitlab.com/gcoop-libre/ansible_role_freeipa_sssd_tools/-/compare/v0.9.2...develop)
+## [`Unreleased - 2024-01-29`](https://gitlab.com/gcoop-libre/ansible_role_freeipa_sssd_tools/-/compare/v0.9.3...develop)
 
-- tests/start: show last lines of httpd error log when freeipa_sssd_tools_service_httpd_start is enabled
-- tests/start: fix role name in tasks of populate service facts in the beginning and the end of playbook
-- tests/start: add task to populate service facts in the end of playbook
-- tests/start: clarify task name to populate service facts in the beginning of playbook
-- tests/start: add unknown state to enable freeipa_sssd_tools_service_httpd_start when httpd is STOPPED
-- tests/start: add freeipa_sssd_tools_service_httpd_start is defined in conditional of populate service facts after start httpd
-- tests/start: populate service facts after start httpd
-- tests/start: start httpd when freeipa_sssd_tools_service_httpd_start is true
-- tests/start: define freeipa_sssd_tools_service_httpd_start when httpd is STOPPED
-- tests/start: populate service facts after stopping SSSD when is required
-- tests/start: show last lines of httpd error log after start httpd
-- tests/start: define freeipa_sssd_tools_httpd_log_error when is undefined
-- tests/start: start httpd service when is stopped or inactive
-- tests/start: add httpd.service to debug conditionals (I|II|III)
+
+## [`v0.9.3 - 2024-01-29`](https://gitlab.com/gcoop-libre/ansible_role_freeipa_sssd_tools/-/compare/v0.9.2...v0.9.3) _get dirsrv status from ansible_facts to start dirsrv service and restart sssd when is dirsrv is stopped and add task to fail when dirsrv service is STOPPED at end of playbook_
+
+### `CHANGELOG`
+
+- update Unreleased, add v0.9.2 and v0.9.1
+
+### `README`
+
+- add table with useful playbooks in tests directory
+- update .readme-footer to generate README.md with git-tag-readme including Tags Summary
+- update README.md generated with git-tag-readme including Tags Summary
+
+### `testing/start`
+
+- add task to fail when dirsrv service is STOPPED at end of playbook
+
+### `tests/start`
+
+- remove invalid line in task to restart SSSD
+- add task to populate service facts after restart SSSD
+- add task to restart SSSD when freeipa_sssd_tools_service_sssd_restart add freeipa_sssd_tools_service_dirsrv_start are enabled
+- enable freeipa_sssd_tools_service_sssd_restart when dirsrv is STOPPED
+- add task to (populate service facts after start dirsrv
+- add task to start dirsrv when freeipa_sssd_tools_service_dirsrv_start is enabled
+- add task to enable freeipa_sssd_tools_service_dirsrv_start when dirsrv is STOPPED
 
 ## [`v0.9.2 - 2023-11-30`](https://gitlab.com/gcoop-libre/ansible_role_freeipa_sssd_tools/-/compare/v0.9.1...v0.9.2) _get httpd status from ansible_facts to start httpd service when is stopped, improve tasks names and debug conditionals_
 
