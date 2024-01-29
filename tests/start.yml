@@ -276,7 +276,6 @@
       with_items:
         - sssd
         - sssd-secrets
-        name: sssd
       when:
         - freeipa_sssd_tools_service_sssd_restart is defined
         - freeipa_sssd_tools_service_sssd_restart | bool
