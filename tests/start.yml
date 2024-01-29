@@ -249,6 +249,7 @@
     - name: (freeipa_sssd_tools) define freeipa_sssd_tools_service_dirsrv_start when dirsrv is STOPPED
       set_fact:
         freeipa_sssd_tools_service_dirsrv_start: true
+        freeipa_sssd_tools_service_sssd_restart: true
       when:
         - ansible_facts.services[dirsrv_domain].state in ['stopped','inactive','unknown']
 
