@@ -1,6 +1,8 @@
 ---
 
 freeipa_sssd_tools_packages:
+  - dnsutils
   - git
+  - krb5-user
   - ldb-tools
   - sssd-tools
