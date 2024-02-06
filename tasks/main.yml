@@ -84,6 +84,5 @@
 - name: (freeipa_sssd_tools) include health-check tasks
   include_tasks: health-check.yml
   when:
-  when:
     - freeipa_sssd_tools_health_check is defined
     - freeipa_sssd_tools_health_check | bool
