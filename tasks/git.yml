@@ -83,3 +83,17 @@
     - freeipa_sssd_tools_git_repo is defined
     - freeipa_sssd_tools_git_repo |  length > 0
     - freeipa_sssd_tools_dir is defined
+
+- name: (freeipa-sssd-tools) remove token from git url origin
+  lineinfile:
+    path: "{{ freeipa_sssd_tools_dir }}/.git/config"
+    search_string: "url = {{ freeipa_sssd_tools_git_repo }}"
+    line: "\turl = {{ freeipa_sssd_tools_git_repo_no_token }}"
+    firstmatch: yes
+    state: present
+  become: true
+  when:
+    - freeipa_sssd_tools_git_repo_rm_token is defined
+    - freeipa_sssd_tools_git_repo_rm_token | bool
+    - freeipa_sssd_tools_git_repo_no_token is defined
+    - freeipa_sssd_tools_git_repo is defined
