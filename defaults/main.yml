@@ -226,6 +226,7 @@ freeipa_sssd_tools_git_clone: True
 freeipa_sssd_tools_git_config: "{{ freeipa_sssd_tools_dir }}/.git/config"
 freeipa_sssd_tools_git_prefix: https://
 freeipa_sssd_tools_git_repo: gitlab.com/gcoop-libre/freeipa-sssd-tools.git
+freeipa_sssd_tools_git_repo_rm_token: true
 freeipa_sssd_tools_git_version: master
 freeipa_sssd_tools_git_environment:
   GIT_SSL_NO_VERIFY: true
