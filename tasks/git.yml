@@ -91,6 +91,7 @@
     line: "\turl = {{ freeipa_sssd_tools_git_repo_no_token }}"
     firstmatch: yes
     state: present
+  no_log: "{{ freeipa_sssd_tools_no_log }}"
   become: true
   when:
     - freeipa_sssd_tools_git_repo_rm_token is defined
