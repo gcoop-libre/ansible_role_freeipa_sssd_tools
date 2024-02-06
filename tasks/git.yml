@@ -10,6 +10,7 @@
 
 - name: (freeipa-sssd-tools) define url with api token
   set_fact:
+    freeipa_sssd_tools_git_repo_no_token: "{{ freeipa_sssd_tools_git_prefix }}{{ freeipa_sssd_tools_git_repo }}"
     freeipa_sssd_tools_git_repo: "{{ freeipa_sssd_tools_git_prefix }}{{ freeipa_sssd_tools_git_api_user }}:{{ freeipa_sssd_tools_git_api_token }}@{{ freeipa_sssd_tools_git_repo }}"
   no_log: "{{ freeipa_sssd_tools_no_log }}"
   when:
