@@ -80,3 +80,10 @@
     - freeipa_sssd_tools_test | bool
     - freeipa_sssd_tools_test_users | length > 0
   loop: "{{ freeipa_sssd_tools_test_users }}"
+
+- name: (freeipa_sssd_tools) include health-check tasks
+  include_tasks: health-check.yml
+  when:
+  when:
+    - freeipa_sssd_tools_health_check is defined
+    - freeipa_sssd_tools_health_check | bool

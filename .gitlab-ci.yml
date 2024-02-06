@@ -15,6 +15,7 @@ stages:
   - ansible-lint
   - ansible-syntax-check
   - ansible-awx
+  - ansible-awx-ipa-hlt-chk
 
 ansible-lint:
   stage: ansible-lint
@@ -36,6 +37,16 @@ ansible-awx:
     - make awx_version
     - make awx_user
     - make awx_job_launch
+  when: manual
+  tags:
+    - awx
+
+ansible-awx-ipa-hlt-chk:
+  stage: ansible-awx-ipa-hlt-chk
+  script:
+    - make awx_version
+    - make awx_user
+    - AWX_GITLAB_JOB_LAUNCH=ipa_hlt_chk_v0.1.0 make awx_job_launch
   when: manual
   tags:
     - awx
