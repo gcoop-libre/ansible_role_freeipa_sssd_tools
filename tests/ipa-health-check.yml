@@ -1,0 +1,60 @@
+---
+
+- name: Get FreeIPA SSSD Tools and execute Health Check
+  hosts: [all]
+  become: yes
+
+  roles:
+    - role: gcoop-libre.freeipa_sssd_tools
+      freeipa_sssd_tools_api_config_api: false
+      freeipa_sssd_tools_api_config_que_syn: false
+      freeipa_sssd_tools_api_create_grp: false
+      freeipa_sssd_tools_api_create_usr: false
+      freeipa_sssd_tools_api_create_usrgrp: false
+      freeipa_sssd_tools_api_deploy: false
+      freeipa_sssd_tools_api_python_req: false
+      freeipa_sssd_tools_api_que_syn_run_sudo: false
+      freeipa_sssd_tools_api_que_sysd: false
+      freeipa_sssd_tools_api_que_sysd_activate: false
+      freeipa_sssd_tools_api_sysd: false
+      freeipa_sssd_tools_api_sysd_activate: false
+      freeipa_sssd_tools_api_sysd_daemon_reload: false
+      freeipa_sssd_tools_api_systemd: false
+      freeipa_sssd_tools_api_uwsgi_config: false
+      freeipa_sssd_tools_config: false
+      freeipa_sssd_tools_cron_configure: false
+      freeipa_sssd_tools_cron_ipa_srv_mon: false
+      freeipa_sssd_tools_cron_ipa_sss_all: false
+      freeipa_sssd_tools_cron_ipa_sss_db: false
+      freeipa_sssd_tools_cron_ipa_sss_rsy: false
+      freeipa_sssd_tools_cron_ipa_usr_syn: false
+      freeipa_sssd_tools_cron_test_no_log: false
+      freeipa_sssd_tools_git_clone: true
+      freeipa_sssd_tools_health_check: true
+      freeipa_sssd_tools_httpd_restart: false
+      freeipa_sssd_tools_httpd_syn_cnf: false
+      freeipa_sssd_tools_httpd_syn_conf: false
+      freeipa_sssd_tools_httpd_syn_css_down: false
+      freeipa_sssd_tools_httpd_syn_dir: false
+      freeipa_sssd_tools_httpd_syn_url_test: false
+      freeipa_sssd_tools_ipa_req_file_loc: false
+      freeipa_sssd_tools_logrotate_configure: false
+      freeipa_sssd_tools_packages_install: true
+      freeipa_sssd_tools_ramdisk_configure: false
+      freeipa_sssd_tools_ramdisk_mounted: false
+      freeipa_sssd_tools_set_permissions: false
+      freeipa_sssd_tools_set_permissions_db: false
+      freeipa_sssd_tools_set_permissions_dir: false
+      freeipa_sssd_tools_set_permissions_ownership: false
+      freeipa_sssd_tools_set_permissions_py: false
+      freeipa_sssd_tools_set_permissions_script: false
+      freeipa_sssd_tools_test: false
+      freeipa_sssd_tools_yum_clean_all: false
+      freeipa_sssd_tools_yum_fastestmirror_configure: false
+      freeipa_sssd_tools_yum_repo_appstream_enabled: false
+      freeipa_sssd_tools_yum_repo_base_enabled: false
+      freeipa_sssd_tools_yum_repo_baseos_enabled: false
+      freeipa_sssd_tools_yum_repo_epel_enabled: false
+      freeipa_sssd_tools_yum_repo_extras_enabled: false
+      freeipa_sssd_tools_yum_repositories_configure: false
+      freeipa_sssd_tools_yum_repo_updates_enabled: false

@@ -4,7 +4,12 @@
 _FreeIPA SSSD Tools_ from git repository:
 
 - https://gitlab.com/gcoop-libre/freeipa-sssd-tools
+- https://gitlab.com/gcoop-libre/freeipa-sssd-tools
+- https://gitlab.com/osiux/freeipa-sssd-tools
 - https://github.com/gcoop-libre/freeipa-sssd-tools
+- https://github.com/gcoop-libre/freeipa-sssd-tools
+- https://github.com/osiris/freeipa-sssd-tools
+- https://codeberg.org/osiux/freeipa-sssd-tools
 
 ## Role Variables
 
@@ -31,6 +36,16 @@ Available variables with default values in `defaults/main.yml`.
     - role: gcoop-libre.freeipa_sssd_tools
 
 ```
+
+## Useful Playbooks
+
+| _playbook_                                        | _description_                                                     |
+|---------------------------------------------------|-------------------------------------------------------------------|
+| [`cron.yml`](../tests/cron.yml)                   | Configure Crontab entries for _FreeIPA_ _SSSD_ _Tools_            |
+| [`ipa-health-check.yml`](../ipa-health-check.yml) | Clone `freeipa-sssd-tools` and execute `ipa-hlt-chk`              |
+| [`log.yml`](../tests/log.yml)                     | Generate stats report from _FreeIPA_ _SSSD_ _Tools_ _logs_        |
+| [`start.yml`](../tests/start.md)                  | Start _FreeIPA_ _Tools_ Services and restore persistent `RAMDISK` |
+| [`test.yml`](../tests/test.yml)                   | Install and configure _FreeIPA_ _Tools_                           |
 
 ## License
 

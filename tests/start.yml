@@ -246,6 +246,50 @@
         - ansible_facts.services['krb5kdc.service'].state
         - ansible_facts.services['httpd.service'].state
 
+    - name: (freeipa_sssd_tools) define freeipa_sssd_tools_service_dirsrv_start when dirsrv is STOPPED
+      set_fact:
+        freeipa_sssd_tools_service_dirsrv_start: true
+        freeipa_sssd_tools_service_sssd_restart: true
+      when:
+        - ansible_facts.services[dirsrv_domain].state in ['stopped','inactive','unknown']
+
+    - name: (freeipa_sssd_tools) start dirsrv service when dirsrv is STOPPED
+      service:
+        name: "{{ dirsrv_domain }}"
+        state: started
+      when:
+        - freeipa_sssd_tools_service_dirsrv_start is defined
+        - freeipa_sssd_tools_service_dirsrv_start | bool
+
+    - name: (freeipa_sssd_tools) populate service facts after start dirsrv
+      service_facts:
+      no_log: "{{ freeipa_sssd_tools_no_log | bool }}"
+      when:
+        - freeipa_sssd_tools_service_facts_populate | bool
+        - freeipa_sssd_tools_service_dirsrv_start is defined
+        - freeipa_sssd_tools_service_dirsrv_start | bool
+
+    - name: (freeipa_sssd_tools) restart SSSD service after start dirsrv
+      service:
+        name: "{{ item }}"
+        state: restarted
+      with_items:
+        - sssd
+        - sssd-secrets
+      when:
+        - freeipa_sssd_tools_service_sssd_restart is defined
+        - freeipa_sssd_tools_service_sssd_restart | bool
+        - freeipa_sssd_tools_service_dirsrv_start is defined
+        - freeipa_sssd_tools_service_dirsrv_start | bool
+
+    - name: (freeipa_sssd_tools) populate service facts after restart SSSD
+      service_facts:
+      no_log: "{{ freeipa_sssd_tools_no_log | bool }}"
+      when:
+        - freeipa_sssd_tools_service_facts_populate | bool
+        - freeipa_sssd_tools_service_sssd_restart is defined
+        - freeipa_sssd_tools_service_sssd_restart | bool
+
     - name: (freeipa_sssd_tools) define freeipa_sssd_tools_service_httpd_start when httpd is STOPPED
       set_fact:
         freeipa_sssd_tools_service_httpd_start: true
@@ -341,3 +385,8 @@
       service_facts:
       no_log: "{{ freeipa_sssd_tools_no_log | bool }}"
       when: freeipa_sssd_tools_service_facts_populate | bool
+
+    - name: (freeipa sssd tools) fail when dirsrv service is STOPPED
+      fail:
+      when:
+        - ansible_facts.services[dirsrv_domain].state == 'stopped'

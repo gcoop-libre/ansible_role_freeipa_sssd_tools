@@ -7,6 +7,8 @@ This role, install and configure useful scripts for _FreeIPA_.
 
 | _date_     | _tag_      | _description_                                                                                                                                                                            |
 |------------|------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| 2024-02-06 | `  v0.9.4` | add playbook to clone FreeIPA SSSD tools and run ipa-hlt-chk to check Network, DNS, NTP, SSSD, KRB5 and others dependencies to determine health of IPA                                   |
+| 2024-01-29 | `  v0.9.3` | get dirsrv status from ansible_facts to start dirsrv service and restart sssd when is dirsrv is stopped and add task to fail when dirsrv service is STOPPED at end of playbook           |
 | 2023-11-30 | `  v0.9.2` | get httpd status from ansible_facts to start httpd service when is stopped, improve tasks names and debug conditionals                                                                   |
 | 2023-08-08 | `  v0.9.1` | get krb5kdc status from ipactl status sdtout and get SubState property from systemctl to start krb5kdc service when krb5kdc is STOPPED/dead to mitigate unknown state from ansible_facts |
 | 2023-07-20 | `  v0.9.0` | add playbook log.yml to get, process and view synchronization logs of the time range of a specific day                                                                                   |
@@ -30,7 +32,12 @@ This role, install and configure useful scripts for _FreeIPA_.
 _FreeIPA SSSD Tools_ from git repository:
 
 - https://gitlab.com/gcoop-libre/freeipa-sssd-tools
+- https://gitlab.com/gcoop-libre/freeipa-sssd-tools
+- https://gitlab.com/osiux/freeipa-sssd-tools
 - https://github.com/gcoop-libre/freeipa-sssd-tools
+- https://github.com/gcoop-libre/freeipa-sssd-tools
+- https://github.com/osiris/freeipa-sssd-tools
+- https://codeberg.org/osiux/freeipa-sssd-tools
 
 ## Role Variables
 
@@ -57,6 +64,16 @@ Available variables with default values in `defaults/main.yml`.
     - role: gcoop-libre.freeipa_sssd_tools
 
 ```
+
+## Useful Playbooks
+
+| _playbook_                                        | _description_                                                     |
+|---------------------------------------------------|-------------------------------------------------------------------|
+| [`cron.yml`](../tests/cron.yml)                   | Configure Crontab entries for _FreeIPA_ _SSSD_ _Tools_            |
+| [`ipa-health-check.yml`](../ipa-health-check.yml) | Clone `freeipa-sssd-tools` and execute `ipa-hlt-chk`              |
+| [`log.yml`](../tests/log.yml)                     | Generate stats report from _FreeIPA_ _SSSD_ _Tools_ _logs_        |
+| [`start.yml`](../tests/start.md)                  | Start _FreeIPA_ _Tools_ Services and restore persistent `RAMDISK` |
+| [`test.yml`](../tests/test.yml)                   | Install and configure _FreeIPA_ _Tools_                           |
 
 ## License
 
