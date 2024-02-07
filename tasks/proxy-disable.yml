@@ -1,0 +1,9 @@
+---
+
+- name: (freeipa-sssd-tools) disable proxy in {{ item }}
+  lineinfile:
+    path: '{{ item }}'
+    regexp: '^proxy.*$'
+    state: absent
+  no_log: '{{ freeipa_sssd_tools_no_log }}'
+  become: yes
