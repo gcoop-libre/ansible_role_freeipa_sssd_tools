@@ -2,8 +2,65 @@
 
  - this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html)
 
-## [`Unreleased - 2024-01-29`](https://gitlab.com/gcoop-libre/ansible_role_freeipa_sssd_tools/-/compare/v0.9.3...develop)
+## [`Unreleased - 2024-02-06`](https://gitlab.com/gcoop-libre/ansible_role_freeipa_sssd_tools/-/compare/v0.9.4...develop)
 
+## [`v0.9.4 - 2024-02-06`](https://gitlab.com/gcoop-libre/ansible_role_freeipa_sssd_tools/-/compare/v0.9.3...v0.9.4) _add playbook to clone FreeIPA SSSD tools and run ipa-hlt-chk to check Network, DNS, NTP, SSSD, KRB5 and others dependencies to determine health of IPA_
+
+### `CHANGELOG`
+
+- update Unreleased, add v0.9.3
+
+### `defaults/main`
+
+- enable freeipa_sssd_tools_git_repo_rm_token to remove token from git url after clone
+- disable run health check by default
+
+### `gitlab-ci`
+
+- add ansible-awx-ipa-hlt-chk in stages
+- add ansible-awx-ipa-hlt-chk stage to run ipa_hlt_chk_v0.1.0
+
+### `README`
+
+- update README.md generated with git-tag-readme including Tags Summary
+
+### `tasks/git`
+
+- enable no_log when remove token from git url origin after clone
+- replace search_string with regexp for legacy support when remove token from git url origin after clone
+- remove token from git url origin after clone when freeipa_sssd_tools_git_repo_rm_token is enabled
+- preserve untokened git url when use token
+
+### `tasks/health-check`
+
+- execute ipa-hlt-chk
+
+### `tasks/main`
+
+- delete duplicate key "when" in include health-check tasks
+- include health-check tasks when freeipa_sssd_tools_health_check is enabled
+- use full path to execute ipa-hlt-chk
+- execute ipa-hlt-chk when freeipa_sssd_tools_health_check is enabled
+
+### `tasks/packages`
+
+- fix conditionals to execute yum only on RedHat or AlmaLinux
+- execute yum only on RedHat or AlmaLinux
+
+### `tests/ipa-health-check`
+
+- update conditionals to ensure FreeIPA SSSD tools clone and run ipa-hlt-chk
+- enable execute health check
+- get FreeIPA SSSD Tools and execute ipa-hlt-chk
+
+### `vars/Debian`
+
+- undefine freeipa_sssd_tools_api_packages and freeipa_sssd_tools_plot_packages
+
+### `vars/Debian_Ubuntu`
+
+- add dnsutils and krb5-user packages to provide dig and kinit commands for ipa-hlt-chk
+- define freeipa_sssd_tools_packages
 
 ## [`v0.9.3 - 2024-01-29`](https://gitlab.com/gcoop-libre/ansible_role_freeipa_sssd_tools/-/compare/v0.9.2...v0.9.3) _get dirsrv status from ansible_facts to start dirsrv service and restart sssd when is dirsrv is stopped and add task to fail when dirsrv service is STOPPED at end of playbook_
 
