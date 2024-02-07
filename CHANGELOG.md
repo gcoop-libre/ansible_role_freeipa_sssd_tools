@@ -2,12 +2,17 @@
 
  - this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html)
 
-## [`Unreleased - 2024-02-06`](https://gitlab.com/gcoop-libre/ansible_role_freeipa_sssd_tools/-/compare/v0.9.4...develop)
+## [`Unreleased - 2024-02-07`](https://gitlab.com/gcoop-libre/ansible_role_freeipa_sssd_tools/-/compare/v0.9.4...develop)
 
-## [`v0.9.4 - 2024-02-06`](https://gitlab.com/gcoop-libre/ansible_role_freeipa_sssd_tools/-/compare/v0.9.3...v0.9.4) _add playbook to clone FreeIPA SSSD tools and run ipa-hlt-chk to check Network, DNS, NTP, SSSD, KRB5 and others dependencies to determine health of IPA_
+- tasks/main: include remove proxy configuration from YUM and DNF when freeipa_sssd_tools_http_proxy_disable is enabled
+- tasks/proxy-disable: remove proxy configuration from YUM and DNF
+- defaults/main: by default remove proxy configuration from YUM and DNF
+
+## [`v0.9.4 - 2024-02-07`](https://gitlab.com/gcoop-libre/ansible_role_freeipa_sssd_tools/-/compare/v0.9.3...v0.9.4) _add playbook to clone FreeIPA SSSD tools and run ipa-hlt-chk to check Network, DNS, NTP, SSSD, KRB5 and others dependencies to determine health of IPA                                   |_
 
 ### `CHANGELOG`
 
+- update Unreleased, add v0.9.4
 - update Unreleased, add v0.9.3
 
 ### `defaults/main`
@@ -22,6 +27,8 @@
 
 ### `README`
 
+- update to v0.9.4
+- add freeipa-sssd-tools repository mirrors and update useful playbooks in .readme-footer
 - update README.md generated with git-tag-readme including Tags Summary
 
 ### `tasks/git`
