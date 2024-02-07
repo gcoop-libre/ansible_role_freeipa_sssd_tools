@@ -142,6 +142,7 @@ freeipa_sssd_tools_api_uwsgi_config: True
 freeipa_sssd_tools_packages_install: True
 
 # HTTP PROXY (disabled by default)
+freeipa_sssd_tools_http_proxy_disable: true
 freeipa_sssd_tools_http_proxy_host: []
 freeipa_sssd_tools_http_proxy_pass: []
 freeipa_sssd_tools_http_proxy_port: 3128

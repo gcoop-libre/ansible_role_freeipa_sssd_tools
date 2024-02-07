@@ -86,3 +86,13 @@
   when:
     - freeipa_sssd_tools_health_check is defined
     - freeipa_sssd_tools_health_check | bool
+
+- name: (freeipa-sssd-tools) include disable proxy tasks
+  include_tasks: proxy-disable.yml
+  when:
+    - freeipa_sssd_tools_http_proxy_disable is defined
+    - freeipa_sssd_tools_http_proxy_disable | bool
+    - freeipa_sssd_tools_etc_yum_dnf_files is defined
+    - freeipa_sssd_tools_etc_yum_dnf_files | length > 0
+  with_items:
+    - "{{ freeipa_sssd_tools_etc_yum_dnf_files }}"
